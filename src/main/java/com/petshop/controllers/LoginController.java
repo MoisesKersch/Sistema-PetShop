@@ -1,17 +1,17 @@
 package com.petshop.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.petshop.models.User;
+import com.petshop.models.Usuario;
 import com.petshop.services.SecurityService;
 import com.petshop.services.UserService;
-import com.petshop.services.ValidatorImpl;
 
 @Controller
 public class LoginController
@@ -22,31 +22,23 @@ public class LoginController
 	@Autowired
 	private SecurityService securityService;
 
-	@Autowired
-	private ValidatorImpl userValidator;
-
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model)
 	{
-		model.addAttribute("userForm", new User());
+		model.addAttribute("usuario", new Usuario());
 		return "registration";
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)
+	public String registration(@Valid Usuario usuario, BindingResult bindingResult, Model model, String bairro)
 	{
-		userValidator.validate(userForm, bindingResult);
-
 		if (bindingResult.hasErrors())
 		{
-			return "registration";
+			return "redirect:/registration";
 		}
-
-		userService.save(userForm);
-
-		securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
-		return "redirect:/welcome";
+		userService.save(usuario);
+		securityService.autologin(usuario.getLogin(), usuario.getSenha());
+		return "redirect:/home";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -59,12 +51,5 @@ public class LoginController
 			model.addAttribute("message", "You have been logged out successfully.");
 
 		return "login";
-	}
-
-	@RequestMapping(value =
-	{ "/", "/welcome" }, method = RequestMethod.GET)
-	public String welcome(Model model)
-	{
-		return "welcome";
 	}
 }
