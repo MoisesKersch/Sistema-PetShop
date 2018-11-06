@@ -6,5 +6,5 @@ import com.petshop.models.Users;
 
 public interface UsersRepository extends JpaRepository<Users, Long>
 {
-	Users findByEmail(String email);
+	Users findUsersByEmail(String email);
 }

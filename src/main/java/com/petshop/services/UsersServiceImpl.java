@@ -1,6 +1,5 @@
 package com.petshop.services;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -28,7 +27,7 @@ public class UsersServiceImpl implements UsersService
 	@Override
 	public Users findUsersByEmail(String email)
 	{
-		return usersRepository.findByEmail(email);
+		return usersRepository.findUsersByEmail(email);
 	}
 
 	@Override
