@@ -103,7 +103,7 @@
 
 		<div id="login-page" class="row">
 			<div class="col s12 z-depth-4 card-panel">
-				<form:form method="post" modelAttribute="userForm" class="form-signin login-form">
+				<form:form method="post" modelAttribute="usuario" class="form-signin login-form">
 					<div class="row">
 						<div class="input-field col s12 center">
 							<h4>Register</h4>
@@ -114,13 +114,13 @@
 					<div class="row margin">
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
-							<spring:bind path="username">
-							  <form:input type="text" path="username" placeholder="Username" class="validate ${status.error ? 'invalid' : ''}"
+							<spring:bind path="login">
+							  <form:input type="text" path="login" placeholder="Username" class="validate ${status.error ? 'invalid' : ''}"
                         		 autofocus="true"></form:input>
                         		 <div class="errorTxt2">
                         		 	<div class="input-field col s2">
                         		 	</div>
-                        		 		<div id="cemail-error" class="error"><form:errors path="username"></form:errors></div>
+                        		 		<div id="cemail-error" class="error"><form:errors path="login"></form:errors></div>
                         		 </div>
                             </spring:bind>
 							<label for="username">Usuario</label>
