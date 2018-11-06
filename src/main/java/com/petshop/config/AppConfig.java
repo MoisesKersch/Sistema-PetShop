@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@PropertySource(value = "classpath:validation.properties", encoding = "UTF-8")
 public class AppConfig extends WebMvcConfigurationSupport
 {
 	@Override

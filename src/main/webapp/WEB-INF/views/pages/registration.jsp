@@ -34,62 +34,16 @@
 
 <!-- CORE CSS-->
 
-<link href="resources/css/materialize.css" type="text/css"
-	rel="stylesheet" media="screen,projection">
-<link href="resources/css/style.css" type="text/css" rel="stylesheet"
-	media="screen,projection">
-<link href="resources/css/page-center.css" type="text/css"
-	rel="stylesheet" media="screen,projection">
+<link href="resources/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+<link href="resources/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+<link href="resources/css/page-center.css" type="text/css" rel="stylesheet" media="screen,projection">
 
 <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-<link href="resources/css/prism.css" type="text/css" rel="stylesheet"
-	media="screen,projection">
-<link
-	href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css"
-	type="text/css" rel="stylesheet" media="screen,projection">
+<link href="resources/css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+<link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+<link href="resources/css/validator.css" type="text/css" rel="stylesheet" media="screen,projection">
 	
-	   <style type="text/css">
-  .input-field div.error{
-    position: relative;
-    top: -1rem;
-    left: 0rem;
-    font-size: 0.8rem;
-    color:#FF4081;
-    -webkit-transform: translateY(0%);
-    -ms-transform: translateY(0%);
-    -o-transform: translateY(0%);
-    transform: translateY(0%);
-  }
-  .input-field label.active{
-      width:100%;
-  }
-  .left-alert input[type=text] + label:after, 
-  .left-alert input[type=password] + label:after, 
-  .left-alert input[type=email] + label:after, 
-  .left-alert input[type=url] + label:after, 
-  .left-alert input[type=time] + label:after,
-  .left-alert input[type=date] + label:after, 
-  .left-alert input[type=datetime-local] + label:after, 
-  .left-alert input[type=tel] + label:after, 
-  .left-alert input[type=number] + label:after, 
-  .left-alert input[type=search] + label:after, 
-  .left-alert textarea.materialize-textarea + label:after{
-      left:0px;
-  }
-  .right-alert input[type=text] + label:after, 
-  .right-alert input[type=password] + label:after, 
-  .right-alert input[type=email] + label:after, 
-  .right-alert input[type=url] + label:after, 
-  .right-alert input[type=time] + label:after,
-  .right-alert input[type=date] + label:after, 
-  .right-alert input[type=datetime-local] + label:after, 
-  .right-alert input[type=tel] + label:after, 
-  .right-alert input[type=number] + label:after, 
-  .right-alert input[type=search] + label:after, 
-  .right-alert textarea.materialize-textarea + label:after{
-      right:70px;
-  }
-  </style>
+
 </head>
 
 <body class="cyan">
@@ -103,17 +57,48 @@
 
 		<div id="login-page" class="row">
 			<div class="col s12 z-depth-4 card-panel">
+<<<<<<< HEAD
 				<form:form method="post" modelAttribute="usuario" class="form-signin login-form">
+=======
+				<form:form method="post" modelAttribute="usuario" class="form-signin login-form" id="registrationForm">
+>>>>>>> 8986496279d317878c48a1cc3046c9dc9758b21f
 					<div class="row">
 						<div class="input-field col s12 center">
-							<h4>Register</h4>
-							<p class="center">Join to our community now !</p>
+							<h4>Registro</h4>
+							<p class="center">Registre-se no sistema PetShop!</p>
 						</div>
 					</div>
 					
 					<div class="row margin">
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
+							<spring:bind path="nome">
+							  <form:input type="text" path="nome" placeholder="Nome" 
+                        		 autofocus="true"></form:input>
+                        		 	<div class="input-field col s2"></div>
+                            </spring:bind>
+							<label for="nome">Nome</label>
+						</div>
+					</div>
+					
+					  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					
+					<div class="row margin">
+						<div class="input-field col s12">
+							<i class="mdi-social-person-outline prefix"></i> 
+							<spring:bind path="cpf">
+							  <form:input type="text" path="cpf" placeholder="cpf" 
+                        		 autofocus="true"></form:input>
+                        		 	<div class="input-field col s2"></div>
+                            </spring:bind>
+							<label for="cpf">cpf</label>
+						</div>
+					</div>
+					
+					<div class="row margin">
+						<div class="input-field col s12">
+							<i class="mdi-social-person-outline prefix"></i> 
+<<<<<<< HEAD
 							<spring:bind path="login">
 							  <form:input type="text" path="login" placeholder="Username" class="validate ${status.error ? 'invalid' : ''}"
                         		 autofocus="true"></form:input>
@@ -122,28 +107,70 @@
                         		 	</div>
                         		 		<div id="cemail-error" class="error"><form:errors path="login"></form:errors></div>
                         		 </div>
+=======
+							<spring:bind path="endereco[0].bairro">
+							  <form:input type="text" path="endereco[0].bairro" placeholder="Bairro" 
+                        		 autofocus="true"></form:input>
+                        		 	<div class="input-field col s2"></div>
+>>>>>>> 8986496279d317878c48a1cc3046c9dc9758b21f
                             </spring:bind>
-							<label for="username">Usuario</label>
+							<label for="bairro">Bairro</label>
+						</div>
+					</div>
+					
+					<div class="row margin">
+						<div class="input-field col s12">
+							<i class="mdi-social-person-outline prefix"></i> 
+							<spring:bind path="endereco[0].cidade">
+							  <form:input type="text" path="endereco[0].cidade" placeholder="Cidade" 
+                        		 autofocus="true"></form:input>
+                        		 	<div class="input-field col s2"></div>
+                            </spring:bind>
+							<label for="cidade">Cidade</label>
+						</div>
+					</div>
+					
+					<div class="row margin">
+						<div class="input-field col s12">
+							<i class="mdi-social-person-outline prefix"></i> 
+							<spring:bind path="endereco[0].uf">
+							  <form:input type="text" path="endereco[0].uf" placeholder="UF" 
+                        		 autofocus="true"></form:input>
+                        		 	<div class="input-field col s2"></div>
+                            </spring:bind>
+							<label for="uf">UF</label>
+						</div>
+					</div>
+					
+					<div class="row margin">
+						<div class="input-field col s12">
+							<i class="mdi-social-person-outline prefix"></i> 
+							<spring:bind path="login">
+							  <form:input type="text" path="login" placeholder="login" 
+                        		 autofocus="true"></form:input>
+                        		 	<div class="input-field col s2"></div>
+                            </spring:bind>
+							<label for="login">Login</label>
 						</div>
 					</div>
 					
 					<div class="row margin">
 						<div class="input-field col s12">
 							<i class="mdi-action-lock-outline prefix"></i> 
-							  <spring:bind path="password">
-							  	<form:input type="password" path="password" placeholder="Password"></form:input>
+							  <spring:bind path="senha">
+							  	<form:input type="password" path="senha" placeholder="Senha" name="password" id="password" ></form:input>
+							  	<div class="input-field col s2"></div>
 							  </spring:bind>
-							<label for="password">Password</label>
+							<label for="senha">Senha</label>
 						</div>
 					</div>
 					
 					<div class="row margin">
 						<div class="input-field col s12">
 							<i class="mdi-action-lock-outline prefix"></i> 
-							 <spring:bind path="passwordConfirm">
-								<form:input type="password" path="passwordConfirm" placeholder="Confirm your password"></form:input>
-							  </spring:bind>
-							 <label for="password-again">Password again</label>
+								<input type="password" placeholder="Senha Novamente"  name="passwordConfirm" >
+									<div class="input-field col s2"></div>
+							 <label for="senha-again">Senha Novamente</label>
 						</div>
 					</div>
 					<div class="row">
@@ -168,6 +195,7 @@
     Scripts
     ================================================ -->
 	<jsp:include page="../tiles/templates/js.jsp"></jsp:include>
+	<script type="text/javascript" src="resources/js/pages/registration.js"></script>
 </body>
 
 </html>
