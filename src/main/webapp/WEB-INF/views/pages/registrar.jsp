@@ -1,7 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -43,7 +42,6 @@
 <link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
 <link href="resources/css/validator.css" type="text/css" rel="stylesheet" media="screen,projection">
 	
-
 </head>
 
 <body class="cyan">
@@ -57,11 +55,7 @@
 
 		<div id="login-page" class="row">
 			<div class="col s12 z-depth-4 card-panel">
-<<<<<<< HEAD
-				<form:form method="post" modelAttribute="usuario" class="form-signin login-form">
-=======
-				<form:form method="post" modelAttribute="usuario" class="form-signin login-form" id="registrationForm">
->>>>>>> 8986496279d317878c48a1cc3046c9dc9758b21f
+				<form:form method="post" modelAttribute="users" class="form-signin login-form" id="registrationForm">
 					<div class="row">
 						<div class="input-field col s12 center">
 							<h4>Registro</h4>
@@ -98,21 +92,10 @@
 					<div class="row margin">
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
-<<<<<<< HEAD
-							<spring:bind path="login">
-							  <form:input type="text" path="login" placeholder="Username" class="validate ${status.error ? 'invalid' : ''}"
-                        		 autofocus="true"></form:input>
-                        		 <div class="errorTxt2">
-                        		 	<div class="input-field col s2">
-                        		 	</div>
-                        		 		<div id="cemail-error" class="error"><form:errors path="login"></form:errors></div>
-                        		 </div>
-=======
 							<spring:bind path="endereco[0].bairro">
 							  <form:input type="text" path="endereco[0].bairro" placeholder="Bairro" 
                         		 autofocus="true"></form:input>
                         		 	<div class="input-field col s2"></div>
->>>>>>> 8986496279d317878c48a1cc3046c9dc9758b21f
                             </spring:bind>
 							<label for="bairro">Bairro</label>
 						</div>
@@ -189,8 +172,6 @@
 				</form:form>
 			</div>
 		</div>
-	
-
 	<!-- ================================================
     Scripts
     ================================================ -->

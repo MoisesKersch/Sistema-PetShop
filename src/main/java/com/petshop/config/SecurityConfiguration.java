@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 		try
 		{
 			httpSecurity.authorizeRequests().antMatchers("/").permitAll() // acesso total a url "/"
-					.antMatchers("/login").permitAll() // acesso total a url "login"
+					.antMatchers("/login", "/resources/**").permitAll() // acesso total a url "login"
 					.antMatchers("/registrar").permitAll() // acesso total a url "registrar"
 					.antMatchers("/home/**").hasAuthority("ADMIN").anyRequest() // acesso total a url "home" caso a role
 																				// seja "ADMIN"
