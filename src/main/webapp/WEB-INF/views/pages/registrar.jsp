@@ -66,110 +66,137 @@
 					<div class="row margin">
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
-							<spring:bind path="nome">
-							  <form:input type="text" path="nome" placeholder="Nome" 
-                        		 autofocus="true"></form:input>
+							<spring:bind path="email">
+							  	<form:input type="text" path="email" placeholder="Email" 
+                         			 autofocus="true"></form:input> 
                         		 	<div class="input-field col s2"></div>
-                            </spring:bind>
-							<label for="nome">Nome</label>
-						</div>
-					</div>
-					
-					  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					
-					<div class="row margin">
-						<div class="input-field col s12">
-							<i class="mdi-social-person-outline prefix"></i> 
-							<spring:bind path="cpf">
-							  <form:input type="text" path="cpf" placeholder="cpf" 
-                        		 autofocus="true"></form:input>
-                        		 	<div class="input-field col s2"></div>
-                            </spring:bind>
-							<label for="cpf">cpf</label>
-						</div>
-					</div>
-					
-					<div class="row margin">
-						<div class="input-field col s12">
-							<i class="mdi-social-person-outline prefix"></i> 
-							<spring:bind path="endereco[0].bairro">
-							  <form:input type="text" path="endereco[0].bairro" placeholder="Bairro" 
-                        		 autofocus="true"></form:input>
-                        		 	<div class="input-field col s2"></div>
-                            </spring:bind>
-							<label for="bairro">Bairro</label>
-						</div>
-					</div>
-					
-					<div class="row margin">
-						<div class="input-field col s12">
-							<i class="mdi-social-person-outline prefix"></i> 
-							<spring:bind path="endereco[0].cidade">
-							  <form:input type="text" path="endereco[0].cidade" placeholder="Cidade" 
-                        		 autofocus="true"></form:input>
-                        		 	<div class="input-field col s2"></div>
-                            </spring:bind>
-							<label for="cidade">Cidade</label>
-						</div>
-					</div>
-					
-					<div class="row margin">
-						<div class="input-field col s12">
-							<i class="mdi-social-person-outline prefix"></i> 
-							<spring:bind path="endereco[0].uf">
-							  <form:input type="text" path="endereco[0].uf" placeholder="UF" 
-                        		 autofocus="true"></form:input>
-                        		 	<div class="input-field col s2"></div>
-                            </spring:bind>
-							<label for="uf">UF</label>
-						</div>
-					</div>
-					
-					<div class="row margin">
-						<div class="input-field col s12">
-							<i class="mdi-social-person-outline prefix"></i> 
-							<spring:bind path="login">
-							  <form:input type="text" path="login" placeholder="login" 
-                        		 autofocus="true"></form:input>
-                        		 	<div class="input-field col s2"></div>
-                            </spring:bind>
-							<label for="login">Login</label>
-						</div>
-					</div>
-					
-					<div class="row margin">
-						<div class="input-field col s12">
-							<i class="mdi-action-lock-outline prefix"></i> 
-							  <spring:bind path="senha">
-							  	<form:input type="password" path="senha" placeholder="Senha" name="password" id="password" ></form:input>
-							  	<div class="input-field col s2"></div>
-							  </spring:bind>
-							<label for="senha">Senha</label>
-						</div>
-					</div>
-					
-					<div class="row margin">
-						<div class="input-field col s12">
-							<i class="mdi-action-lock-outline prefix"></i> 
-								<input type="password" placeholder="Senha Novamente"  name="passwordConfirm" >
-									<div class="input-field col s2"></div>
-							 <label for="senha-again">Senha Novamente</label>
-						</div>
-					</div>
-					<div class="row">
-					
-						<div class="input-field col s12">
-							<button type="submit" value="Submit" class="btn waves-effect waves-light col s12">Register
-								Now</button>
-						</div>
-						
-						<div class="input-field col s12">
-							<p class="margin center medium-small sign-up">
-								Already have an account? <a href="page-login.html">Login</a>
-							</p>
+                             	</spring:bind> 
+							<label for="email">Email</label>
 						</div>
 					</div>
 				</form:form>
+			
+			
+			
+			
+			
+			
+			
+<%-- 				<form:form method="post" modelAttribute="users" class="form-signin login-form" id="registrationForm"> --%>
+<!-- 					<div class="row"> -->
+<!-- 						<div class="input-field col s12 center"> -->
+<!-- 							<h4>Registro</h4> -->
+<!-- 							<p class="center">Registre-se no sistema PetShop!</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<!-- 					<div class="row margin"> -->
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<i class="mdi-social-person-outline prefix"></i>  -->
+<%-- 							<spring:bind path="nome"> --%>
+<%-- 							  <form:input type="text" path="nome" placeholder="Nome"  --%>
+<%--                         		 autofocus="true"></form:input> --%>
+<!--                         		 	<div class="input-field col s2"></div> -->
+<%--                             </spring:bind> --%>
+<!-- 							<label for="nome">Nome</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<%-- 					  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+					
+<!-- 					<div class="row margin"> -->
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<i class="mdi-social-person-outline prefix"></i>  -->
+<%-- 							<spring:bind path="cpf"> --%>
+<%-- 							  <form:input type="text" path="cpf" placeholder="cpf"  --%>
+<%--                         		 autofocus="true"></form:input> --%>
+<!--                         		 	<div class="input-field col s2"></div> -->
+<%--                             </spring:bind> --%>
+<!-- 							<label for="cpf">cpf</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<!-- 					<div class="row margin"> -->
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<i class="mdi-social-person-outline prefix"></i>  -->
+<%-- 							<spring:bind path="endereco[0].bairro"> --%>
+<%-- 							  <form:input type="text" path="endereco[0].bairro" placeholder="Bairro"  --%>
+<%--                         		 autofocus="true"></form:input> --%>
+<!--                         		 	<div class="input-field col s2"></div> -->
+<%--                             </spring:bind> --%>
+<!-- 							<label for="bairro">Bairro</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<!-- 					<div class="row margin"> -->
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<i class="mdi-social-person-outline prefix"></i>  -->
+<%-- 							<spring:bind path="endereco[0].cidade"> --%>
+<%-- 							  <form:input type="text" path="endereco[0].cidade" placeholder="Cidade"  --%>
+<%--                         		 autofocus="true"></form:input> --%>
+<!--                         		 	<div class="input-field col s2"></div> -->
+<%--                             </spring:bind> --%>
+<!-- 							<label for="cidade">Cidade</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<!-- 					<div class="row margin"> -->
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<i class="mdi-social-person-outline prefix"></i>  -->
+<%-- 							<spring:bind path="endereco[0].uf"> --%>
+<%-- 							  <form:input type="text" path="endereco[0].uf" placeholder="UF"  --%>
+<%--                         		 autofocus="true"></form:input> --%>
+<!--                         		 	<div class="input-field col s2"></div> -->
+<%--                             </spring:bind> --%>
+<!-- 							<label for="uf">UF</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<!-- 					<div class="row margin"> -->
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<i class="mdi-social-person-outline prefix"></i>  -->
+<%-- 							<spring:bind path="login"> --%>
+<%-- 							  <form:input type="text" path="login" placeholder="login"  --%>
+<%--                         		 autofocus="true"></form:input> --%>
+<!--                         		 	<div class="input-field col s2"></div> -->
+<%--                             </spring:bind> --%>
+<!-- 							<label for="login">Login</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<!-- 					<div class="row margin"> -->
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<i class="mdi-action-lock-outline prefix"></i>  -->
+<%-- 							  <spring:bind path="senha"> --%>
+<%-- 							  	<form:input type="password" path="senha" placeholder="Senha" name="password" id="password" ></form:input> --%>
+<!-- 							  	<div class="input-field col s2"></div> -->
+<%-- 							  </spring:bind> --%>
+<!-- 							<label for="senha">Senha</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+<!-- 					<div class="row margin"> -->
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<i class="mdi-action-lock-outline prefix"></i>  -->
+<!-- 								<input type="password" placeholder="Senha Novamente"  name="passwordConfirm" > -->
+<!-- 									<div class="input-field col s2"></div> -->
+<!-- 							 <label for="senha-again">Senha Novamente</label> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="row"> -->
+					
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<button type="submit" value="Submit" class="btn waves-effect waves-light col s12">Register -->
+<!-- 								Now</button> -->
+<!-- 						</div> -->
+						
+<!-- 						<div class="input-field col s12"> -->
+<!-- 							<p class="margin center medium-small sign-up"> -->
+<!-- 								Already have an account? <a href="page-login.html">Login</a> -->
+<!-- 							</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</form:form> --%>
 			</div>
 		</div>
 	<!-- ================================================

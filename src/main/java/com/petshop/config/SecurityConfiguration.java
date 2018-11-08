@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -45,14 +46,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 		// abrimos a opção autorizar requesições
 		try
 		{
-			httpSecurity.authorizeRequests().antMatchers("/").permitAll() // acesso total a url "/"
-					.antMatchers("/login", "/resources/**").permitAll() // acesso total a url "login"
+			httpSecurity.authorizeRequests()
+				.antMatchers("/").permitAll() // acesso total a url "/"
+				.antMatchers("/login", "/resources/**").permitAll() // acesso total a url "login"
 					.antMatchers("/registrar").permitAll() // acesso total a url "registrar"
 					.antMatchers("/home/**").hasAuthority("ADMIN").anyRequest() // acesso total a url "home" caso a role
 																				// seja "ADMIN"
 					.authenticated().and().csrf().disable().formLogin().loginPage("/login")
 					.failureUrl("/login?error=true").defaultSuccessUrl("/home/home").usernameParameter("email")
-					.passwordParameter("password").and().logout()
+					.passwordParameter("password")
+					.successHandler((req,res,auth)->{    //Success handler invoked after successful authentication
+				         for (GrantedAuthority authority : auth.getAuthorities()) {
+				            System.out.println(authority.getAuthority());
+				         }
+				         System.out.println(auth.getName());
+				         res.sendRedirect("/home"); // Redirect user to index/home page
+				      })
+					
+					.and().logout()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/login")).logoutSuccessUrl("/").and().rememberMe()
 					.tokenRepository(persistentTokenRepository()).tokenValiditySeconds(60 * 60).and()
 					.exceptionHandling().accessDeniedPage("/access_denied");

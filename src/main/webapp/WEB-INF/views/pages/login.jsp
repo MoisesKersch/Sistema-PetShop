@@ -26,8 +26,8 @@
 
 
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+                <label for="username">email</label>
+                <input type="text" name="email" class="form-control" id="email" placeholder="Username">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

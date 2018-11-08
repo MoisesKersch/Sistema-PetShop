@@ -20,9 +20,11 @@
 								<li><a href="#"><i class="mdi-hardware-keyboard-tab"></i>
 										Logout</a></li>
 							</ul>
+					
+						
 							<a
 								class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn"
-								href="#" data-activates="profile-dropdown">John Doe<i
+								href="#" data-activates="profile-dropdown">${nome}<i
 								class="mdi-navigation-arrow-drop-down right"></i></a>
 							<p class="user-roal">Administrator</p>
 						</div>
@@ -30,7 +32,7 @@
 				</li>
 				<li class="bold"><a href="index.html"
 					class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i>
-						Dashboard</a></li>
+						Tela Principal</a></li>
 				<li class="bold"><a href="app-email.html"
 					class="waves-effect waves-cyan"><i
 						class="mdi-communication-email"></i> Mailbox <span
