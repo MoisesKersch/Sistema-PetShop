@@ -25,7 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 	@Autowired
 	private DataSource dataSource;
 
-	private final String USERS_QUERY = "select email, password, active from users where email=?";
+	private final String USERS_QUERY = "select cu email, password, active from users where email=?";
 	private final String ROLES_QUERY = "select u.email, r.role from users u inner join users_role ur on (u.id = ur.users_id) inner join r on (ur.role_id = r.role_id) where u.email=?";
 
 	// configurações do banco de dados aonde esta os dados da autentificação
