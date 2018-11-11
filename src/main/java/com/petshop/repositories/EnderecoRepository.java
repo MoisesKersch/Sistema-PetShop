@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.petshop.models.Role;
 
-public interface RoleRepository extends JpaRepository<Role, Long>
+public interface EnderecoRepository extends JpaRepository<Role, Long>
 {
-	Role findByRole(String role);
+	
 }

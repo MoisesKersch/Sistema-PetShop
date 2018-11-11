@@ -11,21 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.petshop.models.Users;
-import com.petshop.services.UsersService;
+import com.petshop.models.Usuario;
+import com.petshop.services.UsuarioDetailsServiceImpl;
 
 @Controller
 public class HomeController 
 {
 	@Autowired
-	UsersService usersService;
+	UsuarioDetailsServiceImpl usuarioDetailsServiceImpl;
 	
-	@RequestMapping(value = "/home/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/home",  method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response)
 	{
 		ModelAndView modelAndView = new ModelAndView("home");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Users users = usersService.findUsersByEmail(auth.getName());
+		Usuario usuario = (Usuario) usuarioDetailsServiceImpl.loadUserByUsername(auth.getName());
+		
 		modelAndView.addObject("page", "Home");
 		return modelAndView;
 	}

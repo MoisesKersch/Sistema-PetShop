@@ -11,13 +11,6 @@
     <script type="text/javascript" src="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
        
 
-    <!-- chartist -->
-    <script type="text/javascript" src="resources/js/plugins/chartist-js/chartist.min.js"></script>   
-
-    <!-- chartjs -->
-    <script type="text/javascript" src="resources/js/plugins/chartjs/chart.min.js"></script>
-    <script type="text/javascript" src="resources/js/plugins/chartjs/chart-script.js"></script>
-
     <!-- sparkline -->
     <script type="text/javascript" src="resources/js/plugins/sparkline/jquery.sparkline.min.js"></script>
     <script type="text/javascript" src="resources/js/plugins/sparkline/sparkline-script.js"></script>
@@ -40,6 +33,12 @@
  	<script type="text/javascript" src="resources/js/plugins/validator/additional-methods.min.js"></script>
  	
  	<script type="text/javascript" src="resources/js/plugins/validator/translations/pt-br.js"></script>
+ 	
+ 	<!-- growl --> 
+ 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
+ 	
+ 	
+ 	
  	
 
 

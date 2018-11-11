@@ -7,6 +7,14 @@
 <head>
 	<jsp:include page="../tiles/templates/css.jsp"></jsp:include>
 	<jsp:include page="../tiles/templates/header.jsp"></jsp:include>
+	
+<!--     chartist -->
+    <script type="text/javascript" src="resources/js/plugins/chartist-js/chartist.min.js"></script>   
+
+<!--     chartjs -->
+    <script type="text/javascript" src="resources/js/plugins/chartjs/chart.min.js"></script>
+    <script type="text/javascript" src="resources/js/plugins/chartjs/chart-script.js"></script>
+    
 </head>
 <body>
 <!-- body >> main >> wrapper >> content -->

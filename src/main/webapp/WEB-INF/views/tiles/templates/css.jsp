@@ -9,3 +9,12 @@
     <link href="resources/js/plugins/jvectormap/jquery-jvectormap.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="resources/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
     
+    <link href="resources/css/validator.css" type="text/css" rel="stylesheet" media="screen,projection">
+     
+
+ 	
+
+    
+    
+    
+    
