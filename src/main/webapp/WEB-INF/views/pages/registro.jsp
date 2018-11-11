@@ -18,7 +18,7 @@
 	<!-- For iPhone -->
 	<meta name="msapplication-TileColor" content="#00bcd4">
 	<meta name="msapplication-TileImage"
-		content="images/favicon/mstile-144x144.png">
+		content="resources/images/favicon/mstile-144x144.png">
 	<!-- For Windows Phone -->
 
 
@@ -44,7 +44,9 @@
 					<div class="row">
 						<div class="input-field col s12 center">
 							<h4>Registro</h4>
-							<p class="center">Registre-se no sistema PetShop!</p>
+							<p class="center">Registre-se no sistema PetShop!  
+
+							</p>
 						</div>
 					</div>
 					
@@ -66,11 +68,11 @@
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
 							<spring:bind path="cpf">
-							  <form:input type="text" path="cpf" placeholder="cpf" class="required"
+							  <form:input type="number" path="cpf" placeholder="cpf" class="required" id="cpf"
                         		 autofocus="true"></form:input> 
                         		 	<div class="input-field col s2"></div>
                              </spring:bind> 
-							<label for="cpf">cpf</label>
+							<label for="cpf">CPF</label>
 						</div>
 					</div>
 					
@@ -126,7 +128,7 @@
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
 							<spring:bind path="login">
-							  <form:input type="text" path="login" placeholder="login" class="required"
+							  <form:input type="text" path="login" placeholder="login" class="required" id="login"
                          		 autofocus="true"></form:input> 
                         		 	<div class="input-field col s2"></div>
                              </spring:bind> 
@@ -162,7 +164,7 @@
 						
 						<div class="input-field col s12">
 							<p class="margin center medium-small sign-up">
-								Já possui uma conta? <a href="login">Login</a>
+								Já possui uma conta? <a href="login">Login </a>
 							</p>
 						</div>
 					</div>
@@ -174,6 +176,11 @@
     ================================================ -->
 	<jsp:include page="../tiles/templates/js.jsp"></jsp:include>
 	<script type="text/javascript" src="resources/js/pages/registro.js"></script>
+		<c:if test="${mensagemErro ne null}">
+			<script>
+			   		Materialize.toast('${mensagemErro}', 8000, 'red') 
+			</script>
+		</c:if>
 </body>
 
 </html>

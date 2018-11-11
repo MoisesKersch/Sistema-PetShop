@@ -1,4 +1,3 @@
-Materialize.toast('I am a toast!', 9000, 'red') 
 
 function send()
 {
@@ -19,6 +18,5 @@ $("#loginForm").validate({
 
 		if (er == null)
 			er.insertAfter(element.next());
-
 	}
 });

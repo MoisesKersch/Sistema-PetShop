@@ -1,8 +1,5 @@
 package com.petshop.config;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -38,9 +35,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
+		
 		http.csrf().disable();
 
-		http.authorizeRequests().antMatchers("/secure/**").authenticated().antMatchers("/resources/**", "/registro", "/salvar")
+		http.authorizeRequests().antMatchers("/secure/**").authenticated().antMatchers("/resources/**", "/public")
 				.permitAll()
 //			.anyRequest().authenticated()
 				.and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true).passwordParameter("senha")
@@ -48,6 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 				.and().logout();
 	}
 
+
+	
 	private PasswordEncoder getPasswordEncoder()
 	{
 		return new PasswordEncoder()

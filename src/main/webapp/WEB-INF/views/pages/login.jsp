@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -11,12 +12,12 @@
   <title>Página de Login | </title>
 
   <!-- Favicons-->
-  <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" href="resources/images/favicon/favicon-32x32.png" sizes="32x32">
   <!-- Favicons-->
-  <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon-precomposed" href="/images/favicon/apple-touch-icon-152x152.png">
   <!-- For iPhone -->
   <meta name="msapplication-TileColor" content="#00bcd4">
-  <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+  <meta name="msapplication-TileImage" content="/images/favicon/mstile-144x144.png">
   <!-- For Windows Phone -->
 
   <!-- CORE CSS-->
@@ -57,6 +58,7 @@
             <label for="login" >Login</label>
           </div>
         </div>
+	
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
@@ -83,7 +85,12 @@
     ================================================ -->
 
 	<jsp:include page="../tiles/templates/js.jsp"></jsp:include>
-	<script type="text/javascript" src="resources/js/pages/login.js"></script>
+	<script type="text/javascript" src="/resources/js/pages/login.js"></script>
+	
+	 <c:if test="${param.error ne null}">
+	   	<script>
+	   		Materialize.toast('Login ou senha invalida!', 4000, 'red') 
+	   	</script>
+	</c:if>
 </body>
-
 </html>
