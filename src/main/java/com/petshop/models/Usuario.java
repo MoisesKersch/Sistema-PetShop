@@ -1,6 +1,7 @@
 package com.petshop.models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,10 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author light
+ *
+ */
 @Entity
 @Table(name = "usuario")
 public class Usuario
@@ -49,11 +54,15 @@ public class Usuario
 	@Column(name = "ativo")
 	private int ativo;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade =  CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinTable(name = "usuario_empresa", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "empresa_id"))
+	private Set<Empresa> empresas = new HashSet<Empresa>();
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "endereco_id"))
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
@@ -158,6 +167,21 @@ public class Usuario
 	}
 
 	public void setEndereco(List<Endereco> enderecos)
+	{
+		this.enderecos = enderecos;
+	}
+
+	public Set<Empresa> getEmpresas()
+	{
+		return empresas;
+	}
+
+	public void setEmpresas(Set<Empresa> empresas)
+	{
+		this.empresas = empresas;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos)
 	{
 		this.enderecos = enderecos;
 	}

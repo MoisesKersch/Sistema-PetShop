@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.petshop.component.SessaoInfo;
 import com.petshop.models.Empresa;
 import com.petshop.models.Role;
 import com.petshop.models.Usuario;
@@ -23,7 +24,7 @@ import com.petshop.repositories.UsuarioRepository;
 import com.petshop.services.UsuarioService;
 
 @Controller
-public class RegistroController
+public class CadastroController extends SessaoInfo
 {
 	@Autowired
 	private EmpresaRepository empresaRepository;
@@ -34,20 +35,25 @@ public class RegistroController
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@RequestMapping(value = "/registro")
+	@RequestMapping(value = "/cadastro")
 	public ModelAndView getRegistroPage()
 	{
-		ModelAndView modelAndView = new ModelAndView("registro");
-		Usuario usuario = new Usuario();
+		ModelAndView modelAndView = new ModelAndView("cadastro");
 		
-		modelAndView.addObject("usuario", usuario);
+		try {
+			modelAndView.addObject("papel", getUsuarioCorrente().getRoles().iterator().next().getRole());
+		} catch (Exception e) {
+			
+		}
 		
+		modelAndView.addObject("page", "Home");
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/registro", method = RequestMethod.POST)
+	@RequestMapping(value = "/cadastro", method = RequestMethod.POST)
 	public String postRegistroPage(@Valid Usuario usuario, BindingResult bindingResult, HttpServletRequest request, final RedirectAttributes redirectAttributes)
 	{
+		
 		if (bindingResult.hasErrors())
 		{
 			// tratar com uma growl mensagem? 
@@ -97,6 +103,6 @@ public class RegistroController
 		}
 		// logar apos o registro
 		usuarioService.logarAposRegistro(request, usuario.getLogin(), usuario.getSenha());
-		return "redirect:home";
+		return "redirect:cadastro";
 	}
 }

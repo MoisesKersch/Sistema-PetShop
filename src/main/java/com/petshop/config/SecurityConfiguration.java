@@ -1,12 +1,15 @@
 package com.petshop.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.petshop.repositories.UsuarioRepository;
@@ -35,18 +38,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
+
+		http.authorizeRequests()
+			.antMatchers("/resources/**", "/public").permitAll()
+			.antMatchers("/admin/**").hasRole("Administrador")  
+			.anyRequest().fullyAuthenticated()
+			.and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true).passwordParameter("senha")
+			.usernameParameter("login").permitAll()
+			.and().logout()
+			.and().exceptionHandling().accessDeniedPage("/login");
 		
 		http.csrf().disable();
-
-		http.authorizeRequests().antMatchers("/secure/**").authenticated().antMatchers("/resources/**", "/public")
-				.permitAll()
-//			.anyRequest().authenticated()
-				.and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true).passwordParameter("senha")
-				.usernameParameter("login").permitAll()
-				.and().logout();
 	}
-
-
 	
 	private PasswordEncoder getPasswordEncoder()
 	{
@@ -62,6 +65,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 			public String encode(CharSequence rawPassword)
 			{
 				return rawPassword.toString();
+			}
+		};
+	}
+	
+	@Bean
+	public AuthenticationTrustResolver trustResolver() {
+		return new AuthenticationTrustResolver() {
+
+			@Override
+			public boolean isRememberMe(final Authentication authentication) {
+				return false;
+			}
+
+			@Override
+			public boolean isAnonymous(final Authentication authentication) {
+				return false;
 			}
 		};
 	}

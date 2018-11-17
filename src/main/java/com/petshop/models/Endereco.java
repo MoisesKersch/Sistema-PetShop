@@ -15,20 +15,23 @@ public class Endereco
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "endereco_id")
 	private Long id;
-	
+
 	@Column(name = "bairro")
 	private String bairro;
-	
+
 	@Column(name = "cidade")
 	private String cidade;
-	
+
 	@Column(name = "uf")
 	private String uf;
 	
-	public Endereco(){
-	    
+	@Column(name = "complemento")
+	private String complemento;
+
+	public Endereco()
+	{
 	}
-	
+
 	public Long getId()
 	{
 		return id;
@@ -67,5 +70,15 @@ public class Endereco
 	public void setUf(String uf)
 	{
 		this.uf = uf;
+	}
+
+	public String getComplemento()
+	{
+		return complemento;
+	}
+
+	public void setComplemento(String complemento)
+	{
+		this.complemento = complemento;
 	}
 }

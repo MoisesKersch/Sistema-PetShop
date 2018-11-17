@@ -6,5 +6,5 @@ import com.petshop.models.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long>
 {
-	Role findByRole(String role);
+	public Role findByRole(String role);
 }

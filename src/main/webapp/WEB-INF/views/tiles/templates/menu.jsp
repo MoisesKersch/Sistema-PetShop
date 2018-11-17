@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <aside id="left-sidebar-nav">
 			<ul id="slide-out" class="side-nav fixed leftside-navigation">
 				<li class="user-details cyan darken-2">
@@ -20,19 +21,18 @@
 								<li><a href="/logout"><i class="mdi-hardware-keyboard-tab"></i>
 										Logout</a></li>
 							</ul>
-					
-						
 							<a
 								class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn"
 								href="#" data-activates="profile-dropdown">${nome}<i
 								class="mdi-navigation-arrow-drop-down right"></i></a>
-							<p class="user-roal">Administrator</p>
+							<p class="user-roal">${papel}</p>
 						</div>
 					</div>
 				</li>
-				<li class="bold"><a href="index.html"
-					class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i>
-						Tela Principal</a></li>
+				<c:if test = "${papel == 'Administrador'}">
+					<li class="bold"><a href="cadastro" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Cadastros Clientes</a></li>                   
+		      	</c:if>
+				
 				<li class="bold"><a href="app-email.html"
 					class="waves-effect waves-cyan"><i
 						class="mdi-communication-email"></i> Mailbox <span
