@@ -1,6 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +56,7 @@
 							<h4 class="header">Tabela de Clientes</h4>
 							<div class="row">
 								<div class="col s12 ">
-									<table id="cadastro" class="responsive display" cellspacing="0">
+									<table id="cadastro">
 										<thead>
 											<tr>
 												<th>Nome</th>
@@ -75,7 +76,7 @@
 							</div>
 						</div>
 					
-						<div class="modal" id="modalRemove">
+						<div class="modal" id="removeModal">
 							<div class="modal-content teal white-text">
 								<p>Tem certeza que deseja remover esse cadastro?</p>
 							</div>

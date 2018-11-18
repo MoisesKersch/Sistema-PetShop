@@ -25,8 +25,7 @@ function save()
 			 success: function(cadastro)
 			 {
 				 console.log(cadastro)
-				 
-				$('.modal-close').click(); 
+				 $('#cadastroFormModal').closeModal(); 
 				 
 				 if ($("#editing").val() == "false")
 			 	 { 
@@ -40,6 +39,8 @@ function save()
                       "uf": cadastro.enderecos[0].uf,
                       "id": cadastro.id
 					   } ).draw();
+					 
+					 $("#editing").val("false");
 				 }
 				else
 				{
@@ -53,9 +54,11 @@ function save()
 	                      "uf": cadastro.enderecos[0].uf,
 	                      "id": cadastro.id
 	                  });
+					 
+					 $("#editing").val("false");
 				}
 				
-				$("#editing").val("false");
+				
 			 }
 		 })
 	 }
@@ -72,7 +75,7 @@ function openTable()
 		    "sPaginationType": "full_numbers",
 		    data: cadastros,
 			"language": {
-			    "url": "/resources/json/Portuguese-Brasil.json"
+			    "url": "/resources/js/plugins/data-tables/json/Portuguese-Brasil.json"
 			},
 			
 		    columns: [ 	{ data: "nome" },
@@ -139,7 +142,6 @@ function openTable()
 		})
 }
 
-
 function removerCadastro()
 {
 	 $.ajax({
@@ -154,7 +156,6 @@ function removerCadastro()
 			 table.draw();
 		 }})
 }
-
 
 $("#cadastroForm").validate({
 	rules : {

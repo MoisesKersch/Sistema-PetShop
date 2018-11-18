@@ -260,7 +260,7 @@
                   var adata = dt.rows({
                     selected : true
                   });
-                 
+                  
                   $('#cadastroFormModal').openModal();
                   
                   $('#nome').val(adata.data()[0][columnDefs[0].name])
@@ -305,7 +305,8 @@
                      var adata = dt.rows({
                        selected : true
                      });
-                     $('#modalRemove').openModal();
+                     
+                     $('#removeModal').openModal();
                      $('#remove').val(adata.data()[0][columnDefs[7].name])
                 },
 
@@ -348,12 +349,11 @@
                     var adata = dt.rows({
                       selected : true
                     });
-          
+                    
                 	$('#cadastroForm')[0].reset();
-               
-                	$('#agendaSaveOrEdit').val("agendasave");
+                	$('#cadastroFormModal').openModal();
                 	
-                	$('#cadastroFormModal').openModal(); 
+                	
                 },
 
                 _getExecutionLocationFolder : function() {
