@@ -23,6 +23,7 @@ import com.petshop.repositories.UsuarioRepository;
 import com.petshop.services.UsuarioService;
 
 @Controller
+@RequestMapping(value = "/public")
 public class RegistroController
 {
 	@Autowired

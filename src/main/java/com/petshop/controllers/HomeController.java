@@ -20,14 +20,18 @@ public class HomeController
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response)
 	{
 		ModelAndView modelAndView = new ModelAndView("home");
-		Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario usuario = null;
 		
-//		if (usuario.getLogin() == null)
-//		{
-//			SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
-//		}
-//	
+		try {
+			 usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		} catch (Exception e) {
+		}
 		
+		if (usuario.getLogin() == null)
+		{
+			SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+			return null;
+		}
 		
 		try {
 			modelAndView.addObject("papel", usuario.getRoles().iterator().next().getRole());

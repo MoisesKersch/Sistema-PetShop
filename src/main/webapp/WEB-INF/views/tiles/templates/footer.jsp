@@ -2,11 +2,11 @@
 <footer class="page-footer">
 	<div class="footer-copyright">
 		<div class="container">
-			Copyright © 2015 <a class="grey-text text-lighten-4"
-				href="http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs"
-				target="_blank">GeeksLabs</a> All rights reserved. <span
-				class="right"> Design and Developed by <a
-				class="grey-text text-lighten-4" href="http://geekslabs.com/">GeeksLabs</a></span>
+			Copyright © 2018 <a class="grey-text text-lighten-4"
+				href="/home"
+				target="_blank">PetShopLtda</a> Todos os diretos reservados. <span
+				class="right"> Desenvolvido por <a
+				class="grey-text text-lighten-4" href="http://geekslabs.com/">PetShopLtda</a></span>
 		</div>
 	</div>
 </footer>

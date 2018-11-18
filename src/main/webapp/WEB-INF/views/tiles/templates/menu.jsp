@@ -29,6 +29,9 @@
 						</div>
 					</div>
 				</li>
+				
+				<li class="bold"><a href="home" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a></li> 
+				                  
 				<c:if test = "${papel == 'Administrador'}">
 					<li class="bold"><a href="cadastro" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Cadastros Clientes</a></li>                   
 		      	</c:if>

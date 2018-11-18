@@ -40,9 +40,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 	{
 
 		http.authorizeRequests()
-			.antMatchers("/resources/**", "/public").permitAll()
-			.antMatchers("/admin/**").hasRole("Administrador")  
-			.anyRequest().fullyAuthenticated()
+			.antMatchers("/resources/**", "/public/**", "/css/**").permitAll()
+			.antMatchers("/admin/**").hasRole("Administrador")
+			.and()
+			.authorizeRequests()
+			.anyRequest().authenticated()
 			.and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true).passwordParameter("senha")
 			.usernameParameter("login").permitAll()
 			.and().logout()

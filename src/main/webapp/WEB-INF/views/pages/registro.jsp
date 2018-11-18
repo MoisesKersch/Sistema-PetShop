@@ -11,7 +11,7 @@
 	Template</title>
 
 	<!-- Favicons-->
-	<link rel="icon" href="resources/images/favicon/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" href="/public/resources/images/favicon/favicon-32x32.png" sizes="32x32">
 	<!-- Favicons-->
 	<link rel="apple-touch-icon-precomposed"
 		href="resources/images/favicon/apple-touch-icon-152x152.png">
@@ -22,11 +22,11 @@
 	<!-- For Windows Phone -->
 
 
-	<link href="resources/css/page-center.css" type="text/css" rel="stylesheet" media="screen,projection">
+	<link href="/resources/css/page-center.css" type="text/css" rel="stylesheet" media="screen,projection">
 	
 	<!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-	<link href="resources/css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
-	<link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+	<link href="/resources/css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+	<link href="/resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
 </head>
 
 <body class="cyan">
@@ -187,7 +187,7 @@
     Scripts
     ================================================ -->
 	<jsp:include page="../tiles/templates/js.jsp"></jsp:include>
-	<script type="text/javascript" src="resources/js/pages/registro.js"></script>
+	<script type="text/javascript" src="/resources/js/pages/registro.js"></script>
 		<c:if test="${mensagemErro ne null}">
 			<script>
 			   		Materialize.toast('${mensagemErro}', 8000, 'red') 
