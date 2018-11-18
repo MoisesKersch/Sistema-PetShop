@@ -260,8 +260,8 @@
                   var adata = dt.rows({
                     selected : true
                   });
-                  
-                  $('.modal-trigger').click(); 
+                 
+                  $('#cadastroFormModal').openModal();
                   
                   $('#nome').val(adata.data()[0][columnDefs[0].name])
                   $('#cpf').val(adata.data()[0][columnDefs[1].name])
@@ -305,7 +305,7 @@
                      var adata = dt.rows({
                        selected : true
                      });
-                     $('.modal-trigger-remove').click(); 
+                     $('#modalRemove').openModal();
                      $('#remove').val(adata.data()[0][columnDefs[7].name])
                 },
 
@@ -353,7 +353,7 @@
                
                 	$('#agendaSaveOrEdit').val("agendasave");
                 	
-                	$('.modal-trigger').click(); 
+                	$('#cadastroFormModal').openModal(); 
                 },
 
                 _getExecutionLocationFolder : function() {

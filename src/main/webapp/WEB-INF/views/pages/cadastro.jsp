@@ -74,7 +74,7 @@
 								</div>
 							</div>
 						</div>
-						<a class="hide modal-trigger modal-trigger-remove" href="#modalRemove">dd</a>
+					
 						<div class="modal" id="modalRemove">
 							<div class="modal-content teal white-text">
 								<p>Tem certeza que deseja remover esse cadastro?</p>
@@ -88,11 +88,9 @@
 							</div>
 						</div>
 
-
-						<a class="hide modal-trigger" href="#modal1">Modal</a> <input
-							id="editing" class="hide" name="editing" type="text"
-							value="false"> 
-						<div id="modal1" class="modal">
+						<input id="editing" class="hide" name="editing" type="text" value="false"> 
+						 
+						<div id="cadastroFormModal" class="modal">
 							<div class="modal-content">
 								<h4>Cadastro</h4>
 								<div class="row">
