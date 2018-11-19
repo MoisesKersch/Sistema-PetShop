@@ -12,6 +12,7 @@ $(document).ready(function()
 	 
 	 openTable()
 	 
+	 
 });
 
 function save()
@@ -32,7 +33,9 @@ function save()
 					 table.row.add( {
 					  "nome" : cadastro.nome,
                       "cpf": cadastro.cpf ,
-                      "email": cadastro.email  ,
+                      "email": cadastro.email,
+                      "rua": cadastro.enderecos[0].rua,
+                      "numero": cadastro.enderecos[0].numero,
                       "bairro": cadastro.enderecos[0].bairro,
                       "cidade": cadastro.enderecos[0].cidade,
                       "complemento": cadastro.enderecos[0].complemento,
@@ -47,7 +50,9 @@ function save()
 					 table.row({ selected:true }).data( {
 						  "nome" : cadastro.nome,
 	                      "cpf": cadastro.cpf ,
-	                      "email": cadastro.email  ,
+	                      "email": cadastro.email,
+	                      "rua": cadastro.enderecos[0].rua,
+	                      "numero": cadastro.enderecos[0].numero,
 	                      "bairro": cadastro.enderecos[0].bairro,
 	                      "cidade": cadastro.enderecos[0].cidade,
 	                      "complemento": cadastro.enderecos[0].complemento,
@@ -81,6 +86,24 @@ function openTable()
 		    columns: [ 	{ data: "nome" },
 		    			{ data: "cpf" },
 		    			{ data: "email" },
+		    			{ data: "rua",
+		    				"mRender": function(data, type, full)
+		    				{
+		    					if (data != undefined)
+									return data;
+		    					else	
+		    					return full.enderecos[0].rua;
+		    				}
+		    			},
+		    			{ data: "numero",
+		    				"mRender": function(data, type, full)
+		    				{
+		    					if (data != undefined)
+									return data;
+		    					else	
+		    					return full.enderecos[0].numero;
+		    				}
+		    			},
 		    			{ data: "bairro",
 		    				"mRender": function(data, type, full)
 		    				{
@@ -88,6 +111,14 @@ function openTable()
 									return data;
 		    					else	
 		    					return full.enderecos[0].bairro;
+		    				}
+		    			},
+		    			{ data: "complemento",
+		    				"mRender": function(data, type, full)
+		    				{
+		    					if (data != undefined)
+									return data;
+		    					return full.enderecos[0].complemento;
 		    				}
 		    			},
 		    			{ data: "cidade",
@@ -105,14 +136,8 @@ function openTable()
 		    					if (data != undefined)
 									return data;
 		    					return full.enderecos[0].uf;
-		    				}},
-		    			{ data: "complemento",
-		    				"mRender": function(data, type, full)
-		    				{
-		    					if (data != undefined)
-									return data;
-		    					return full.enderecos[0].complemento;
-		    				} },
+		    				}
+		    			},
 		    			{ data: "id" }
 		    		  ],
 		    	  dom: 'Bfrtip',        // Needs button container
@@ -134,8 +159,7 @@ function openTable()
 		            name: 'delete'      // do not change name
 		         }],
 		         "columnDefs": [
-		        	    {"targets": [ 7 ], "visible": false},
-			         
+		        	    {"targets": [ 9 ], "visible": false},
 		        	  ]
 				})
 			}

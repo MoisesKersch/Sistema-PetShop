@@ -15,8 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author light
@@ -65,7 +68,15 @@ public class Usuario
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
-
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "ordem_servico", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "servico_id"))
+	private Set<Servico> ordemServico;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Animal> animais = new HashSet<Animal>();
+     
 	public Usuario()
 	{
 	}
@@ -184,5 +195,25 @@ public class Usuario
 	public void setEnderecos(List<Endereco> enderecos)
 	{
 		this.enderecos = enderecos;
+	}
+
+	public Set<Servico> getOrdemServico()
+	{
+		return ordemServico;
+	}
+
+	public void setOrdemServico(Set<Servico> ordemServico)
+	{
+		this.ordemServico = ordemServico;
+	}
+
+	public Set<Animal> getAnimais()
+	{
+		return animais;
+	}
+
+	public void setAnimais(Set<Animal> animais)
+	{
+		this.animais = animais;
 	}
 }

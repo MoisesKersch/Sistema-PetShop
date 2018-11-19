@@ -203,7 +203,6 @@ $(function() {
     })
   }
 
-  //LINE CHART WITH AREA IN SIDEBAR
 //    new Chartist.Line('#ct2-chart', {
 //        labels: [1, 2, 3, 4, 5, 6, 7, 8],
 //        series: [

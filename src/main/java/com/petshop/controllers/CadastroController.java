@@ -78,7 +78,7 @@ public class CadastroController extends SessaoInfo
 	@ResponseBody
 	@RequestMapping(value = "/cadastro", method = RequestMethod.POST)
 	public Usuario postRegistroPage(@Valid Usuario usuario, BindingResult bindingResult, HttpServletRequest request,
-			final RedirectAttributes redirectAttributes, String bairro, String uf, String complemento, String cidade)
+			final RedirectAttributes redirectAttributes, String bairro, String uf, String complemento, String cidade, String rua, Long numero)
 	{
 		
 		if (bindingResult.hasErrors()) {
@@ -113,6 +113,8 @@ public class CadastroController extends SessaoInfo
 			endereco.setCidade(cidade);
 			endereco.setComplemento(complemento);
 			endereco.setUf(uf);
+			endereco.setNumero(numero);
+			endereco.setRua(rua);
 			usuario.getEnderecos().add(endereco);
 			
 			usuario = usuarioRepository.save(usuario);

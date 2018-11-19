@@ -11,8 +11,8 @@
     <!--scrollbar-->
     <script type="text/javascript" src="/resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script -->
+<!-- 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 
 <!-- sparkline -->
@@ -41,14 +41,17 @@
 <!--     <script type="text/javascript" src="/resources/js/plugins/data-tables/data-tables-script.js"></script> -->
  	
  	<!--crud datatable js-->
+ 	
  	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+ 	
+<!-- 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script> -->
 	<script src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
 	<script src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
 	<script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/date-eu.js"></script>
-	
+    
 	<!--serialize to object-->
 	<script type="text/javascript" src="/resources/js/plugins/serialize-object/serialize-object.js"></script>
+	
 	
 	
  	

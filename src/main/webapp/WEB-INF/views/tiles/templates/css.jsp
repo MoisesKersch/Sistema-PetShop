@@ -12,13 +12,12 @@
      <!-- INCLUDED PLUGIN VALIDATOR -->    
     <link href="/resources/css/validator.css" type="text/css" rel="stylesheet" media="screen,projection">
     
-     <!-- INCLUDED PLUGIN DATATABLE -->    
- 	<link href="/resources/js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
   	<link href="/resources/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
-     
+  	
+     <!-- INCLUDED PLUGIN DATATABLE -->    
  	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css" />
  	
+ 	<link href="/resources/js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-    
     
     

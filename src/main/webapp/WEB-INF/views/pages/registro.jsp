@@ -79,6 +79,30 @@
 					<div class="row margin">
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
+							<spring:bind path="enderecos[0].rua">
+							  <form:input type="text" path="enderecos[0].rua" placeholder="Rua" class="required"
+                         		 autofocus="true"></form:input> 
+                        		 	<div class="input-field col s2"></div>
+                            </spring:bind>
+							<label for="bairro">Rua</label>
+						</div>
+					</div>
+					
+					<div class="row margin">
+						<div class="input-field col s12">
+							<i class="mdi-social-person-outline prefix"></i> 
+							<spring:bind path="enderecos[0].numero">
+							  <form:input type="number" path="enderecos[0].numero" placeholder="Numero" class="required"
+                         		 autofocus="true"></form:input> 
+                        		 	<div class="input-field col s2"></div>
+                            </spring:bind>
+							<label for="bairro">Bairro</label>
+						</div>
+					</div>
+					
+					<div class="row margin">
+						<div class="input-field col s12">
+							<i class="mdi-social-person-outline prefix"></i> 
 							<spring:bind path="enderecos[0].bairro">
 							  <form:input type="text" path="enderecos[0].bairro" placeholder="Bairro" class="required"
                          		 autofocus="true"></form:input> 

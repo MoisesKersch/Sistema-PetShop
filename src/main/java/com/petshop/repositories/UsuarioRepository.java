@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.petshop.models.Usuario;
 
-
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>
 {
 	Optional<Usuario> findByLogin(String login);

@@ -261,21 +261,16 @@
                     selected : true
                   });
                   
-                  $('#cadastroFormModal').openModal();
+                  $('#cadastroServicoFormModal').openModal();
                   
-                  $('#nome').val(adata.data()[0][columnDefs[0].name])
-                  $('#cpf').val(adata.data()[0][columnDefs[1].name])
-                  $('#email').val(adata.data()[0][columnDefs[2].name])
+                  $('#valor').val(adata.data()[0][columnDefs[0].name])
+                  $('#nome').val(adata.data()[0][columnDefs[1].name])
+                  $('#descricao').val(adata.data()[0][columnDefs[2].name])
+                  $('#tipo').val( adata.data()[0][columnDefs[3].name] )
+                  $('#id').val(adata.data()[0][columnDefs[4].name])	
                   
-                  $('#bairro').val( adata.data()[0]['enderecos'][0][columnDefs[3].name] )
-                  $('#bairro').val( adata.data()[0]['enderecos'][0][columnDefs[4].name] )
-                  
-                  $('#bairro').val( adata.data()[0]['enderecos'][0][columnDefs[5].name] )
-                  $('#cidade').val( adata.data()[0]['enderecos'][0][columnDefs[6].name])
-                  $('#uf').val( adata.data()[0]['enderecos'][0][columnDefs[7].name]);
-                  $('#complemento').val( adata.data()[0]['enderecos'][0][columnDefs[8].name])
-                  $('#id').val(adata.data()[0][columnDefs[9].name])	
                   $('#editing').val("true")	
+                  
                   Materialize.updateTextFields();
                 }, 
                 
@@ -354,9 +349,8 @@
                       selected : true
                     });
                     
-                	$('#cadastroForm')[0].reset();
-                	$('#cadastroFormModal').openModal();
-                	
+                	$('#cadastroServicoForm')[0].reset();
+                	$('#cadastroServicoFormModal').openModal();
                 	
                 },
 

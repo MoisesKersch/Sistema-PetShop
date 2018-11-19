@@ -56,12 +56,14 @@
 							<h4 class="header">Tabela de Clientes</h4>
 							<div class="row">
 								<div class="col s12 ">
-									<table id="cadastro">
+									<table id="cadastro" class=" hoverable centered responsive-table striped ">
 										<thead>
 											<tr>
 												<th>Nome</th>
 												<th>CPF</th>
 												<th>Email</th>
+												<th>Rua</th>
+												<th>Número</th>
 												<th>Bairro</th>
 												<th>Cidade</th>
 												<th>Estado</th>
@@ -117,6 +119,20 @@
 												<label for="email">Email</label>
 											</div>
 										</div>
+										
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="rua" type="text" class="required"
+													name="rua"> <label for="rua">Rua</label>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="numero" type="number" class="required"
+													name="numero"> <label for="numero">Número</label>
+											</div>
+										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
@@ -124,7 +140,14 @@
 													name="bairro"> <label for="bairro">Bairro</label>
 											</div>
 										</div>
-
+										
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="complemento" type="text" name="complemento">
+												<label for="complemento">Complemento</label>
+											</div>
+										</div>
+										
 										<div class="row">
 											<div class="input-field col s12">
 												<input id="cidade" type="text" class="required"
@@ -136,13 +159,6 @@
 											<div class="input-field col s12">
 												<input id="uf" type="text" class="required" name="uf">
 												<label for="uf">UF</label>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="complemento" type="text" name="complemento">
-												<label for="complemento">Complemento</label>
 											</div>
 										</div>
 
@@ -173,9 +189,9 @@
 										<div class="row">
 											<div class="input-field col s12">
 												<button
-													class="modal-action modal-close btn cyan waves-effect waves-light left"
+													class="modal-action modal-close btn  waves-effect waves-light left"
 													type="button">
-													Fechar <i class="mdi-content-send right"></i>
+													Fechar <i class="mdi-content-undo left"></i>
 												</button>
 												<button class="btn cyan waves-effect waves-light right"
 													id="cadastroController" type="button">
