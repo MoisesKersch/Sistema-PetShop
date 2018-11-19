@@ -15,7 +15,7 @@ $("#registrationForm").validate({
 		cpf : {
 			required : true,
 			remote : {
-				url : "public/iscpfcnpjvalido",
+				url : "iscpfcnpjvalido",
 				type : "POST",
 				data : {
 					"entrada" : function() {
@@ -38,7 +38,7 @@ $("#registrationForm").validate({
 		login : {
 			required : true,
 			remote : {
-				url : "public/isusuarioexiste",
+				url : "isusuarioexiste",
 				type : "POST",
 				data : {
 					"entrada" : function() {

@@ -1,6 +1,8 @@
 package com.petshop.controllers;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -13,13 +15,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.petshop.models.Empresa;
+import com.petshop.models.Role;
 import com.petshop.models.Usuario;
+import com.petshop.repositories.EmpresaRepository;
 import com.petshop.repositories.UsuarioRepository;
 import com.petshop.services.UsuarioService;
 
 @Controller
+@RequestMapping(value = "/public")
 public class RegistroController
 {
+	@Autowired
+	private EmpresaRepository empresaRepository;
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
@@ -31,6 +40,7 @@ public class RegistroController
 	{
 		ModelAndView modelAndView = new ModelAndView("registro");
 		Usuario usuario = new Usuario();
+		
 		modelAndView.addObject("usuario", usuario);
 		
 		return modelAndView;
@@ -54,6 +64,28 @@ public class RegistroController
 			redirectAttributes.addFlashAttribute("mensagemErro", "Login existente!");
 			return "redirect:registro";
 		}
+		
+		// carrega empresa do petshop
+		Optional<Empresa> empresaFinder =  empresaRepository.findById(1L);
+		
+		if (empresaFinder.isPresent())
+		{
+			Empresa empresa = empresaFinder.get();
+			usuario.getEmpresas().add(empresa);
+		}
+		else
+		{
+			// falha no sistema empresa não configurada
+			return null;
+		}
+		
+		Set<Role> roles = new HashSet<Role>();
+		Role role = new Role();
+		role.setRole("Cliente");
+		roles.add(role);
+		
+		// selecion um papel
+		usuario.setRoles(roles);
 		
 		// salva o usuario
 		try

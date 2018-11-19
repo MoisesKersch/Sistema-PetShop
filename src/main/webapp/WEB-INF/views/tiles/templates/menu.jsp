@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <aside id="left-sidebar-nav">
 			<ul id="slide-out" class="side-nav fixed leftside-navigation">
 				<li class="user-details cyan darken-2">
@@ -8,31 +9,38 @@
 						</div>
 						<div class="col col s8 m8 l8">
 							<ul id="profile-dropdown" class="dropdown-content">
-								<li><a href="#"><i class="mdi-action-face-unlock"></i>
-										Profile</a></li>
-								<li><a href="#"><i class="mdi-action-settings"></i>
-										Settings</a></li>
-								<li><a href="#"><i class="mdi-communication-live-help"></i>
-										Help</a></li>
-								<li class="divider"></li>
-								<li><a href="#"><i class="mdi-action-lock-outline"></i>
-										Lock</a></li>
+<!-- 								<li><a href="#"><i class="mdi-action-face-unlock"></i> -->
+<!-- 										Profile</a></li> -->
+<!-- 								<li><a href="#"><i class="mdi-action-settings"></i> -->
+<!-- 										Settings</a></li> -->
+<!-- 								<li><a href="#"><i class="mdi-communication-live-help"></i> -->
+<!-- 										Help</a></li> -->
+<!-- 								<li class="divider"></li> -->
+<!-- 								<li><a href="#"><i class="mdi-action-lock-outline"></i> -->
+<!-- 										Lock</a></li> -->
 								<li><a href="/logout"><i class="mdi-hardware-keyboard-tab"></i>
-										Logout</a></li>
+										Sair</a></li>
 							</ul>
-					
-						
 							<a
 								class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn"
 								href="#" data-activates="profile-dropdown">${nome}<i
 								class="mdi-navigation-arrow-drop-down right"></i></a>
-							<p class="user-roal">Administrator</p>
+							<p class="user-roal">${papel}</p>
 						</div>
 					</div>
 				</li>
-				<li class="bold"><a href="index.html"
-					class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i>
-						Tela Principal</a></li>
+				
+				<li class="bold"><a href="home" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a></li> 
+				                  
+				<c:if test = "${papel == 'Administrador'}">
+					<li class="bold"><a href="cadastro" class="waves-effect waves-cyan"><i class="mdi-action-account-circle"></i> Cadastrar Cliente</a></li> 
+					<li class="bold"><a href="cadastroservico" class="waves-effect waves-cyan"><i class="mdi-action-assignment-turned-in"></i> Cadastrar Serviço</a></li>                   
+		      	</c:if>
+		      	
+		      	<c:if test = "${papel == 'Cliente'}">
+					<li class="bold"><a href="cadastroanimal" class="waves-effect waves-cyan"><i class="mdi-action-assignment-turned-in"></i> Cadastrar Serviço</a></li>                   
+		      	</c:if>
+				
 				<li class="bold"><a href="app-email.html"
 					class="waves-effect waves-cyan"><i
 						class="mdi-communication-email"></i> Mailbox <span

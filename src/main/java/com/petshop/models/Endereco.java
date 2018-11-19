@@ -16,22 +16,29 @@ public class Endereco
 	@Column(name = "endereco_id")
 	private Long id;
 	
-	@Column(name = "bairro")
-	private String bairro;
+	@Column(name = "rua")
+	private String rua;
 	
-	@Column(name = "cidade")
-	private String cidade;
-	
-	@Column(name = "uf")
-	private String uf;
+	@Column(name = "numero")
+	private Long numero;
 	
 	@Column(name = "complemento")
 	private String complemento;
-	
-	public Endereco(){
-	    
+
+	@Column(name = "bairro")
+	private String bairro;
+
+	@Column(name = "cidade")
+	private String cidade;
+
+	@Column(name = "uf")
+	private String uf;
+
+	public Endereco()
+	{
+		
 	}
-	
+
 	public Long getId()
 	{
 		return id;
@@ -80,5 +87,25 @@ public class Endereco
 	public void setComplemento(String complemento)
 	{
 		this.complemento = complemento;
+	}
+
+	public String getRua()
+	{
+		return rua;
+	}
+
+	public void setRua(String rua)
+	{
+		this.rua = rua;
+	}
+
+	public Long getNumero()
+	{
+		return numero;
+	}
+
+	public void setNumero(Long numero)
+	{
+		this.numero = numero;
 	}
 }

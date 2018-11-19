@@ -31,8 +31,6 @@ public class UsuarioServiceImpl implements UsuarioService
 	@Override
 	public void remover(String id)
 	{
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
