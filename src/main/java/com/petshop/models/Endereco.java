@@ -25,6 +25,9 @@ public class Endereco
 	@Column(name = "uf")
 	private String uf;
 	
+	@Column(name = "complemento")
+	private String complemento;
+	
 	public Endereco(){
 	    
 	}
@@ -67,5 +70,15 @@ public class Endereco
 	public void setUf(String uf)
 	{
 		this.uf = uf;
+	}
+
+	public String getComplemento()
+	{
+		return complemento;
+	}
+
+	public void setComplemento(String complemento)
+	{
+		this.complemento = complemento;
 	}
 }

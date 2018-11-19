@@ -115,6 +115,18 @@
 					<div class="row margin">
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
+							<spring:bind path="enderecos[0].complemento">
+							  <form:input type="text" path="enderecos[0].complemento" placeholder="Complemento" class="required"
+                        		 autofocus="true"></form:input> 
+                        		 	<div class="input-field col s2"></div>
+                             </spring:bind> 
+							<label for="uf">Complemento</label>
+						</div>
+					</div>
+					
+					<div class="row margin">
+						<div class="input-field col s12">
+							<i class="mdi-social-person-outline prefix"></i> 
 							<spring:bind path="email">
 							  <form:input type="text" path="email" placeholder="Email" class="required"
                         		 autofocus="true"></form:input> 
