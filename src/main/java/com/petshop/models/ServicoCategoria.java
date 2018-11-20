@@ -17,24 +17,23 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "categoria_servico")
-public class CategoriaServico
+@Table(name = "servico_categoria")
+public class ServicoCategoria
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "catetoria_servico_id")
+	@Column(name = "servico_catetoria_id")
 	private Long id;
 
 	@NotNull
 	@Column(name = "nome")
 	private String nome;
-	
-	@NotNull
+
 	@Column(name = "descricao")
 	private String descricao;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "categoriaServico", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "servicoCategoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<Servico> servico = new HashSet<Servico>();
 
 	public Long getId()

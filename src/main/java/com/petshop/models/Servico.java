@@ -38,8 +38,8 @@ public class Servico
 	private String tipo;
 	
 	@ManyToOne
-    @JoinColumn(name = "categoria_servico_id")
-    private CategoriaServico categoriaServico;
+    @JoinColumn(name = "servico_categoria_id")
+    private ServicoCategoria servicoCategoria;
 
 	public Long getId()
 	{
@@ -91,13 +91,13 @@ public class Servico
 		this.descricao = descricao;
 	}
 
-	public CategoriaServico getCategoriaServico()
+	public ServicoCategoria getServicoCategoria()
 	{
-		return categoriaServico;
+		return servicoCategoria;
 	}
 
-	public void setCategoriaServico(CategoriaServico categoriaServico)
+	public void setServicoCategoria(ServicoCategoria servicoCategoria)
 	{
-		this.categoriaServico = categoriaServico;
+		this.servicoCategoria = servicoCategoria;
 	}
 }

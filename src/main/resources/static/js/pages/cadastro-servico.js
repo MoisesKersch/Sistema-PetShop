@@ -1,4 +1,5 @@
 var table;
+var tableCategoria;
 var tableEdit;
 var descTempt;
 
@@ -9,7 +10,13 @@ $(document).ready(function()
 		 save();
 	 })
 	 
+	 $("#cadastro-servico-categoria-controller").click(function ()
+	 {
+		 saveCategoria();
+	 })
+	 
 	 openTable()
+	 openTableCategoria()
 });
 
 function save()
@@ -52,6 +59,87 @@ function save()
 			 }
 		 })
 	 }
+}
+
+function saveCategoria()
+{
+	 if ($("#servico-categoria-form").valid())
+	 {
+		 $.ajax({
+			 type: "POST",
+			 data:  $("#servico-categoria-form").serializeObject(),
+			 url: "/cadastrocategoria",
+			 success: function(obj)
+			 {
+				 console.log(obj)
+				 $('#servico-categoria-form-modal').closeModal(); 
+				 
+				 if ($("#editing-servico-categoria").val() == "false")
+			 	 { 
+					 tableCategoria.row.add( {
+					  "nome" : obj.nome,
+                      "descricao": obj.descricao,
+                      "id": obj.id
+					   } ).draw();
+					 
+					 $("#editing-servico-categoria").val("false");
+				 }
+				else
+				{
+					tableCategoria.row({ selected:true }).data( {
+					  "nome" : obj.nome,
+                      "descricao": obj.descricao,
+                      "id": obj.id
+	                  });
+					 
+					 $("#editing-servico-categoria").val("false");
+				}
+			 }
+		 })
+	 }
+}
+
+function openTableCategoria()
+{
+	$.ajax({
+		url: "getcategorias",
+		success: function (obj)
+		{
+			console.log(obj)
+			tableCategoria = $('#servico-categoria-table').DataTable({
+		    "sPaginationType": "full_numbers",
+		    data: obj,
+			"language": {
+			    "url": "/resources/js/plugins/data-tables/json/Portuguese-Brasil.json"
+			},
+			
+		    columns: [ 	{ data: "nome" },
+		    			{ data: "descricao" },
+		    			{ data: "id" }],
+		    	  dom: 'Bfrtip',        // Needs button container
+		          select: 'single',
+		          responsive: true,
+		          altEditor: true,     // Enable altEditor
+		          buttons: [{
+		            text: 'Adicionar',
+		            name: 'add-categoria'        // do not change name
+		          },
+		          {
+		            extend: 'selected', // Bind to Selected row
+		            text: 'Editar',
+		            name: 'edit-categoria'        // do not change name
+		          },
+		          {
+		            extend: 'selected', // Bind to Selected row
+		            text: 'Remover',
+		            name: 'delete-categoria'      // do not change name
+		         }],
+		         "columnDefs": [
+		        	    {"targets": [ 2 ], "visible": false},
+		        	  ]
+				})
+			}
+		})
 }
 
 function openTable()
@@ -106,7 +194,7 @@ function remover()
 		 type: "POST",
 		 data:  {"id": $('#remove').val()},
 		 url: "removerservico",
-		 success: function(reuniao)
+		 success: function(obj)
 		 {
 			 table.row({
                  selected : true
@@ -115,64 +203,33 @@ function remover()
 		 }})
 }
 
+function removerCategoria()
+{
+	 $.ajax({
+		 type: "POST",
+		 data:  {"id": $('#servico-categoria-remove-id').val()},
+		 url: "removercategoria",
+		 success: function(obj)
+		 {
+			 tableCategoria.row({
+                 selected : true
+               }).remove();
+			 tableCategoria.draw();
+		 }})
+}
+
 $("#cadastroServicoForm").validate({
-	rules : {
-		senha : "required",
-		passwordConfirm : {
-			equalTo : "#senha"
-		},
-		cpf : {
-			required : true,
-			remote : {
-				url : "public/iscpfcnpjvalido",
-				type : "POST",
-				data : {
-					"entrada" : function() {
-						return $("#cpf").val()
-					}
-				},
-				dataFilter : function(response)
-				{
-					var response = jQuery.parseJSON(response);
-					currentMessage = response.Message;
-					
-					if (response) {
-						return true;
-					}
-					
-					return false;
-				}
-			}
-		},
-		login : {
-			required : true,
-			remote : {
-				url : "public/isusuarioexiste",
-				type : "POST",
-				data : {
-					"entrada" : function() {
-						return $("#login").val()
-					}
-				},
-				dataFilter : function(response)
-				{
-					var response = jQuery.parseJSON(response);
-					currentMessage = response.Message;
-					
-					if (response) {
-						return false;
-					}
-					return true;
-				}
-			}
-		}
-	},
-	
-	messages: {
-		login: "Usuário já existente no sistema!", 
-		cpf: "CPF inválido!"
-    },
-    
+	errorElement : "div",
+	errorPlacement : function(error, element) {
+		var er = error.insertAfter(element.next());
+
+		if (er == null)
+			er.insertAfter(element.next());
+
+	}
+});
+
+$("#servico-categoria-form").validate({
 	errorElement : "div",
 	errorPlacement : function(error, element) {
 		var er = error.insertAfter(element.next());

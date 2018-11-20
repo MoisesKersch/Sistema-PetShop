@@ -17,7 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petshop.component.SessaoInfo;
 import com.petshop.models.Servico;
+import com.petshop.models.ServicoCategoria;
 import com.petshop.models.Usuario;
+import com.petshop.repositories.ServicoCategoriaRepository;
 import com.petshop.repositories.ServicoRepository;
 
 @Controller
@@ -25,6 +27,9 @@ public class CadastroServicoController extends SessaoInfo
 {
 	@Autowired
 	private ServicoRepository servicoRepository;
+	
+	@Autowired
+	private ServicoCategoriaRepository servicoCategoriaRepository;
 
 	@RequestMapping(value = "/cadastroservico")
 	public ModelAndView getCadastroServicoPage()
@@ -64,6 +69,18 @@ public class CadastroServicoController extends SessaoInfo
 			return null;
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getcategorias")
+	public List<ServicoCategoria> getCategorias()
+	{
+		try 
+		{
+			return servicoCategoriaRepository.findAll();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/cadastroservico", method = RequestMethod.POST)
@@ -88,15 +105,50 @@ public class CadastroServicoController extends SessaoInfo
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/removerservico", method = RequestMethod.POST)
-	public Usuario removerUsuario(Long id)
+	@RequestMapping(value = "/cadastrocategoria", method = RequestMethod.POST)
+	public ServicoCategoria postCadastroCategoria(@Valid ServicoCategoria servicoCategoria, BindingResult bindingResult, HttpServletRequest request,
+			final RedirectAttributes redirectAttributes)
 	{
-//		try 
-//		{
-//			usuarioRepository.deleteById(id);
-//		} catch (Exception e) {
-//			return null;
-//		}
-		return null;
+		
+		if (bindingResult.hasErrors()) {
+			// tratar com uma growl mensagem?
+			redirectAttributes.addFlashAttribute("mensagemErro", bindingResult.getAllErrors());
+			return null;
+		}
+
+		try {
+			servicoCategoria = servicoCategoriaRepository.save(servicoCategoria);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return servicoCategoria;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/removerservico", method = RequestMethod.POST)
+	public Servico removerServico(Long id)
+	{
+		try 
+		{
+			servicoRepository.deleteById(id);
+		} catch (Exception e) {
+			return null;
+		}
+		return new Servico();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/removercategoria", method = RequestMethod.POST)
+	public ServicoCategoria removerCategoria(Long id)
+	{
+		try 
+		{
+			servicoCategoriaRepository.deleteById(id);
+		} catch (Exception e) {
+			return null;
+		}
+		
+		return new ServicoCategoria();
 	}
 }
