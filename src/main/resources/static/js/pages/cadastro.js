@@ -129,8 +129,7 @@ function openTable()
 		    					return full.enderecos[0].cidade;
 		    				}
 		    			},
-		    			{ data: "uf" 
-		    				,
+		    			{ data: "uf" ,
 		    				"mRender": function(data, type, full)
 		    				{
 		    					if (data != undefined)

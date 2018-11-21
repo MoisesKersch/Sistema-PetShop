@@ -263,12 +263,11 @@
                   
                   $('#cadastroServicoFormModal').openModal();
                   
-                  $('#valor').val(adata.data()[0][columnDefs[0].name])
-                  $('#nome').val(adata.data()[0][columnDefs[1].name])
-                  $('#descricao').val(adata.data()[0][columnDefs[2].name])
-                  $('#tipo').val( adata.data()[0][columnDefs[3].name] )
-                  $('#id').val(adata.data()[0][columnDefs[4].name])	
-                  
+                  $('#id').val(adata.data()[0][columnDefs[0].name])	
+                  $('#valor').val(adata.data()[0][columnDefs[1].name])
+                  $('#nome').val(adata.data()[0][columnDefs[2].name])
+                  $('#descricao').val(adata.data()[0][columnDefs[3].name])
+                  $('#categoria').val(adata.data()[0][columnDefs[4].name])
                   $('#editing').val("true")	
                   
                   Materialize.updateTextFields();
@@ -306,7 +305,7 @@
                      });
                      
                      $('#removeModal').openModal();
-                     $('#remove').val(adata.data()[0][columnDefs[7].name])
+                     $('#remove').val(adata.data()[0][columnDefs[0].name])
                 },
 
                 _deleteRow : function() {

@@ -65,9 +65,9 @@
 												<th>Rua</th>
 												<th>Número</th>
 												<th>Bairro</th>
+												<th>Complemento</th>
 												<th>Cidade</th>
 												<th>Estado</th>
-												<th>Complemento</th>
 												<th>ID</th>
 											</tr>
 										</thead>

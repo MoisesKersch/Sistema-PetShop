@@ -1,6 +1,7 @@
 package com.petshop.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -27,7 +28,7 @@ public class CadastroServicoController extends SessaoInfo
 {
 	@Autowired
 	private ServicoRepository servicoRepository;
-	
+
 	@Autowired
 	private ServicoCategoriaRepository servicoCategoriaRepository;
 
@@ -35,23 +36,28 @@ public class CadastroServicoController extends SessaoInfo
 	public ModelAndView getCadastroServicoPage()
 	{
 		ModelAndView modelAndView = new ModelAndView("cadastroservico");
-
 		Usuario usuario = null;
 
-		try {
+		try
+		{
 			usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
+			return new ModelAndView("/login");
 		}
 
-		if (usuario.getLogin() == null) {
+		if (usuario.getLogin() == null)
+		{
 			SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
 			return null;
 		}
 
-		try {
+		try
+		{
 			modelAndView.addObject("papel", usuario.getRoles().iterator().next().getRole());
 			modelAndView.addObject("nome", usuario.getNome());
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 
 		}
 
@@ -62,22 +68,24 @@ public class CadastroServicoController extends SessaoInfo
 	@RequestMapping(value = "/getservicos")
 	public List<Servico> getCadastroServico()
 	{
-		try 
+		try
 		{
 			return servicoRepository.findAll();
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			return null;
 		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/getcategorias")
 	public List<ServicoCategoria> getCategorias()
 	{
-		try 
+		try
 		{
 			return servicoCategoriaRepository.findAll();
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			return null;
 		}
 	}
@@ -85,70 +93,88 @@ public class CadastroServicoController extends SessaoInfo
 	@ResponseBody
 	@RequestMapping(value = "/cadastroservico", method = RequestMethod.POST)
 	public Servico postCadastroServico(@Valid Servico servico, BindingResult bindingResult, HttpServletRequest request,
-			final RedirectAttributes redirectAttributes)
+			final RedirectAttributes redirectAttributes, Long categoriaId)
 	{
-		
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors())
+		{
 			// tratar com uma growl mensagem?
 			redirectAttributes.addFlashAttribute("mensagemErro", bindingResult.getAllErrors());
 			return null;
 		}
 
-		try {
-		
+		Optional<ServicoCategoria> servicoCategoriaFinder = servicoCategoriaRepository.findById(categoriaId);
+
+		if (servicoCategoriaFinder.isPresent())
+		{
+			ServicoCategoria servicoCategoria = servicoCategoriaFinder.get();
+			servico.setServicoCategoria(servicoCategoria);
+		} else
+		{
+			//TODO tratar caso o serviço categoria não for encontrado no sistema
+			return null;
+		}
+
+		try
+		{
 			servico = servicoRepository.save(servico);
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			System.out.println(e.getMessage());
 			return null;
 		}
 		return servico;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/cadastrocategoria", method = RequestMethod.POST)
-	public ServicoCategoria postCadastroCategoria(@Valid ServicoCategoria servicoCategoria, BindingResult bindingResult, HttpServletRequest request,
-			final RedirectAttributes redirectAttributes)
+	public ServicoCategoria postCadastroCategoria(@Valid ServicoCategoria servicoCategoria, BindingResult bindingResult,
+			HttpServletRequest request, final RedirectAttributes redirectAttributes)
 	{
-		
-		if (bindingResult.hasErrors()) {
+
+		if (bindingResult.hasErrors())
+		{
 			// tratar com uma growl mensagem?
 			redirectAttributes.addFlashAttribute("mensagemErro", bindingResult.getAllErrors());
 			return null;
 		}
 
-		try {
+		try
+		{
 			servicoCategoria = servicoCategoriaRepository.save(servicoCategoria);
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			System.out.println(e.getMessage());
 			return null;
 		}
 		return servicoCategoria;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/removerservico", method = RequestMethod.POST)
 	public Servico removerServico(Long id)
 	{
-		try 
+		try
 		{
 			servicoRepository.deleteById(id);
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			return null;
 		}
 		return new Servico();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/removercategoria", method = RequestMethod.POST)
 	public ServicoCategoria removerCategoria(Long id)
 	{
-		try 
+		try
 		{
 			servicoCategoriaRepository.deleteById(id);
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			return null;
 		}
-		
+
 		return new ServicoCategoria();
 	}
 }

@@ -69,7 +69,7 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <button type="button" onclick="send()" class="btn waves-effect waves-light col s12">Login</button>
+            <button type="submit" onclick="send()" class="btn waves-effect waves-light col s12">Login</button>
           </div>
         </div>
         <div class="row">

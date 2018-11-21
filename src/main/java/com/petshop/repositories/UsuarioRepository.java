@@ -13,20 +13,20 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>
 {
 	Optional<Usuario> findByLogin(String login);
 	
-	@Query(value = " select u.usuario_id, ativo, cpf, email, login, nome, senha, complemento from usuario u " + 
+	@Query(value = " select u.usuario_id, ativo, cpf, email, login, nome, senha from usuario u " + 
 			       " join usuario_empresa eu " + 
 			       " on u.usuario_id = eu.usuario_id " + 
 			       " where u.login = :login"+ 
 			       " and eu.empresa_id = :empresaId ", nativeQuery = true)          
 	public Optional<Usuario> findByLoginAndEmpresaId( @Param("login")String login, @Param("empresaId") Long empresaId );
 	
-	@Query(value = " select u.usuario_id, ativo, cpf, email, login, nome, senha, complemento from usuario u " + 
+	@Query(value = " select u.usuario_id, ativo, cpf, email, login, nome, senha from usuario u " + 
 		           " join usuario_empresa eu " + 
 		           " on u.usuario_id = eu.usuario_id " + 
 		           " where eu.empresa_id = :empresaId ", nativeQuery = true)          
 	public List<Usuario> findByEmpresaId(@Param("empresaId") Long empresaId );
 	
-	@Query(value = 	" select u.usuario_id, ativo, cpf, email, login, nome, senha, complemento from usuario u " + 
+	@Query(value = 	" select u.usuario_id, ativo, cpf, email, login, nome, senha from usuario u " + 
 					" join usuario_empresa ue " + 
 					" on u.usuario_id = ue.usuario_id " + 
 					" join user_role ur " + 

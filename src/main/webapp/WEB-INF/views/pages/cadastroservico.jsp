@@ -66,8 +66,7 @@
 								</div>
 							</div>
 						</div>
-						<input id="editing" class="hide" name="editing" type="text" value="false">
-						<input id="editing-servico-categoria" class="hide" name="editing" type="text" value="false">
+						<input id="editing" class="hide" name="editing" type="text" value="false"> <input id="editing-servico-categoria" class="hide" name="editing" type="text" value="false">
 					</div>
 					<div class="section">
 						<div class="divider"></div>
@@ -79,11 +78,11 @@
 									<table id="servico" class="hoverable centered responsive-table striped">
 										<thead>
 											<tr>
+												<th>Id</th>
 												<th>Valor</th>
 												<th>Nome</th>
 												<th>Descrição</th>
-												<th>Tipo</th>
-												<th>Id</th>
+												<th>Categoria</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -106,13 +105,13 @@
 
 							<div class="row">
 								<div class="input-field col s12">
-									<input id="nome" type="text" class="required" name="nome"> <label for="nome">Nome</label>
+									<input id="nome-servico" type="text" class="required" name="nome"> <label for="nome">Nome</label>
 								</div>
 							</div>
 
 							<div class="row modal-form-row">
 								<div class="input-field col s12">
-									<input id="descricao-categoria" type="text" class="required" name="descricao"> <label for="descricao">Descrição</label>
+									<input id="descricao-categoria" type="text" name="descricao"> <label for="descricao">Descrição</label>
 								</div>
 							</div>
 
@@ -166,13 +165,15 @@
 
 							<div class="row">
 								<div class="input-field col s12">
-									<input id="tipo" type="text" class="required" name="tipo"> <label for="tipo">Tipo</label>
+									<label></label>
+									<select id="servico-categoria-select" name="categoriaId" class="required">
+									</select>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="input-field col s12">
-									<input id="descricao" type="text" class="required" name="descricao"> <label for="descricao">Descrição</label>
+									<input id="descricao" type="text" name="descricao"> <label for="descricao">Descrição</label>
 								</div>
 							</div>
 

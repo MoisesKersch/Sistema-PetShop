@@ -263,7 +263,7 @@
                   
                   $('#servico-categoria-form-modal').openModal();
                   
-                  $('#nome').val(adata.data()[0][columnDefs[0].name])
+                  $('#nome-servico').val(adata.data()[0][columnDefs[0].name])
                   $('#descricao').val(adata.data()[0][columnDefs[1].name])
                   $('#cadastro-servico-categoria-id').val(adata.data()[0][columnDefs[2].name])	
                   
@@ -271,7 +271,6 @@
                   
                   Materialize.updateTextFields();
                 }, 
-                
           
                 /**
                  * Open Delete Modal for selected row

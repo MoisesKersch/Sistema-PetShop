@@ -33,10 +33,6 @@ public class Servico
 	@Column(name = "descricao")
 	private String descricao;
 	
-	@NotNull
-	@Column(name = "tipo")
-	private String tipo;
-	
 	@ManyToOne
     @JoinColumn(name = "servico_categoria_id")
     private ServicoCategoria servicoCategoria;
@@ -69,16 +65,6 @@ public class Servico
 	public void setNome(String nome)
 	{
 		this.nome = nome;
-	}
-
-	public String getTipo()
-	{
-		return tipo;
-	}
-
-	public void setTipo(String tipo)
-	{
-		this.tipo = tipo;
 	}
 
 	public String getDescricao()

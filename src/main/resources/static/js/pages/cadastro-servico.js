@@ -35,11 +35,11 @@ function save()
 				 if ($("#editing").val() == "false")
 			 	 { 
 					 table.row.add( {
-					  "valor" : obj.valor,
-                      "nome": obj.nome,
-                      "descricao": obj.descricao,
-                      "tipo": obj.tipo,
-                      "id": obj.id
+						 "id": obj.id,
+						 "valor" : obj.valor,
+						 "nome": obj.nome,
+						 "descricao": obj.descricao,
+						 "categoria": obj.servicoCategoria[0].nome
 					   } ).draw();
 					 
 					 $("#editing").val("false");
@@ -47,11 +47,11 @@ function save()
 				else
 				{
 					 table.row({ selected:true }).data( {
+						  "id": obj.id,
 						  "valor" : obj.valor,
 	                      "nome": obj.nome,
 	                      "descricao": obj.descricao,
-	                      "tipo": obj.tipo,
-	                      "id": obj.id
+	                      "categoria": obj.servicoCategoria[0].nome
 	                  });
 					 
 					 $("#editing").val("false");
@@ -72,8 +72,9 @@ function saveCategoria()
 			 success: function(obj)
 			 {
 				 console.log(obj)
-				 $('#servico-categoria-form-modal').closeModal(); 
+				 servicoCategoriaDropDownFill();
 				 
+				 $('#servico-categoria-form-modal').closeModal(); 
 				 if ($("#editing-servico-categoria").val() == "false")
 			 	 { 
 					 tableCategoria.row.add( {
@@ -99,6 +100,23 @@ function saveCategoria()
 	 }
 }
 
+function servicoCategoriaDropDownFill()
+{
+	$.ajax({
+		url: "getcategorias",
+		success: function (obj)
+		{
+			var next_id = $("#servico-categoria-select");
+			$(next_id).empty();
+			$(next_id).append($("<option></option>").attr("value", "o").text("Categoria"));
+			$.each(obj, function(key, value) {
+				$(next_id).append($("<option></option>").attr("value", value.id).text(value.nome));
+			});
+			$(next_id).material_select();
+		}
+	})
+}
+
 function openTableCategoria()
 {
 	$.ajax({
@@ -106,6 +124,9 @@ function openTableCategoria()
 		success: function (obj)
 		{
 			console.log(obj)
+			// popular o drop fucking down 
+			servicoCategoriaDropDownFill();
+			
 			tableCategoria = $('#servico-categoria-table').DataTable({
 		    "sPaginationType": "full_numbers",
 		    data: obj,
@@ -156,11 +177,20 @@ function openTable()
 			    "url": "/resources/js/plugins/data-tables/json/Portuguese-Brasil.json"
 			},
 			
-		    columns: [ 	{ data: "valor" },
+		    columns: [ 	
+		    			{ data: "id" },
+		    			{ data: "valor" },
 		    			{ data: "nome" },
 		    			{ data: "descricao" },
-		    			{ data: "tipo" },
-		    			{ data: "id" }
+		    			{ data: "categoria",
+		    				"mRender": function(data, type, full)
+		    				{
+		    					if (data != undefined)
+									return data;
+		    					else	
+		    					return full.servicoCategoria.nome;
+		    				}
+		    			},
 		    		  ],
 		    	  dom: 'Bfrtip',        // Needs button container
 		          select: 'single',
@@ -181,7 +211,7 @@ function openTable()
 		            name: 'delete'      // do not change name
 		         }],
 		         "columnDefs": [
-		        	    {"targets": [ 4 ], "visible": false},
+		        	    {"targets": [ 0 ], "visible": false},
 		        	  ]
 				})
 			}
@@ -215,25 +245,37 @@ function removerCategoria()
                  selected : true
                }).remove();
 			 tableCategoria.draw();
+			 
+			 servicoCategoriaDropDownFill()
 		 }})
 }
 
+$.validator.setDefaults({
+    ignore: []
+});
+
+$.validator.addMethod("valueNotEquals", function(value, element, arg){
+	  return arg !== value;
+}, "Este campo é obrigatório.");
+
 $("#cadastroServicoForm").validate({
+	rules: 
+	{
+		categoriaId: { valueNotEquals: "o" }
+	},
 	errorElement : "div",
-	errorPlacement : function(error, element) {
-		var er = error.insertAfter(element.next());
-
-		if (er == null)
-			er.insertAfter(element.next());
-
-	}
+    errorClass: "error",       
+    errorElement : 'div',       
+    errorPlacement: function(error, element) {
+        error.appendTo( element.parent() );
+    }
 });
 
 $("#servico-categoria-form").validate({
 	errorElement : "div",
 	errorPlacement : function(error, element) {
 		var er = error.insertAfter(element.next());
-
+		
 		if (er == null)
 			er.insertAfter(element.next());
 
