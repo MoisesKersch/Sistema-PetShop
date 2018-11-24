@@ -261,25 +261,32 @@
                     selected : true
                   });
                   
-                  $('#cadastroServicoFormModal').openModal();
+                  $('#animal-form-modal').openModal();
                   
-                  $('#id').val(adata.data()[0][columnDefs[0].name])	
-                  $('#valor').val(adata.data()[0][columnDefs[1].name])
-                  $('#nome').val(adata.data()[0][columnDefs[2].name])
-                  $('#descricao').val(adata.data()[0][columnDefs[3].name])
-                  $('#categoria').val(adata.data()[0][columnDefs[4].name])
+                  $('#animal-id').val(adata.data()[0][columnDefs[0].name])
+                  $('#especie').val(adata.data()[0][columnDefs[1].name])
+                  $('#peso').val(adata.data()[0][columnDefs[2].name])
+                  $('#tipo').val(adata.data()[0][columnDefs[3].name])
+                  
+                  if (adata.data()[0][columnDefs[4].name] == "M")
+                	  $("#gender_male").attr("checked", true)
+                  else
+                	  $("#gender_female").attr("checked", true)
+
+                  $('#dataNascimento').val(adata.data()[0][columnDefs[5].name])
+                  
+                  if (adata.data()[0][columnDefs[6].name] == "Sim")
+                	  $('#pedigree').attr("checked", true);
+                  else
+                	  $('#pedigree').attr("checked", false);
+                  
+                  $('#raca').val(adata.data()[0][columnDefs[7].name])
+                  $('#cor').val(adata.data()[0][columnDefs[8].name])
+                  $('#observacao').val(adata.data()[0][columnDefs[9].name])
+                  
                   $('#editing').val("true")	
-                  
-                  console.log("hi")
-                  
-                  $.each(adata.data()[0][columnDefs[0].name], function( index, value ) {
-                	  	console.log(value)
-                  });
-                  
-                  
                   Materialize.updateTextFields();
                 }, 
-                
           
                 /**
                  * Open Delete Modal for selected row
@@ -311,8 +318,8 @@
                        selected : true
                      });
                      
-                     $('#removeModal').openModal();
-                     $('#remove').val(adata.data()[0][columnDefs[0].name])
+                     $('#animal-remove-modal').openModal();
+                     $('#animal-remove-id').val(adata.data()[0][columnDefs[0].name])
                 },
 
                 _deleteRow : function() {
@@ -355,8 +362,8 @@
                       selected : true
                     });
                     
-                	$('#cadastroServicoForm')[0].reset();
-                	$('#cadastroServicoFormModal').openModal();
+                	$('#animal-form')[0].reset();
+                	$('#animal-form-modal').openModal();
                 	
                 },
 

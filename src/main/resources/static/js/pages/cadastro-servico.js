@@ -5,14 +5,16 @@ var descTempt;
 
 $(document).ready(function() 
 {
-	$("#cadastroServicoController").click(function ()
+	$("#cadastroServicoForm").submit(function (event)
 	 {
-		 save();
+		event.preventDefault();
+		save();
 	 })
 	 
-	 $("#cadastro-servico-categoria-controller").click(function ()
+	 $("#servico-categoria-form").submit(function (event)
 	 {
-		 saveCategoria();
+		event.preventDefault();
+		saveCategoria();
 	 })
 	 
 	 openTable()
@@ -39,7 +41,7 @@ function save()
 						 "valor" : obj.valor,
 						 "nome": obj.nome,
 						 "descricao": obj.descricao,
-						 "categoria": obj.servicoCategoria[0].nome
+						 "categoria": obj.servicoCategoria.nome
 					   } ).draw();
 					 
 					 $("#editing").val("false");
@@ -51,7 +53,7 @@ function save()
 						  "valor" : obj.valor,
 	                      "nome": obj.nome,
 	                      "descricao": obj.descricao,
-	                      "categoria": obj.servicoCategoria[0].nome
+	                      "categoria": obj.servicoCategoria.nome
 	                  });
 					 
 					 $("#editing").val("false");

@@ -17,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petshop.component.SessaoInfo;
+import com.petshop.models.Empresa;
 import com.petshop.models.Servico;
 import com.petshop.models.ServicoCategoria;
 import com.petshop.models.Usuario;
+import com.petshop.repositories.EmpresaRepository;
 import com.petshop.repositories.ServicoCategoriaRepository;
 import com.petshop.repositories.ServicoRepository;
 
@@ -28,6 +30,9 @@ public class CadastroServicoController extends SessaoInfo
 {
 	@Autowired
 	private ServicoRepository servicoRepository;
+
+	@Autowired
+	private EmpresaRepository empresaRepository;
 
 	@Autowired
 	private ServicoCategoriaRepository servicoCategoriaRepository;
@@ -43,13 +48,18 @@ public class CadastroServicoController extends SessaoInfo
 			usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		} catch (Exception e)
 		{
-			return new ModelAndView("/login");
 		}
 
-		if (usuario.getLogin() == null)
+		if (usuario != null)
 		{
-			SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
-			return null;
+			if (usuario.getLogin() == null)
+			{
+				SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+				return null;
+			}
+		} else
+		{
+			return new ModelAndView("/login");
 		}
 
 		try
@@ -110,7 +120,19 @@ public class CadastroServicoController extends SessaoInfo
 			servico.setServicoCategoria(servicoCategoria);
 		} else
 		{
-			//TODO tratar caso o serviço categoria não for encontrado no sistema
+			// TODO tratar caso o serviço categoria não for encontrado no sistema
+			return null;
+		}
+
+		Optional<Empresa> empresaFinder = empresaRepository.findById(1L);
+
+		if (empresaFinder.isPresent())
+		{
+			Empresa empresa = empresaFinder.get();
+			servico.setEmpresa(empresa);
+		} else
+		{
+			// falha no sistema empresa não configurada
 			return null;
 		}
 

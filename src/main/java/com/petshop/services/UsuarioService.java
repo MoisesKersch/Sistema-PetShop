@@ -11,5 +11,5 @@ public interface UsuarioService
 {
 	public void salvar(Usuario usuario);
 	public void remover(String id);
-	public void logarAposRegistro(HttpServletRequest request, String login, String senha);
+	public boolean autoLogin(String username, String password, HttpServletRequest request);
 }

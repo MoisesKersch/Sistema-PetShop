@@ -1,3 +1,17 @@
+$(document).ready(function(){
+	$('#cpf').mask('000.000.000-00', {reverse: true});
+	
+	 $('#uf').mask('AA', {
+		    translation: {
+		      'A': {
+		        pattern: /[A-Za-z]/, optional: true
+		      }
+		    }
+		  });
+	
+	
+})
+
 function send()
 {
 	if ($("#registrationForm").valid()) 

@@ -38,7 +38,8 @@
 		      	</c:if>
 		      	
 		      	<c:if test = "${papel == 'Cliente'}">
-					<li class="bold"><a href="cadastroanimal" class="waves-effect waves-cyan"><i class="mdi-action-assignment-turned-in"></i> Cadastrar Serviço</a></li>                   
+					<li class="bold"><a href="cadastroanimal" class="waves-effect waves-cyan"><i class="mdi-action-favorite-outline"></i> Cadastrar Animais</a></li>
+					<li class="bold"><a href="servicos" class="waves-effect waves-cyan"><i class="mdi-action-assignment"></i> Serviços</a></li>                   
 		      	</c:if>
 				
 				<li class="bold"><a href="app-email.html"

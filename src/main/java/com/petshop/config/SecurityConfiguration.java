@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,24 +36,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 		auth.userDetailsService(usuarioDetailsServiceImpl).passwordEncoder(getPasswordEncoder());
 	}
 
+	@Bean(name = "authenticationManager")
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception
+	{
+		return super.authenticationManagerBean();
+	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
 
-		http.authorizeRequests()
-			.antMatchers("/resources/**", "/public/**", "/css/**").permitAll()
-			.antMatchers("/admin/**").hasRole("Administrador")
-			.and()
-			.authorizeRequests()
-			.anyRequest().authenticated()
-			.and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true).passwordParameter("senha")
-			.usernameParameter("login").permitAll()
-			.and().logout()
-			.and().exceptionHandling().accessDeniedPage("/login");
-		
+		http.authorizeRequests().antMatchers("/resources/**", "/public/**", "/css/**").permitAll()
+				.antMatchers("/admin/**").hasRole("Administrador").and().authorizeRequests().anyRequest()
+				.authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true)
+				.passwordParameter("senha").usernameParameter("login").permitAll().and().logout().and()
+				.exceptionHandling().accessDeniedPage("/login");
+
 		http.csrf().disable();
 	}
-	
+
 	private PasswordEncoder getPasswordEncoder()
 	{
 		return new PasswordEncoder()
@@ -60,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 			@Override
 			public boolean matches(CharSequence rawPassword, String encodedPassword)
 			{
-					return rawPassword.toString().equals(encodedPassword);
+				return rawPassword.toString().equals(encodedPassword);
 			}
 
 			@Override
@@ -70,18 +73,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 			}
 		};
 	}
-	
+
 	@Bean
-	public AuthenticationTrustResolver trustResolver() {
-		return new AuthenticationTrustResolver() {
+	public AuthenticationTrustResolver trustResolver()
+	{
+		return new AuthenticationTrustResolver()
+		{
 
 			@Override
-			public boolean isRememberMe(final Authentication authentication) {
+			public boolean isRememberMe(final Authentication authentication)
+			{
 				return false;
 			}
 
 			@Override
-			public boolean isAnonymous(final Authentication authentication) {
+			public boolean isAnonymous(final Authentication authentication)
+			{
 				return false;
 			}
 		};

@@ -27,10 +27,17 @@ public class HomeController
 		} catch (Exception e) {
 		}
 		
-		if (usuario.getLogin() == null)
+		if (usuario != null)
 		{
-			SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
-			return null;
+			if (usuario.getLogin() == null)
+			{
+				SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+				return null;
+			}
+		}
+		else
+		{
+			return new ModelAndView("/login");
 		}
 		
 		try {

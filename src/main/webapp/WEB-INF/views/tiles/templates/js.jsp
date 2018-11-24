@@ -52,6 +52,9 @@
 	<!--serialize to object-->
 	<script type="text/javascript" src="/resources/js/plugins/serialize-object/serialize-object.js"></script>
 	
+	<!-- jquery mask -->
+	<script type="text/javascript" src="/resources/js/plugins/jquery-mask/jquery.mask.js"></script>
+		
 	
 	
  	

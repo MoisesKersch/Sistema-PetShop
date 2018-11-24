@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "animal")
 public class Animal
@@ -22,6 +24,7 @@ public class Animal
 	@Column(name = "animal_id")
 	private Long id;
 
+	@NotNull
 	@Column(name = "especie")
 	private String especie;
 
@@ -40,7 +43,7 @@ public class Animal
 	private Date dataNascimento;
 	
 	@Column(name = "pedigree")
-	private Boolean pedigree;
+	private String pedigree;
 	
 	@Column(name = "raca")
 	private String raca;
@@ -105,6 +108,7 @@ public class Animal
 		this.sexo = sexo;
 	}
 
+	@JsonFormat(pattern="dd/MM/yyyy")
 	public Date getDataNascimento()
 	{
 		return dataNascimento;
@@ -115,12 +119,12 @@ public class Animal
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Boolean getPedigree()
+	public String getPedigree()
 	{
 		return pedigree;
 	}
 
-	public void setPedigree(Boolean pedigree)
+	public void setPedigree(String pedigree)
 	{
 		this.pedigree = pedigree;
 	}

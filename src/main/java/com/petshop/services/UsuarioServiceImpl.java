@@ -1,9 +1,13 @@
 package com.petshop.services;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 
 import com.petshop.models.Usuario;
@@ -16,6 +20,9 @@ public class UsuarioServiceImpl implements UsuarioService
 	@Autowired
 	UsuarioRepository usuarioRepository;
 	
+	@Autowired
+	AuthenticationManager authManager;
+
 	@Override
 	public void salvar(Usuario usuario)
 	{
@@ -34,12 +41,19 @@ public class UsuarioServiceImpl implements UsuarioService
 	}
 
 	@Override
-	public void logarAposRegistro(HttpServletRequest request, String login, String senha)
+	public boolean autoLogin(String username, String password, HttpServletRequest request)
 	{
-		 try {
-		        request.login(login, senha);
-		    } catch (ServletException e) {
-		    	e.getMessage();
-		    }
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+
+		Authentication authentication = authManager.authenticate(token);
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		// this step is important, otherwise the new login is not in session which is
+		// required by Spring Security
+		request.getSession().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+				SecurityContextHolder.getContext());
+
+		return true;
 	}
 }

@@ -9,13 +9,7 @@
 <jsp:include page="../tiles/templates/css.jsp"></jsp:include>
 <jsp:include page="../tiles/templates/header.jsp"></jsp:include>
 
-
-<%-- <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/resources/css/agendacontato.css" />"> --%>
-
-<link
-	href="http://cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css"
-	type="text/css" rel="stylesheet" media="screen,projection">
-
+<link href="http://cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
 </head>
 <body>
@@ -48,27 +42,26 @@
 				<!--start container-->
 				<div class="container">
 					<div class="section">
-						<p class="caption">Cadastre, remova e altere clientes
-							cadastrados no seu sistema.</p>
+						<p class="caption">Cadastre, remova e altere clientes cadastrados no seu sistema.</p>
 						<div class="divider"></div>
 						<!--DataTables example-->
 						<div id="table-datatables">
 							<h4 class="header">Tabela de Clientes</h4>
 							<div class="row">
 								<div class="col s12 ">
-									<table id="cadastro" class=" hoverable centered responsive-table striped ">
+									<table id="animal-table" class=" hoverable centered responsive-table striped ">
 										<thead>
 											<tr>
-												<th style="width: 200px;">Nome</th>
-												<th>CPF</th>
-												<th>Email</th>
-												<th>Rua</th>
-												<th>Número</th>
-												<th>Bairro</th>
-												<th>Complemento</th>
-												<th>Cidade</th>
-												<th>Estado</th>
 												<th>ID</th>
+												<th style="width: 200px;">Especie</th>
+												<th>Peso</th>
+												<th>Tipo</th>
+												<th>Sexo</th>
+												<th>Data Nascimento</th>
+												<th>Pedigree</th>
+												<th>Raça</th>
+												<th>Cor</th>
+												<th>Observacao</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -77,120 +70,92 @@
 								</div>
 							</div>
 						</div>
-					
-						<div class="modal" id="removeModal">
+
+						<div class="modal" id="animal-remove-modal">
 							<div class="modal-content teal white-text">
-								<p>Tem certeza que deseja remover esse cadastro?</p>
+								<p>Tem certeza que deseja remover esse cadastro-animal?</p>
 							</div>
-							<input type="hidden" id="remove" name="id">
+							<input type="hidden" id="animal-remove-id" name="id">
 							<div class="modal-footer  teal lighten-4">
-								<a href="#"
-									class="waves-effect waves-red btn-flat modal-action modal-close">Cancelar</a>
-								<a href="#"
-									class="waves-effect waves-green btn-flat modal-action modal-close" onclick="cadastroFormRemover()">Remover</a>
+								<a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Cancelar</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close"
+									onclick="animalRemove()">Remover</a>
 							</div>
 						</div>
 
-						<input id="editing" class="hide" name="editing" type="text" value="false"> 
-						 
-						<div id="cadastro-form-modal" class="modal">
+						<input id="editing" class="hide" name="editing" type="text" value="false">
+
+						<div id="animal-form-modal" class="modal">
 							<div class="modal-content">
 								<h4>Cadastro</h4>
 								<div class="row">
-									<form class="col s12" id="cadastro-form">
-
+									<form class="col s12" id="animal-form">
+										<input type="hidden" name="id" id="animal-id">
 										<div class="row modal-form-row">
 											<div class="input-field col s12">
-												<input id="nome" type="text" class="required" name="nome">
-												<label for="nome">Nome</label>
+												<input id="especie" type="text" class="required" name="especie"> <label for="especie">Especie</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="cpf" type="number" class="required" name="cpf">
-												<label for="cpf">CPF</label>
+												<input id="peso" type="text" name="peso"> <label for="peso">Peso</label>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col s12">
+												<label for="genter_select">Gênero</label>
+												<p>
+													<input name="sexo" type="radio" id="gender_male" value="M" data-error=".errorTxt8"> <label for="gender_male">Masculino</label>
+												</p>
+												<p>
+													<input name="sexo" type="radio" id="gender_female" value="F"> <label for="gender_female">Feminino</label>
+												</p>
+												<div class="input-field">
+												<div class="errorTxt8"></div>
+											</div>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="email" type="text" class="required" name="email">
-												<label for="email">Email</label>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="rua" type="text" class="required"
-													name="rua"> <label for="rua">Rua</label>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="numero" type="number" class="required"
-													name="numero"> <label for="numero">Número</label>
+												<input id="tipo" type="text" class="required" name="tipo"> <label for="tipo">Tipo</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="bairro" type="text" class="required"
-													name="bairro"> <label for="bairro">Bairro</label>
+												<input id="dataNascimento" type="text" name="dataNascimento" minlength=10> <label for="dataNascimento">Data Nascimento</label>
 											</div>
 										</div>
-										
+
 										<div class="row">
-											<div class="input-field col s12">
-												<input id="complemento" type="text" name="complemento">
-												<label for="complemento">Complemento</label>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="cidade" type="text" class="required"
-													name="cidade"> <label for="cidade">Cidade</label>
+											<div class="col s12">
+												<input type="checkbox" class="checkbox" id="pedigree" name="pedigree"> <label for="pedigree">Pedigree</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="uf" type="text" class="required" name="uf">
-												<label for="uf">UF</label>
+												<input id="raca" type="text" name="raca"> <label for="raca">Raça</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="login" name="login" type="text"> <label
-													for="login">Login</label>
+												<input id="cor" type="text" name="cor"> <label for="cor">Cor</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="senha" type="text" name="senha"> <label
-													for="senha">Senha</label>
+												<input id="observacao" type="text" name="observacao"> <label for="observacao">Observação</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="passwordConfirm" name="passwordConfirm"
-													type="text"> <label for="passwordConfirm">Senha
-													novamente</label>
-											</div>
-										</div>
-
-										<input id="id" class="hide" name="id" type="text">
-
-										<div class="row">
-											<div class="input-field col s12">
-												<button
-													class="modal-action modal-close btn  waves-effect waves-light left"
-													type="button">
+												<button class="modal-action modal-close btn  waves-effect waves-light left" type="button">
 													Fechar <i class="mdi-content-undo left"></i>
 												</button>
 												<button class="btn cyan waves-effect waves-light right" type="submit">
@@ -210,13 +175,12 @@
 		<!-- END WRAPPER -->
 	</div>
 	<!-- END MAIN -->
- 	<!-- FOOTER -->
+	<!-- FOOTER -->
 	<jsp:include page="../tiles/templates/footer.jsp"></jsp:include>
 	<!-- SCRIPTS -->
 	<jsp:include page="../tiles/templates/js.jsp"></jsp:include>
-	<script type="text/javascript" src="/resources/js/pages/cadastro.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/pages/cadastro-editor.js"></script>
+	<script type="text/javascript" src="/resources/js/pages/cadastro-animal.js"></script>
+	<script type="text/javascript" src="/resources/js/pages/cadastro-animal-editor.js"></script>
 
 </body>
 </html>

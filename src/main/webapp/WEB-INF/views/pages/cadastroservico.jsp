@@ -184,7 +184,7 @@
 									<button class="modal-action modal-close btn  waves-effect waves-light left" type="button">
 										Fechar <i class="mdi-content-undo left"></i>
 									</button>
-									<button class="btn cyan waves-effect waves-light right" id="cadastroServicoController" type="button">
+									<button class="btn cyan waves-effect waves-light right" id="cadastroServicoController" type="submit">
 										Salvar <i class="mdi-content-send right"></i>
 									</button>
 								</div>

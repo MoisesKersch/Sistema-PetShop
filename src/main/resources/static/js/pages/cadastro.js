@@ -4,29 +4,27 @@ var descTempt;
 
 $(document).ready(function() 
 {
-
-	$("#cadastroController").click(function ()
+	$("#cadastro-form").submit(function (event)
 	 {
-		 save();
+		event.preventDefault();
+		cadastroFormSave(); 
 	 })
 	 
 	 openTable()
-	 
-	 
 });
 
-function save()
+function cadastroFormSave()
 {
-	 if ($("#cadastroForm").valid())
+	 if ($("#cadastro-form").valid())
 	 {
 		 $.ajax({
 			 type: "POST",
-			 data:  $("#cadastroForm").serializeObject(),
+			 data:  $("#cadastro-form").serializeObject(),
 			 url: "/cadastro",
 			 success: function(cadastro)
 			 {
 				 console.log(cadastro)
-				 $('#cadastroFormModal').closeModal(); 
+				 $('#cadastro-form-modalw').closeModal(); 
 				 
 				 if ($("#editing").val() == "false")
 			 	 { 
@@ -62,8 +60,6 @@ function save()
 					 
 					 $("#editing").val("false");
 				}
-				
-				
 			 }
 		 })
 	 }
@@ -165,7 +161,7 @@ function openTable()
 		})
 }
 
-function removerCadastro()
+function cadastroFormRemover()
 {
 	 $.ajax({
 		 type: "POST",
@@ -180,7 +176,7 @@ function removerCadastro()
 		 }})
 }
 
-$("#cadastroForm").validate({
+$("#cadastro-form").validate({
 	rules : {
 		senha : "required",
 		passwordConfirm : {

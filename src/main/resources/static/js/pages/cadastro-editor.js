@@ -261,7 +261,7 @@
                     selected : true
                   });
                   
-                  $('#cadastroFormModal').openModal();
+                  $('#cadastro-form-modal').openModal();
                   
                   $('#nome').val(adata.data()[0][columnDefs[0].name])
                   $('#cpf').val(adata.data()[0][columnDefs[1].name])
@@ -311,7 +311,7 @@
                      });
                      
                      $('#removeModal').openModal();
-                     $('#remove').val(adata.data()[0][columnDefs[7].name])
+                     $('#remove').val(adata.data()[0][columnDefs[9].name])
                 },
 
                 _deleteRow : function() {
@@ -354,9 +354,8 @@
                       selected : true
                     });
                     
-                	$('#cadastroForm')[0].reset();
-                	$('#cadastroFormModal').openModal();
-                	
+                	$('#cadastro-form')[0].reset();
+                	$('#cadastro-form-modal').openModal();
                 	
                 },
 

@@ -33,9 +33,15 @@ public class Servico
 	@Column(name = "descricao")
 	private String descricao;
 	
+	@NotNull
 	@ManyToOne
     @JoinColumn(name = "servico_categoria_id")
     private ServicoCategoria servicoCategoria;
+
+	@NotNull
+	@ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
 
 	public Long getId()
 	{
@@ -85,5 +91,15 @@ public class Servico
 	public void setServicoCategoria(ServicoCategoria servicoCategoria)
 	{
 		this.servicoCategoria = servicoCategoria;
+	}
+
+	public Empresa getEmpresa()
+	{
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa)
+	{
+		this.empresa = empresa;
 	}
 }

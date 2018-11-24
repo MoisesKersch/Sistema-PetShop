@@ -68,7 +68,7 @@
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
 							<spring:bind path="cpf">
-							  <form:input type="number" path="cpf" placeholder="cpf" class="required" id="cpf"
+							  <form:input type="text" path="cpf" placeholder="cpf" class="required" id="cpf"
                         		 autofocus="true"></form:input> 
                         		 	<div class="input-field col s2"></div>
                              </spring:bind> 
@@ -84,7 +84,7 @@
                          		 autofocus="true"></form:input> 
                         		 	<div class="input-field col s2"></div>
                             </spring:bind>
-							<label for="bairro">Rua</label>
+							<label for="rua">Rua</label>
 						</div>
 					</div>
 					
@@ -96,7 +96,7 @@
                          		 autofocus="true"></form:input> 
                         		 	<div class="input-field col s2"></div>
                             </spring:bind>
-							<label for="bairro">Bairro</label>
+							<label for="numero">Número</label>
 						</div>
 					</div>
 					
@@ -128,7 +128,7 @@
 						<div class="input-field col s12">
 							<i class="mdi-social-person-outline prefix"></i> 
 							<spring:bind path="enderecos[0].uf">
-							  <form:input type="text" path="enderecos[0].uf" placeholder="UF" class="required"
+							  <form:input type="text" path="enderecos[0].uf" placeholder="UF" id="uf" class="required"
                         		 autofocus="true"></form:input> 
                         		 	<div class="input-field col s2"></div>
                              </spring:bind> 
