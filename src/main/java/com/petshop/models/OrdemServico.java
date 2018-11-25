@@ -1,12 +1,14 @@
 package com.petshop.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,23 +22,31 @@ public class OrdemServico
 	private Long id;
 	
 	@NotNull
-	@Column(name = "data_vencimento")
-	private Date dataVencimento;
-	
-	@Column(name = "data_pagamento")
-	private Date datapagamento;
+	@Column(name = "data_reservada")
+	private Date dataReservada = new Date();
 	
 	@NotNull
 	@Column(name = "status")
-	private String status = "aberto";
+	private String status;
 	
-	@NotNull
 	@Column(name = "observacao")
 	private String observacao;
 	
-	@NotNull
-	@Column(name = "cod_animal")
-	private Long codAnimal;
+	@ManyToOne
+    @JoinColumn(name = "animal_id")
+    private Animal animal;
+	
+	@ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
+	
+	@ManyToOne
+    @JoinColumn(name = "servico_id")
+    private Servico servico;
+	
+	@ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 	public Long getId()
 	{
@@ -48,24 +58,14 @@ public class OrdemServico
 		this.id = id;
 	}
 
-	public Date getDataVencimento()
+	public Date getDataReservada()
 	{
-		return dataVencimento;
+		return dataReservada;
 	}
 
-	public void setDataVencimento(Date dataVencimento)
+	public void setDataReservada(Date dataReservada)
 	{
-		this.dataVencimento = dataVencimento;
-	}
-
-	public Date getDatapagamento()
-	{
-		return datapagamento;
-	}
-
-	public void setDatapagamento(Date datapagamento)
-	{
-		this.datapagamento = datapagamento;
+		this.dataReservada = dataReservada;
 	}
 
 	public String getStatus()
@@ -88,13 +88,43 @@ public class OrdemServico
 		this.observacao = observacao;
 	}
 
-	public Long getCodAnimal()
+	public Empresa getEmpresa()
 	{
-		return codAnimal;
+		return empresa;
 	}
 
-	public void setCodAnimal(Long codAnimal)
+	public void setEmpresa(Empresa empresa)
 	{
-		this.codAnimal = codAnimal;
+		this.empresa = empresa;
+	}
+
+	public Animal getAnimal()
+	{
+		return animal;
+	}
+
+	public void setAnimal(Animal animal)
+	{
+		this.animal = animal;
+	}
+
+	public Servico getServico()
+	{
+		return servico;
+	}
+
+	public void setServico(Servico servico)
+	{
+		this.servico = servico;
+	}
+
+	public Usuario getUsuario()
+	{
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario)
+	{
+		this.usuario = usuario;
 	}
 }

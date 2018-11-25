@@ -20,8 +20,6 @@ public class ValidacaoController
 	@Autowired
 	UsuarioRepository usuarioRepository;
 	
-	private CNP cpn;
-
 	@RequestMapping(value = "/iscpfcnpjvalido", method = RequestMethod.POST)
 	public Boolean isCpfCnpjValido(String entrada)
 	{

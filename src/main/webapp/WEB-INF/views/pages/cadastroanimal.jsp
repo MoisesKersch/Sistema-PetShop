@@ -29,10 +29,10 @@
 					<div class="container">
 						<div class="row">
 							<div class="col s12 m12 l12">
-								<h5 class="breadcrumbs-title">Cadastro</h5>
+								<h5 class="breadcrumbs-title">${mainTitle}</h5>
 								<ol class="breadcrumb">
 									<li><a href="index.html">Dashboard</a></li>
-									<li class="active">Cadastro</li>
+									<li class="active">${secondTitle}</li>
 								</ol>
 							</div>
 						</div>
@@ -42,11 +42,11 @@
 				<!--start container-->
 				<div class="container">
 					<div class="section">
-						<p class="caption">Cadastre, remova e altere clientes cadastrados no seu sistema.</p>
+						<p class="caption">${caption}</p>
 						<div class="divider"></div>
 						<!--DataTables example-->
 						<div id="table-datatables">
-							<h4 class="header">Tabela de Clientes</h4>
+							<h4 class="header">Tabela de Animais</h4>
 							<div class="row">
 								<div class="col s12 ">
 									<table id="animal-table" class=" hoverable centered responsive-table striped ">
@@ -90,6 +90,13 @@
 								<div class="row">
 									<form class="col s12" id="animal-form">
 										<input type="hidden" name="id" id="animal-id">
+										
+										<div class="row modal-form-row">
+											<div class="input-field col s12">
+												<input id="nome" type="text" class="required" name="nome"> <label for="especie">Nome</label>
+											</div>
+										</div>
+										
 										<div class="row modal-form-row">
 											<div class="input-field col s12">
 												<input id="especie" type="text" class="required" name="especie"> <label for="especie">Especie</label>

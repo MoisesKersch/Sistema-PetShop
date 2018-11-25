@@ -1,13 +1,11 @@
 package com.petshop.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,55 +15,40 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petshop.component.SessaoInfo;
-import com.petshop.models.Empresa;
 import com.petshop.models.Servico;
 import com.petshop.models.ServicoCategoria;
-import com.petshop.models.Usuario;
-import com.petshop.repositories.EmpresaRepository;
 import com.petshop.repositories.ServicoCategoriaRepository;
 import com.petshop.repositories.ServicoRepository;
+import com.petshop.services.ServicoCategoriaService;
+import com.petshop.services.ServicoService;
 
 @Controller
 public class CadastroServicoController extends SessaoInfo
 {
 	@Autowired
 	private ServicoRepository servicoRepository;
-
-	@Autowired
-	private EmpresaRepository empresaRepository;
-
+	
 	@Autowired
 	private ServicoCategoriaRepository servicoCategoriaRepository;
+	
+	@Autowired
+	private ServicoCategoriaService servicoCategoriaService;
+
+	@Autowired
+	private ServicoService servicoService;
 
 	@RequestMapping(value = "/cadastroservico")
 	public ModelAndView getCadastroServicoPage()
 	{
 		ModelAndView modelAndView = new ModelAndView("cadastroservico");
-		Usuario usuario = null;
-
-		try
-		{
-			usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		} catch (Exception e)
-		{
-		}
-
-		if (usuario != null)
-		{
-			if (usuario.getLogin() == null)
-			{
-				SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
-				return null;
-			}
-		} else
-		{
+		
+		if (getUsuarioCorrente() == null)
 			return new ModelAndView("/login");
-		}
 
 		try
 		{
-			modelAndView.addObject("papel", usuario.getRoles().iterator().next().getRole());
-			modelAndView.addObject("nome", usuario.getNome());
+			modelAndView.addObject("papel", getUsuarioCorrente().getRoles().iterator().next().getRole());
+			modelAndView.addObject("nome", getUsuarioCorrente().getNome());
 		} catch (Exception e)
 		{
 
@@ -80,7 +63,7 @@ public class CadastroServicoController extends SessaoInfo
 	{
 		try
 		{
-			return servicoRepository.findAll();
+			return servicoRepository.findByEmpresa( getEmpresa() );
 		} catch (Exception e)
 		{
 			return null;
@@ -93,7 +76,7 @@ public class CadastroServicoController extends SessaoInfo
 	{
 		try
 		{
-			return servicoCategoriaRepository.findAll();
+			return servicoCategoriaRepository.findByEmpresa( getEmpresa() ) ;
 		} catch (Exception e)
 		{
 			return null;
@@ -111,40 +94,8 @@ public class CadastroServicoController extends SessaoInfo
 			redirectAttributes.addFlashAttribute("mensagemErro", bindingResult.getAllErrors());
 			return null;
 		}
-
-		Optional<ServicoCategoria> servicoCategoriaFinder = servicoCategoriaRepository.findById(categoriaId);
-
-		if (servicoCategoriaFinder.isPresent())
-		{
-			ServicoCategoria servicoCategoria = servicoCategoriaFinder.get();
-			servico.setServicoCategoria(servicoCategoria);
-		} else
-		{
-			// TODO tratar caso o serviço categoria não for encontrado no sistema
-			return null;
-		}
-
-		Optional<Empresa> empresaFinder = empresaRepository.findById(1L);
-
-		if (empresaFinder.isPresent())
-		{
-			Empresa empresa = empresaFinder.get();
-			servico.setEmpresa(empresa);
-		} else
-		{
-			// falha no sistema empresa não configurada
-			return null;
-		}
-
-		try
-		{
-			servico = servicoRepository.save(servico);
-		} catch (Exception e)
-		{
-			System.out.println(e.getMessage());
-			return null;
-		}
-		return servico;
+		servico.setEmpresa( getUsuarioCorrente().getEmpresa() );
+		return servicoService.salvar(servico, categoriaId);
 	}
 
 	@ResponseBody
@@ -162,13 +113,13 @@ public class CadastroServicoController extends SessaoInfo
 
 		try
 		{
-			servicoCategoria = servicoCategoriaRepository.save(servicoCategoria);
+			servicoCategoria.setEmpresa( getEmpresa() );
+			return servicoCategoriaService.salvar(servicoCategoria);
 		} catch (Exception e)
 		{
 			System.out.println(e.getMessage());
 			return null;
 		}
-		return servicoCategoria;
 	}
 
 	@ResponseBody

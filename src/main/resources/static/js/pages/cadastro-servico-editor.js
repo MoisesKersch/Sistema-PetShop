@@ -268,6 +268,9 @@
                   $('#nome').val(adata.data()[0][columnDefs[2].name])
                   $('#descricao').val(adata.data()[0][columnDefs[3].name])
                   $('#categoria').val(adata.data()[0][columnDefs[4].name])
+                  
+                  $('#url').val(adata.data()[0][columnDefs[5].name])
+                  
                   $('#editing').val("true")	
                   
                   console.log("hi")

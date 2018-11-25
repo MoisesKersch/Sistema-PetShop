@@ -41,7 +41,8 @@ function save()
 						 "valor" : obj.valor,
 						 "nome": obj.nome,
 						 "descricao": obj.descricao,
-						 "categoria": obj.servicoCategoria.nome
+						 "categoria": obj.servicoCategoria.nome,
+						 "url": obj.url
 					   } ).draw();
 					 
 					 $("#editing").val("false");
@@ -53,7 +54,8 @@ function save()
 						  "valor" : obj.valor,
 	                      "nome": obj.nome,
 	                      "descricao": obj.descricao,
-	                      "categoria": obj.servicoCategoria.nome
+	                      "categoria": obj.servicoCategoria.nome,
+	                      "url": obj.url
 	                  });
 					 
 					 $("#editing").val("false");
@@ -193,6 +195,7 @@ function openTable()
 		    					return full.servicoCategoria.nome;
 		    				}
 		    			},
+		    			{ data: "url" }
 		    		  ],
 		    	  dom: 'Bfrtip',        // Needs button container
 		          select: 'single',
@@ -213,7 +216,7 @@ function openTable()
 		            name: 'delete'      // do not change name
 		         }],
 		         "columnDefs": [
-		        	    {"targets": [ 0 ], "visible": false},
+		        	    {"targets": [ 0, 5 ], "visible": false},
 		        	  ]
 				})
 			}

@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 	{
 
 		http.authorizeRequests().antMatchers("/resources/**", "/public/**", "/css/**").permitAll()
-				.antMatchers("/admin/**").hasRole("Administrador").and().authorizeRequests().anyRequest()
+				.antMatchers("/admin/**").hasRole("Administrator").and().authorizeRequests().anyRequest()
 				.authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true)
 				.passwordParameter("senha").usernameParameter("login").permitAll().and().logout().and()
 				.exceptionHandling().accessDeniedPage("/login");

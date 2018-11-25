@@ -2,14 +2,12 @@ package com.petshop.controllers;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,19 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petshop.component.SessaoInfo;
-import com.petshop.models.Empresa;
 import com.petshop.models.Endereco;
 import com.petshop.models.Role;
 import com.petshop.models.Usuario;
-import com.petshop.repositories.EmpresaRepository;
 import com.petshop.repositories.UsuarioRepository;
 
 @Controller
 public class CadastroController extends SessaoInfo
 {
-	@Autowired
-	private EmpresaRepository empresaRepository;
-
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
@@ -40,21 +33,12 @@ public class CadastroController extends SessaoInfo
 	{
 		ModelAndView modelAndView = new ModelAndView("cadastro");
 
-		Usuario usuario = null;
+		if (getUsuarioCorrente() == null)
+			return new ModelAndView("/login");
 
 		try {
-			usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		} catch (Exception e) {
-		}
-
-		if (usuario.getLogin() == null) {
-			SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
-			return null;
-		}
-
-		try {
-			modelAndView.addObject("papel", usuario.getRoles().iterator().next().getRole());
-			modelAndView.addObject("nome", usuario.getNome());
+			modelAndView.addObject("papel", getUsuarioCorrente().getRoles().iterator().next().getRole());
+			modelAndView.addObject("nome", getUsuarioCorrente().getNome());
 		} catch (Exception e) {
 
 		}
@@ -81,29 +65,22 @@ public class CadastroController extends SessaoInfo
 			final RedirectAttributes redirectAttributes, String bairro, String uf, String complemento, String cidade, String rua, Long numero)
 	{
 		
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) 
+		{
 			// tratar com uma growl mensagem?
 			redirectAttributes.addFlashAttribute("mensagemErro", bindingResult.getAllErrors());
 			return null;
 		}
 
-		// carrega empresa do petshop
-		Optional<Empresa> empresaFinder = empresaRepository.findById(1L);
-
-		if (empresaFinder.isPresent()) {
-			Empresa empresa = empresaFinder.get();
-			usuario.getEmpresas().add(empresa);
-		} else {
-			// falha no sistema empresa não configurada
-			return null;
-		}
-
+		// set Empresa
+		usuario.setEmpresa(getEmpresa());
+		
 		Set<Role> roles = new HashSet<Role>();
 		Role role = new Role();
 		role.setRole("Cliente");
 		roles.add(role);
 
-		// selecion um papel
+		// seleciona um papel
 		usuario.setRoles(roles);
 
 		// salva o usuario

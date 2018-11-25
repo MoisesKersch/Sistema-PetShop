@@ -7,6 +7,8 @@
     <script type="text/javascript" src="/resources/js/jquery-1.11.2.min.js"></script>    
     <!--materialize js-->
     <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+
+
    
     <!--scrollbar-->
     <script type="text/javascript" src="/resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -54,13 +56,19 @@
 	
 	<!-- jquery mask -->
 	<script type="text/javascript" src="/resources/js/plugins/jquery-mask/jquery.mask.js"></script>
+	
+	<!-- datepicker translation  -->
+   <script type="text/javascript" src="/resources/js/plugins/datepicker/translation/pt-br.js"></script>
+   
+   <!-- timepicker translation  -->
+   <script type="text/javascript" src="/resources/js/plugins/timepicker/js/mdtimepicker.js"></script>
+   
+
+   
+   
+   
+   
+	
 		
-	
-	
- 	
- 	
-
-
-
     
     

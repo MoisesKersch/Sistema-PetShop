@@ -108,7 +108,7 @@
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="cpf" type="number" class="required" name="cpf">
+												<input id="cpf" type="text" class="required" name="cpf">
 												<label for="cpf">CPF</label>
 											</div>
 										</div>

@@ -14,22 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
-import com.petshop.models.Empresa;
+import com.petshop.component.SessaoInfo;
 import com.petshop.models.Role;
 import com.petshop.models.Usuario;
-import com.petshop.repositories.EmpresaRepository;
 import com.petshop.repositories.UsuarioRepository;
 import com.petshop.services.UsuarioService;
 
 @Controller
 @RequestMapping(value = "/public")
-public class RegistroController
+public class RegistroController extends SessaoInfo
 {
-	@Autowired
-	private EmpresaRepository empresaRepository;
-	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
@@ -69,18 +64,7 @@ public class RegistroController
 		}
 		
 		// carrega empresa do petshop()
-		Optional<Empresa> empresaFinder =  empresaRepository.findById(1L);
-		
-		if (empresaFinder.isPresent())
-		{
-			Empresa empresa = empresaFinder.get();
-			usuario.getEmpresas().add(empresa);
-		}
-		else
-		{
-			// falha no sistema empresa não configurada
-			return null;
-		}
+		usuario.setEmpresa(getEmpresa());
 		
 		Set<Role> roles = new HashSet<Role>();
 		Role role = new Role();

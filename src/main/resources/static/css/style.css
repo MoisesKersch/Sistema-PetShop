@@ -1440,7 +1440,6 @@ footer.page-footer {
   } 
 }
 
- 
 /* For Tables ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 /* STYLES GO HERE */
@@ -1450,4 +1449,105 @@ footer.page-footer {
   #card-stats .card-stats-compare{
       font-size: 0.8rem;
   }
+}
+
+
+
+
+
+
+
+.product-card .card .card-content .card-title, .product-card .card .card-reveal .card-title
+	{
+	font-size: 1.1rem;
+	line-height: 1.6rem;
+	font-weight: 400
+}
+
+.product-card .card {
+	margin: 0
+}
+
+.product-card .card .card-content {
+	padding: 5px 10px
+}
+
+.product-card .card .btn-price {
+	width: 65px;
+	height: 65px;
+	font-weight: 600;
+	font-size: 1.0rem;
+	line-height: 65px;
+	margin: 10px;
+	position: absolute;
+	top: 0;
+	letter-spacing: 0
+}
+
+.product-card ul.card-action-buttons {
+	margin: -26px 10px 0 0;
+	text-align: right
+}
+
+.product-card ul.card-action-buttons li {
+	display: inline-block;
+	padding-left: 5px
+}
+
+.product .card .card-content .card-title, .product .card .card-reveal .card-title
+	{
+	font-size: 1.1rem;
+	line-height: 1.6rem;
+	font-weight: 400
+}
+
+.product {
+	width: 20%;
+	padding: 10px
+}
+
+.product .card {
+	margin: 0
+}
+
+.product .card .card-content {
+	padding: 5px 10px
+}
+
+.product .card .btn-price {
+	width: 65px;
+	height: 65px;
+	font-weight: 600;
+	font-size: 1.0rem;
+	line-height: 65px;
+	margin: 10px;
+	position: absolute;
+	top: 0;
+	letter-spacing: 0
+}
+
+.product ul.card-action-buttons {
+	margin: -26px 10px 0 0;
+	text-align: right
+}
+
+.product ul.card-action-buttons li {
+	display: inline-block;
+	padding-left: 5px
+}
+
+.product-sizer {
+	width: 20%
+}
+
+.gallary-sizer {
+	width: 20%
+}
+
+.gallary-item img {
+	width: 20%
+}
+
+.slider .indicators {
+	z-index: 9999
 }
