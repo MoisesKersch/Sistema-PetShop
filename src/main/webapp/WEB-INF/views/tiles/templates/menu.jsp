@@ -32,7 +32,7 @@
 				
 				<li class="bold"><a href="home" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a></li> 
 				                  
-				<c:if test = "${papel == 'Administrador'}">
+				<c:if test = "${papel == 'Administrator'}">
 					<li class="bold"><a href="cadastro" class="waves-effect waves-cyan"><i class="mdi-action-account-circle"></i> Cadastrar Cliente</a></li> 
 					<li class="bold"><a href="cadastroservico" class="waves-effect waves-cyan"><i class="mdi-action-assignment-turned-in"></i> Cadastrar Serviço</a></li>                   
 		      	</c:if>

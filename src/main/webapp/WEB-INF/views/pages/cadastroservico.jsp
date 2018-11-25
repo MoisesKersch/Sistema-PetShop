@@ -83,6 +83,7 @@
 												<th>Nome</th>
 												<th>Descrição</th>
 												<th>Categoria</th>
+												<th>url</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -122,7 +123,7 @@
 									<button class="modal-action modal-close btn  waves-effect waves-light left" type="button">
 										Fechar <i class="mdi-content-undo left"></i>
 									</button>
-									<button class="btn cyan waves-effect waves-light right" id="cadastro-servico-categoria-controller" type="button">
+									<button class="btn cyan waves-effect waves-light right" id="cadastro-servico-categoria-controller" type="submit">
 										Salvar <i class="mdi-content-send right"></i>
 									</button>
 								</div>
@@ -174,6 +175,12 @@
 							<div class="row">
 								<div class="input-field col s12">
 									<input id="descricao" type="text" name="descricao"> <label for="descricao">Descrição</label>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="input-field col s12">
+									<input id="url" type="text" name="url"> <label for="url">Imagem Url</label>
 								</div>
 							</div>
 

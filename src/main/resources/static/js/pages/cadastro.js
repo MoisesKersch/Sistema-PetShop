@@ -11,12 +11,24 @@ $(document).ready(function()
 	 })
 	 
 	 openTable()
+	 
+	 $('#cpf').mask('000.000.000-00', {reverse: true});
+	
+	 $('#uf').mask('AA', {
+		    translation: {
+		      'A': {
+		        pattern: /[A-Za-z]/, optional: true
+		      }
+		    }
+	});
 });
 
 function cadastroFormSave()
 {
 	 if ($("#cadastro-form").valid())
 	 {
+		 $("#cpf").val( $("#cpf").val().replace(/[^0-9]+/g, "") );
+		 
 		 $.ajax({
 			 type: "POST",
 			 data:  $("#cadastro-form").serializeObject(),
@@ -24,7 +36,7 @@ function cadastroFormSave()
 			 success: function(cadastro)
 			 {
 				 console.log(cadastro)
-				 $('#cadastro-form-modalw').closeModal(); 
+				 $('#cadastro-form-modal').closeModal(); 
 				 
 				 if ($("#editing").val() == "false")
 			 	 { 
@@ -243,8 +255,4 @@ $("#cadastro-form").validate({
 
 	}
 });
-
-
-
-
 

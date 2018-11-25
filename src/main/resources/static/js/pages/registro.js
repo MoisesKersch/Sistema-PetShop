@@ -16,6 +16,7 @@ function send()
 {
 	if ($("#registrationForm").valid()) 
 	{
+		$("#cpf").val( $("#cpf").val().replace(/[^0-9]+/g, "") );
 		$('#registrationForm').submit();
 	}
 }

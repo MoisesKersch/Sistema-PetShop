@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,7 +24,7 @@ public class ServicoCategoria
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "servico_catetoria_id")
+	@Column(name = "servico_categoria_id")
 	private Long id;
 
 	@NotNull
@@ -35,6 +37,10 @@ public class ServicoCategoria
 	@JsonIgnore
 	@OneToMany(mappedBy = "servicoCategoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<Servico> servico = new HashSet<Servico>();
+	
+	@ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
 
 	public Long getId()
 	{
@@ -74,5 +80,15 @@ public class ServicoCategoria
 	public void setServico(Set<Servico> servico)
 	{
 		this.servico = servico;
+	}
+
+	public Empresa getEmpresa()
+	{
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa)
+	{
+		this.empresa = empresa;
 	}
 }

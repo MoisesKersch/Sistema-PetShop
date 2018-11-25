@@ -30,36 +30,24 @@ public class CadastroAnimalController extends SessaoInfo
 	public ModelAndView getCadastroAnimalPage()
 	{
 		ModelAndView modelAndView = new ModelAndView("cadastroanimal");
-		Usuario usuario = null;
 
-		try {
-			 usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		} catch (Exception e) {
-		}
-		
-		if (usuario != null)
-		{
-			if (usuario.getLogin() == null)
-			{
-				SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
-				return null;
-			}
-		}
-		else
-		{
+		if (getUsuarioCorrente() == null)
 			return new ModelAndView("/login");
-		}
 
 		try
 		{
-			modelAndView.addObject("papel", usuario.getRoles().iterator().next().getRole());
-			modelAndView.addObject("nome", usuario.getNome());
+			modelAndView.addObject("papel", getUsuarioCorrente().getRoles().iterator().next().getRole());
+			modelAndView.addObject("nome", getUsuarioCorrente().getNome());
 		} catch (Exception e)
 		{
 
 		}
 
 		modelAndView.addObject("page", "Cadastro Animal");
+		modelAndView.addObject("mainTitle", "Cadastrar Animais");
+		modelAndView.addObject("secondTitle", "Cadastrar Animais");
+		modelAndView.addObject("caption", "Cadastre, remova e altere animais cadastrados no seu sistema.");
+		
 		return modelAndView;
 	}
 
@@ -69,7 +57,7 @@ public class CadastroAnimalController extends SessaoInfo
 	{
 		try 
 		{
-			return animalRepository.findByUsuario((Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+			return ((Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getAnimais();
 		} catch (Exception e) {
 			return null;
 		}

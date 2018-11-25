@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -23,6 +24,10 @@ public class Animal
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "animal_id")
 	private Long id;
+	
+	@NotNull
+	@Column(name = "nome")
+	private String nome;
 
 	@NotNull
 	@Column(name = "especie")
@@ -55,6 +60,7 @@ public class Animal
 	private String observacao;
 	
 	@ManyToOne
+	@JsonBackReference
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 	
@@ -66,6 +72,16 @@ public class Animal
 	public void setId(Long id)
 	{
 		this.id = id;
+	}
+	
+	public String getNome()
+	{
+		return nome;
+	}
+
+	public void setNome(String nome)
+	{
+		this.nome = nome;
 	}
 
 	public String getEspecie()
