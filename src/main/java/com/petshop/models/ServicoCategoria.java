@@ -22,7 +22,7 @@ public class ServicoCategoria
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "servico_catetoria_id")
+	@Column(name = "servico_categoria_id")
 	private Long id;
 
 	@NotNull
