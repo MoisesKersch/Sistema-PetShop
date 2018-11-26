@@ -11,6 +11,31 @@ $(document).ready(function()
 		saveservico();
 	 })
 	 
+	   $('.cancel-order').click(function(){
+        	swal({
+        		title: "Você tem certeza que deseja cancelar?",
+        		text: "Não será possível recuperar esse serviço após o cancelamento!",
+        		type: "warning",
+        		showCancelButton: true,
+        		confirmButtonColor: '#DD6B55',
+        		confirmButtonText: 'Sim!',
+        		cancelButtonText: "Não!",
+        		closeOnConfirm: false,
+        		closeOnCancel: false
+        	},
+        	function(isConfirm)
+        	{
+	            if (isConfirm)
+	            {
+	              swal("Removido!", "O serviço foi cancelado!", "success");
+	              location.reload();
+	            } else 
+	            {
+	              swal("Cancelado", "O serviço não foi removido", "error");
+	            }
+        	});
+        });
+	 
 	 servicoDropDownFill()
 	
 	 $('#timepicker').mdtimepicker({format: 'hh:mm'}); //Initializes the time picker

@@ -1,5 +1,6 @@
 package com.petshop.services;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,14 +56,43 @@ public class OrdemServicoServiceImpl implements OrdemServicoService
 	@Override
 	public List<ServicoAgendado> servicoCliente(Usuario usuario)
 	{
+		// lista todos os serviços
 		List<Servico> servicos = servicoRepository.findByEmpresa(usuario.getEmpresa());
-		List<Servico> servicosAgendadosServico = servicoRepository.findByUsuario(usuario.getId());
+		
+		// lista todos os agendados do cliente
+		List<Object[]> obj = servicoRepository.findByUsuario(usuario.getId());
+		
+		
+		for(Object x : obj)
+		{
+		    Class<?> clazz = x.getClass();
+
+		    Field field = org.springframework.util.ReflectionUtils.findField(clazz, "value");
+		    org.springframework.util.ReflectionUtils.makeAccessible(field);
+
+		    try {
+				System.out.println("value=" + field.get(obj));
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		List<ServicoAgendado> agendados = new ArrayList<>();
+		
+		for (Object x : obj) 
+		{
+			agendados.add((ServicoAgendado)x);
+		}
+	
 		List<ServicoAgendado> servicoAgendados = new ArrayList<>();
 		
 		for (Servico x : servicos) 
 		{
 			ServicoAgendado servicoAgendado = new ServicoAgendado();
-			servicoAgendado.setId(x.getId());
+			servicoAgendado.setServicoId(x.getId());
 			servicoAgendado.setDescricao(x.getDescricao());
 			servicoAgendado.setNome(x.getNome());
 			servicoAgendado.setServicoCategoria(x.getServicoCategoria());
@@ -73,10 +103,12 @@ public class OrdemServicoServiceImpl implements OrdemServicoService
 		
 		for (ServicoAgendado x : servicoAgendados) 
 		{
-			for (Servico y : servicosAgendadosServico)
+			for (ServicoAgendado y : agendados)
 			{
-				if (x.getId()  == y.getId())
+				if (x.getId()  == y.getServicoId())
+				{
 					x.setAgendado(true);
+				}
 			}
 		}	
 		

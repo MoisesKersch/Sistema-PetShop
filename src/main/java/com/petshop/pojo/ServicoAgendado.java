@@ -2,12 +2,13 @@ package com.petshop.pojo;
 
 import java.math.BigDecimal;
 
-import com.petshop.models.Empresa;
 import com.petshop.models.ServicoCategoria;
 
 public class ServicoAgendado
 {
 	private Long id;
+	
+	private Long servicoId;
 	
 	private BigDecimal valor;
 	
@@ -18,8 +19,6 @@ public class ServicoAgendado
 	private String url;
 	
     private ServicoCategoria servicoCategoria;
-    
-    private Empresa empresa;
     
     Boolean agendado = false;
     
@@ -82,17 +81,7 @@ public class ServicoAgendado
 	{
 		this.servicoCategoria = servicoCategoria;
 	}
-	
-	public Empresa getEmpresa()
-	{
-		return empresa;
-	}
-	
-	public void setEmpresa(Empresa empresa)
-	{
-		this.empresa = empresa;
-	}
-	
+
 	public Boolean getAgendado()
 	{
 		return agendado;
@@ -101,5 +90,15 @@ public class ServicoAgendado
 	public void setAgendado(Boolean agendado)
 	{
 		this.agendado = agendado;
+	}
+
+	public Long getServicoId()
+	{
+		return servicoId;
+	}
+
+	public void setServicoId(Long servicoId)
+	{
+		this.servicoId = servicoId;
 	}
 }

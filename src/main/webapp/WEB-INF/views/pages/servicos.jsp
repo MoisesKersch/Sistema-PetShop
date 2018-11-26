@@ -39,6 +39,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<!--breadcrumbs end-->
 				<!--start container-->
 				<div class="container">
@@ -71,11 +72,11 @@
 												<ul class="card-action-buttons">
 													<c:choose>
 														<c:when test="${servico.agendado == true}">
-															<li><a class="btn-floating waves-effect waves-light red accent-4 modal-trigger" href="#servico-form-modal" title="Cancelar serviço" onclick="cancelServicoId('${servico.id}')"><i
+															<li><a class="btn-floating waves-effect waves-light red accent-4 cancel-order" href="#" title="Cancelar serviço" id="${servico.id}"><i
 																	class="mdi-content-clear"></i></a></li>
 														</c:when>
 														<c:otherwise>
-															<li><a class="btn-floating waves-effect waves-light green accent-4 modal-trigger" href="#servico-form-modal" title="Agendar serviço" onclick="setServicoId('${servico.id}')"><i
+															<li><a class="btn-floating waves-effect waves-light green accent-4 modal-trigger " href="#servico-form-modal" title="Agendar serviço" onclick="setServicoId('${servico.id}')"><i
 																	class="mdi-editor-attach-money"></i></a></li>
 														</c:otherwise>
 													</c:choose>

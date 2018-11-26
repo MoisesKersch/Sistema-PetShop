@@ -63,6 +63,9 @@
    <!-- timepicker translation  -->
    <script type="text/javascript" src="/resources/js/plugins/timepicker/js/mdtimepicker.js"></script>
    
+    <!-- sweetalert popup  -->
+   <script type="text/javascript" src="/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
+   
 
    
    

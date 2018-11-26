@@ -13,9 +13,7 @@ public interface ServicoRepository extends JpaRepository<Servico, Long>
 {
 	public List<Servico> findByEmpresa(Empresa empresa);
 	
-	@Query(value = 	" select s.servico_id, valor, s.nome, s.empresa_id, s.servico_categoria_id, descricao, imagem_url from ordem_servico os " + 
-					" join usuario u on os.usuario_id = u.usuario_id " + 
-					" join servico s on os.servico_id = s.servico_id " + 
-					" where u.usuario_id = :userId", nativeQuery = true)          
-	public List<Servico> findByUsuario( @Param("userId")Long userId );
+	@Query(value = 	" select * from get_servico_agendado(:userId) ", nativeQuery = true)
+	public List<Object[]> findByUsuario( @Param("userId")Long userId );
+	
 }

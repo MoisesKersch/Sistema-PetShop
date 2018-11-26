@@ -23,6 +23,9 @@
  	
  	<link href="/resources/js/plugins/timepicker/css/mdtimepicker.css" type="text/css" rel="stylesheet" media="screen,projection">
  	
+ 	<!-- POP UP SWEETALERT -->  
+ 	<link href="/resources/js/plugins/sweetalert/sweetalert.css" type="text/css" rel="stylesheet" media="screen,projection">
+ 	
 
     
     
