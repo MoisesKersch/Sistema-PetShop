@@ -57,7 +57,7 @@ public class CadastroAnimalController extends SessaoInfo
 	{
 		try 
 		{
-			return ((Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getAnimais();
+			return animalRepository.findByUsuario(getUsuarioCorrente());
 		} catch (Exception e) {
 			return null;
 		}
@@ -91,7 +91,7 @@ public class CadastroAnimalController extends SessaoInfo
 
 	@ResponseBody
 	@RequestMapping(value = "/animalremove", method = RequestMethod.POST)
-	public Animal removerUsuario(Long id)
+	public Animal removerAnimal(Long id)
 	{
 		try 
 		{

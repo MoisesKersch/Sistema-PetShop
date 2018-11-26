@@ -1,8 +1,12 @@
 package com.petshop.services;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,37 +24,52 @@ import javassist.NotFoundException;
 @Service
 public class OrdemServicoServiceImpl implements OrdemServicoService
 {
-	
+
 	@Autowired
 	private OrdemServicoRepository orderServicoRepository;
 	
+	@PersistenceUnit
+	private EntityManagerFactory emf;
+
 	@Autowired
 	private ServicoRepository servicoRepository;
-	
+
 	@Override
 	public OrdemServico salvar(OrdemServico ordemServico, Long animalId, Long servicoId, Usuario usuario)
 	{
 		try {
 			ordemServico.setEmpresa(usuario.getEmpresa());
 			ordemServico.setUsuario(usuario);
-			ordemServico.setServico(servicoRepository.findById(servicoId).orElseThrow(() -> new NotFoundException("Servico nao encontrado")));
-			
-			for (Animal x : usuario.getAnimais()) 
-			{
-				if (animalId.equals( x.getId() ))
-				{
+			ordemServico.setServico(servicoRepository.findById(servicoId)
+					.orElseThrow(() -> new NotFoundException("Servico nao encontrado")));
+
+			for (Animal x : usuario.getAnimais()) {
+				if (animalId.equals(x.getId())) {
 					ordemServico.setAnimal(x);
 					break;
 				}
 			}
 			if (ordemServico.getAnimal() == null)
 				throw new NotFoundException("Animal não encontrado!");
-			
+
 			return orderServicoRepository.save(ordemServico);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	
+	public List<ServicoAgendado> findByUsuario(Long userId )
+	{
+		EntityManager em =  emf.createEntityManager();
+		String sql = "select * from get_servico_agendado("+userId+")";
+		
+		Query query = em.createNativeQuery(sql, ServicoAgendado.class);
+		
+		@SuppressWarnings("unchecked")
+		List<ServicoAgendado> servicoAgendado = query.getResultList();
+		return servicoAgendado;
 	}
 
 	@Override
@@ -58,40 +77,16 @@ public class OrdemServicoServiceImpl implements OrdemServicoService
 	{
 		// lista todos os serviços
 		List<Servico> servicos = servicoRepository.findByEmpresa(usuario.getEmpresa());
-		
+
 		// lista todos os agendados do cliente
-		List<Object[]> obj = servicoRepository.findByUsuario(usuario.getId());
-		
-		
-		for(Object x : obj)
-		{
-		    Class<?> clazz = x.getClass();
+		List<ServicoAgendado> agendados = findByUsuario(usuario.getId());
 
-		    Field field = org.springframework.util.ReflectionUtils.findField(clazz, "value");
-		    org.springframework.util.ReflectionUtils.makeAccessible(field);
-
-		    try {
-				System.out.println("value=" + field.get(obj));
-			} catch (IllegalArgumentException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
-		
-		List<ServicoAgendado> agendados = new ArrayList<>();
-		
-		for (Object x : obj) 
-		{
-			agendados.add((ServicoAgendado)x);
-		}
-	
 		List<ServicoAgendado> servicoAgendados = new ArrayList<>();
-		
+
 		for (Servico x : servicos) 
 		{
 			ServicoAgendado servicoAgendado = new ServicoAgendado();
+			
 			servicoAgendado.setServicoId(x.getId());
 			servicoAgendado.setDescricao(x.getDescricao());
 			servicoAgendado.setNome(x.getNome());
@@ -100,18 +95,18 @@ public class OrdemServicoServiceImpl implements OrdemServicoService
 			servicoAgendado.setValor(x.getValor());
 			servicoAgendados.add(servicoAgendado);
 		}
-		
+
 		for (ServicoAgendado x : servicoAgendados) 
 		{
-			for (ServicoAgendado y : agendados)
+			for (ServicoAgendado y : agendados) 
 			{
-				if (x.getId()  == y.getServicoId())
+				if (y.getServicoId() == x.getServicoId()) 
 				{
 					x.setAgendado(true);
+					x.setId(y.getId());
 				}
 			}
-		}	
-		
+		}
 		return servicoAgendados;
 	}
 }

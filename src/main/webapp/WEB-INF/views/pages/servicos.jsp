@@ -76,7 +76,7 @@
 																	class="mdi-content-clear"></i></a></li>
 														</c:when>
 														<c:otherwise>
-															<li><a class="btn-floating waves-effect waves-light green accent-4 modal-trigger " href="#servico-form-modal" title="Agendar serviço" onclick="setServicoId('${servico.id}')"><i
+															<li><a class="btn-floating waves-effect waves-light green accent-4 modal-trigger " href="#servico-form-modal" title="Agendar serviço" onclick="setServicoId('${servico.servicoId}')"><i
 																	class="mdi-editor-attach-money"></i></a></li>
 														</c:otherwise>
 													</c:choose>

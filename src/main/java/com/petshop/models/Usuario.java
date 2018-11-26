@@ -79,7 +79,7 @@ public class Usuario
 	private Set<Servico> ordemServico;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
 	@Fetch(value = FetchMode.SUBSELECT)
     public List<Animal> animais = new ArrayList<>();
      

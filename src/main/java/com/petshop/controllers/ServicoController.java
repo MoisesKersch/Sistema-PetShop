@@ -19,6 +19,7 @@ import com.petshop.component.SessaoInfo;
 import com.petshop.models.Animal;
 import com.petshop.models.OrdemServico;
 import com.petshop.models.Usuario;
+import com.petshop.repositories.AnimalRepository;
 import com.petshop.repositories.ServicoRepository;
 import com.petshop.services.OrdemServicoService;
 
@@ -26,7 +27,7 @@ import com.petshop.services.OrdemServicoService;
 public class ServicoController extends SessaoInfo
 {
 	@Autowired
-	private ServicoRepository servicoRepository;
+	private AnimalRepository animalRepository;
 	
 	@Autowired
 	private OrdemServicoService ordemServicoService;
@@ -63,7 +64,7 @@ public class ServicoController extends SessaoInfo
 	{
 		try 
 		{
-			return ((Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getAnimais();
+			return animalRepository.findByUsuario(getUsuarioCorrente());
 		} catch (Exception e) {
 			return null;
 		}

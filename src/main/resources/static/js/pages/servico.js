@@ -55,7 +55,7 @@ function servicoDropDownFill()
 		{
 			var next_id = $("#servico-animal-select");
 			$(next_id).empty();
-			$(next_id).append($("<option></option>").attr("value", "o").text("Escolha o servico"));
+			$(next_id).append($("<option></option>").attr("value", "o").text("Escolha o seu bichinho"));
 			$.each(obj, function(key, value) {
 				$(next_id).append($("<option></option>").attr("value", value.id).text(value.nome));
 			});
