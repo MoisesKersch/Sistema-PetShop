@@ -53,6 +53,7 @@
 										<thead>
 											<tr>
 												<th>ID</th>
+												<th>Nome</th>
 												<th style="width: 200px;">Especie</th>
 												<th>Peso</th>
 												<th>Tipo</th>

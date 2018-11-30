@@ -262,27 +262,28 @@
                   });
                   
                   $('#animal-form-modal').openModal();
+                  var x = 0;
+                  $('#animal-id').val(adata.data()[0][columnDefs[x++].name])
+                  $('#nome').val(adata.data()[0][columnDefs[x++].name])
+                  $('#especie').val(adata.data()[0][columnDefs[x++].name])
+                  $('#peso').val(adata.data()[0][columnDefs[x++].name])
+                  $('#tipo').val(adata.data()[0][columnDefs[x++].name])
                   
-                  $('#animal-id').val(adata.data()[0][columnDefs[0].name])
-                  $('#especie').val(adata.data()[0][columnDefs[1].name])
-                  $('#peso').val(adata.data()[0][columnDefs[2].name])
-                  $('#tipo').val(adata.data()[0][columnDefs[3].name])
-                  
-                  if (adata.data()[0][columnDefs[4].name] == "M")
+                  if (adata.data()[0][columnDefs[x++].name] == "M")
                 	  $("#gender_male").attr("checked", true)
                   else
                 	  $("#gender_female").attr("checked", true)
 
-                  $('#dataNascimento').val(adata.data()[0][columnDefs[5].name])
+                  $('#dataNascimento').val(adata.data()[0][columnDefs[x++].name])
                   
-                  if (adata.data()[0][columnDefs[6].name] == "Sim")
+                  if (adata.data()[0][columnDefs[x++].name] == "Sim")
                 	  $('#pedigree').attr("checked", true);
                   else
                 	  $('#pedigree').attr("checked", false);
                   
-                  $('#raca').val(adata.data()[0][columnDefs[7].name])
-                  $('#cor').val(adata.data()[0][columnDefs[8].name])
-                  $('#observacao').val(adata.data()[0][columnDefs[9].name])
+                  $('#raca').val(adata.data()[0][columnDefs[x++].name])
+                  $('#cor').val(adata.data()[0][columnDefs[x++].name])
+                  $('#observacao').val(adata.data()[0][columnDefs[x++].name])
                   
                   $('#editing').val("true")	
                   Materialize.updateTextFields();
@@ -318,8 +319,7 @@
                        selected : true
                      });
                      
-                     $('#animal-remove-modal').openModal();
-                     $('#animal-remove-id').val(adata.data()[0][columnDefs[0].name])
+                     animalRemove( adata.data()[0][columnDefs[0].name] )
                 },
 
                 _deleteRow : function() {
@@ -361,10 +361,9 @@
                     var adata = dt.rows({
                       selected : true
                     });
-                    
-                	$('#animal-form')[0].reset();
                 	$('#animal-form-modal').openModal();
-                	
+                	$('#animal-form')[0].reset();
+                	$('#animal-id').val("");
                 },
 
                 _getExecutionLocationFolder : function() {

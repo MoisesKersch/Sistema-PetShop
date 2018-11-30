@@ -91,14 +91,14 @@ public class CadastroAnimalController extends SessaoInfo
 
 	@ResponseBody
 	@RequestMapping(value = "/animalremove", method = RequestMethod.POST)
-	public Animal removerAnimal(Long id)
+	public Boolean removerAnimal(Long id)
 	{
 		try 
 		{
 			animalRepository.deleteById(id);
 		} catch (Exception e) {
-			return null;
+			return false;
 		}
-		return null;
+		return true;
 	}
 }
