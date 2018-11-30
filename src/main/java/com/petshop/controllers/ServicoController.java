@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,8 +20,9 @@ import com.petshop.component.SessaoInfo;
 import com.petshop.models.Animal;
 import com.petshop.models.OrdemServico;
 import com.petshop.models.Usuario;
+import com.petshop.pojo.ServicoAgendado;
 import com.petshop.repositories.AnimalRepository;
-import com.petshop.repositories.ServicoRepository;
+import com.petshop.repositories.OrdemServicoRepository;
 import com.petshop.services.OrdemServicoService;
 
 @Controller
@@ -31,6 +33,9 @@ public class ServicoController extends SessaoInfo
 	
 	@Autowired
 	private OrdemServicoService ordemServicoService;
+	
+	@Autowired
+	OrdemServicoRepository ordemServicoRepository;
 
 	@RequestMapping(value = "/servicos")
 	public ModelAndView getServicoPage()
@@ -59,6 +64,18 @@ public class ServicoController extends SessaoInfo
 	}
 
 	@ResponseBody
+ 	@RequestMapping(value = "/getservicosagendados")
+	public List<ServicoAgendado> getServico()
+	{
+		try 
+		{
+			return ordemServicoService.servicoCliente(getUsuarioCorrente());
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@ResponseBody
  	@RequestMapping(value = "/getanimaisservico")
 	public List<Animal> getCadastroAnimal()
 	{
@@ -68,6 +85,19 @@ public class ServicoController extends SessaoInfo
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	@ResponseBody
+ 	@RequestMapping(value = "/cancelarordemservico")
+	public Boolean cancelarOrdemServico(Long ordemServicoId)
+	{
+		try 
+		{
+			ordemServicoRepository.delete(ordemServicoRepository.getOne(ordemServicoId));
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 	@ResponseBody
@@ -81,7 +111,7 @@ public class ServicoController extends SessaoInfo
 			redirectAttributes.addFlashAttribute("mensagemErro", bindingResult.getAllErrors());
 			return null;
 		}
-	
+		
 		return ordemServicoService.salvar(ordemServico, animalId, servicoId, (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 	}
 }

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "ordem_servico")
 public class OrdemServico
@@ -45,6 +47,7 @@ public class OrdemServico
     private Servico servico;
 	
 	@ManyToOne
+	@JsonBackReference
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 

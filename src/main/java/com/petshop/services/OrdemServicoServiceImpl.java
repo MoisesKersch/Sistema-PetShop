@@ -95,7 +95,7 @@ public class OrdemServicoServiceImpl implements OrdemServicoService
 			servicoAgendado.setValor(x.getValor());
 			servicoAgendados.add(servicoAgendado);
 		}
-
+		
 		for (ServicoAgendado x : servicoAgendados) 
 		{
 			for (ServicoAgendado y : agendados) 

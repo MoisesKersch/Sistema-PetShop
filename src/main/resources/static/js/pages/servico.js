@@ -10,36 +10,43 @@ $(document).ready(function()
 		event.preventDefault();
 		saveservico();
 	 })
-	 
-	   $('.cancel-order').click(function(){
-        	swal({
-        		title: "Você tem certeza que deseja cancelar?",
-        		text: "Não será possível recuperar esse serviço após o cancelamento!",
-        		type: "warning",
-        		showCancelButton: true,
-        		confirmButtonColor: '#DD6B55',
-        		confirmButtonText: 'Sim!',
-        		cancelButtonText: "Não!",
-        		closeOnConfirm: false,
-        		closeOnCancel: false
-        	},
-        	function(isConfirm)
-        	{
-	            if (isConfirm)
-	            {
-	              swal("Removido!", "O serviço foi cancelado!", "success");
-	              location.reload();
-	            } else 
-	            {
-	              swal("Cancelado", "O serviço não foi removido", "error");
-	            }
-        	});
-        });
-	 
 	 servicoDropDownFill()
 	
 	 $('#timepicker').mdtimepicker({format: 'hh:mm'}); //Initializes the time picker
 });
+
+function servicoRemove(id)
+{
+	swal({
+		title: "Você tem certeza que deseja cancelar?",
+		text: "Não será possível recuperar esse serviço após o cancelamento!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Sim!',
+		cancelButtonText: "Não!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	function(isConfirm)
+	{
+		 $.ajax({
+			 type: "POST",
+			 data:  {"ordemServicoId": id},
+			 url: "cancelarordemservico",
+			 success: function(obj)
+			 {
+				if (obj)
+				{
+				  swal("Removido!", "O serviço foi cancelado!", "success");
+				} 
+				else 
+				{
+				  swal("Cancelado", "O serviço não foi removido", "error");
+				} 
+			 }})
+	});
+}
 
 function servicoMask()
 {
@@ -83,25 +90,22 @@ function saveservico()
 			 success: function(obj)
 			 {
 				 console.log(obj)
+				 var uppperButton = '<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2" style="background-color: #00c853 !important;">'+
+				 			 		'<i class="mdi-action-done-all"'+
+				 			 		' style="line-height: 66.5px; font-size: 3.6rem;"></i>'+
+				 			 		'</a>';
+				 
+				 var bottomButton = '<li>'+
+				 					'<a class="btn-floating waves-effect waves-light red accent-4 cancel-order" href="#" title="Cancelar serviço" onclick="servicoRemove(\''+obj.id+'\')"><i class="mdi-content-clear"></i></a>'+
+				 					'</li> <li><a class="btn-floating waves-effect waves-light light-blue" title="Ler descrição do produto"><i class="mdi-action-visibility activator"></i></a></li>';
+				 	
+				 $("#"+obj.servico.id+"").html(uppperButton)
+				 $("#"+obj.servico.id+"-bottom-buttom").html(bottomButton)
 				 $('#servico-form-modal').closeModal(); 
+				 cancelOrderSweet()
 			 }
 		 })
 	 }
-}
-
-function servicoRemove()
-{
-	 $.ajax({
-		 type: "POST",
-		 data:  {"id": $('#servico-remove-id').val()},
-		 url: "servicoremove",
-		 success: function(obj)
-		 {
-			 table.row({
-                 selected : true
-               }).remove();
-			 table.draw();
-		 }})
 }
 
 $.validator.addMethod("valueNotEquals", function(value, element, arg){

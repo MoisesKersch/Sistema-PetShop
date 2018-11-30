@@ -39,7 +39,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<!--breadcrumbs end-->
 				<!--start container-->
 				<div class="container">
@@ -55,24 +55,24 @@
 										<div class="product-card">
 											<div class="card">
 												<div class="card-image waves-effect waves-block waves-light paid">
-													<c:choose>
-														<c:when test="${servico.agendado == true}">
-															<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2" style="background-color: #00c853 !important;"> <i class="mdi-action-done-all"
-																style="line-height: 66.5px; font-size: 3.6rem;"></i>
-															</a>
-														</c:when>
-														<c:otherwise>
-															<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2"> <c:set var="valor" /> <fmt:setLocale value="pt-BR" /> <fmt:formatNumber
-																	value="${servico.valor}" type="currency" />
-															</a>
-														</c:otherwise>
-													</c:choose>
-													<img src="${servico.url}" style="min-height: 310px !important; max-height: 310px !important;" alt="product-img">
+													<span id="${servico.servicoId}"> <c:choose>
+															<c:when test="${servico.agendado == true}">
+																<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2" style="background-color: #00c853 !important;"> <i class="mdi-action-done-all"
+																	style="line-height: 66.5px; font-size: 3.6rem;"></i>
+																</a>
+															</c:when>
+															<c:otherwise>
+																<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2"> <c:set var="valor" /> <fmt:setLocale value="pt-BR" /> <fmt:formatNumber
+																		value="${servico.valor}" type="currency" />
+																</a>
+															</c:otherwise>
+														</c:choose>
+													</span> <img src="${servico.url}" style="min-height: 310px !important; max-height: 310px !important;" alt="product-img">
 												</div>
-												<ul class="card-action-buttons">
+												<ul class="card-action-buttons" id="${servico.servicoId}-bottom-buttom">
 													<c:choose>
 														<c:when test="${servico.agendado == true}">
-															<li><a class="btn-floating waves-effect waves-light red accent-4 cancel-order" href="#" title="Cancelar serviço" id="${servico.id}"><i
+															<li><a class="btn-floating waves-effect waves-light red accent-4 cancel-order" href="#" title="Cancelar serviço" onclick="servicoRemove('${servico.id}')"><i
 																	class="mdi-content-clear"></i></a></li>
 														</c:when>
 														<c:otherwise>

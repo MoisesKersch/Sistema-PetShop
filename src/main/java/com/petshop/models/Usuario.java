@@ -22,13 +22,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-/**
- * @author Moises
- *
- */
 @Entity
 @Table(name = "usuario")
 public class Usuario
@@ -74,14 +69,15 @@ public class Usuario
 	@JoinTable(name = "usuario_endereco", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "endereco_id"))
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "ordem_servico", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "servico_id"))
-	private Set<Servico> ordemServico;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
+	@Fetch(value = FetchMode.SUBSELECT)
+    private List<OrdemServico> ordemServico = new ArrayList<>();
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
 	@Fetch(value = FetchMode.SUBSELECT)
-    public List<Animal> animais = new ArrayList<>();
+    private List<Animal> animais = new ArrayList<>();
      
 	public Usuario()
 	{
@@ -198,16 +194,6 @@ public class Usuario
 		this.enderecos = enderecos;
 	}
 
-	public Set<Servico> getOrdemServico()
-	{
-		return ordemServico;
-	}
-
-	public void setOrdemServico(Set<Servico> ordemServico)
-	{
-		this.ordemServico = ordemServico;
-	}
-
 	public List<Animal> getAnimais()
 	{
 		return animais;
@@ -226,5 +212,15 @@ public class Usuario
 	public void setEmpresa(Empresa empresa)
 	{
 		this.empresa = empresa;
+	}
+
+	public List<OrdemServico> getOrdemServico()
+	{
+		return ordemServico;
+	}
+
+	public void setOrdemServico(List<OrdemServico> ordemServico)
+	{
+		this.ordemServico = ordemServico;
 	}
 }

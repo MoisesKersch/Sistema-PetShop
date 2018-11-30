@@ -43,6 +43,11 @@ public class Servico
 	@ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+	
+//	@JsonManagedReference
+//	@OneToMany(mappedBy = "servico", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
+//	@Fetch(value = FetchMode.SUBSELECT)
+//    private List<OrdemServico> ordemServico = new ArrayList<>();
 
 	public Long getId()
 	{
@@ -113,4 +118,14 @@ public class Servico
 	{
 		this.url = url;
 	}
+
+//	public List<OrdemServico> getOrdemServico()
+//	{
+//		return ordemServico;
+//	}
+//
+//	public void setOrdemServico(List<OrdemServico> ordemServico)
+//	{
+//		this.ordemServico = ordemServico;
+//	}
 }
