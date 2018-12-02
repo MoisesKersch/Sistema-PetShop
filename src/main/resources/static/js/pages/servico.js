@@ -90,19 +90,30 @@ function saveservico()
 			 success: function(obj)
 			 {
 				 console.log(obj)
-				 var uppperButton = '<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2" style="background-color: #00c853 !important;">'+
-				 			 		'<i class="mdi-action-done-all"'+
-				 			 		' style="line-height: 66.5px; font-size: 3.6rem;"></i>'+
-				 			 		'</a>';
-				 
-				 var bottomButton = '<li>'+
-				 					'<a class="btn-floating waves-effect waves-light red accent-4 cancel-order" href="#" title="Cancelar serviço" onclick="servicoRemove(\''+obj.id+'\')"><i class="mdi-content-clear"></i></a>'+
-				 					'</li> <li><a class="btn-floating waves-effect waves-light light-blue" title="Ler descrição do produto"><i class="mdi-action-visibility activator"></i></a></li>';
-				 	
-				 $("#"+obj.servico.id+"").html(uppperButton)
-				 $("#"+obj.servico.id+"-bottom-buttom").html(bottomButton)
-				 $('#servico-form-modal').closeModal(); 
-				 cancelOrderSweet()
+				if (obj != null && obj != undefined)
+				{
+					 var uppperButton = '<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2" style="background-color: #00c853 !important;">'+
+					 			 		'<i class="mdi-action-done-all"'+
+					 			 		' style="line-height: 66.5px; font-size: 3.6rem;"></i>'+
+					 			 		'</a>';
+					 
+					 var bottomButton = '<li>'+
+					 					'<a class="btn-floating waves-effect waves-light red accent-4 cancel-order" href="#" title="Cancelar serviço" onclick="servicoRemove(\''+obj.id+'\')"><i class="mdi-content-clear"></i></a>'+
+					 					'</li> <li><a class="btn-floating waves-effect waves-light light-blue" title="Ler descrição do produto"><i class="mdi-action-visibility activator"></i></a></li>';
+					 	
+					 $("#"+obj.servico.id+"").html(uppperButton)
+					 $("#"+obj.servico.id+"-bottom-buttom").html(bottomButton)
+					 $('#servico-form-modal').closeModal(); 
+					 
+					 swal("Successo!", "O serviço foi agendado com sucesso!", "success");
+					 
+					 cancelOrderSweet()
+				} 
+				else 
+				{
+				  swal("Cancelado", "O serviço não foi agendado", "error");
+				} 
+				
 			 }
 		 })
 	 }

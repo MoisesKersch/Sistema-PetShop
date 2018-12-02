@@ -63,7 +63,7 @@
 															</c:when>
 															<c:otherwise>
 																<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2"> <c:set var="valor" /> <fmt:setLocale value="pt-BR" /> <fmt:formatNumber
-																		value="${servico.valor}" type="currency" />
+																		value="${servico.valor}" type="currency" currencySymbol="R$ " maxFractionDigits="0"/>
 																</a>
 															</c:otherwise>
 														</c:choose>

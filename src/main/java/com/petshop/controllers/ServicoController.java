@@ -1,6 +1,7 @@
 package com.petshop.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -89,15 +89,16 @@ public class ServicoController extends SessaoInfo
 	
 	@ResponseBody
  	@RequestMapping(value = "/cancelarordemservico")
-	public Boolean cancelarOrdemServico(Long ordemServicoId)
+	public OrdemServico cancelarOrdemServico(Long ordemServicoId)
 	{
+		Optional<OrdemServico> ordemServico = ordemServicoRepository.findById(ordemServicoId);
 		try 
 		{
-			ordemServicoRepository.delete(ordemServicoRepository.getOne(ordemServicoId));
+			ordemServicoRepository.delete(ordemServico.get());
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
-		return true;
+		return ordemServico.get();
 	}
 	
 	@ResponseBody
@@ -111,7 +112,12 @@ public class ServicoController extends SessaoInfo
 			redirectAttributes.addFlashAttribute("mensagemErro", bindingResult.getAllErrors());
 			return null;
 		}
-		
-		return ordemServicoService.salvar(ordemServico, animalId, servicoId, (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		try
+		{
+			return ordemServicoService.salvar(ordemServico, animalId, servicoId, (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		} catch (Exception e)
+		{
+			return null;
+		}
 	}
 }

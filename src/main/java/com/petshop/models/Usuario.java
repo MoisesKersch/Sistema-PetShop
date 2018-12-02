@@ -72,11 +72,6 @@ public class Usuario
 	@JsonManagedReference
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
 	@Fetch(value = FetchMode.SUBSELECT)
-    private List<OrdemServico> ordemServico = new ArrayList<>();
-	
-	@JsonManagedReference
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
-	@Fetch(value = FetchMode.SUBSELECT)
     private List<Animal> animais = new ArrayList<>();
      
 	public Usuario()
@@ -96,7 +91,6 @@ public class Usuario
 		this.empresa = usuario.getEmpresa();
 		this.enderecos = usuario.getEnderecos();
 		this.animais = usuario.getAnimais();
-		this.ordemServico = usuario.getOrdemServico();
 	}
 
 	public Long getId()
@@ -212,15 +206,5 @@ public class Usuario
 	public void setEmpresa(Empresa empresa)
 	{
 		this.empresa = empresa;
-	}
-
-	public List<OrdemServico> getOrdemServico()
-	{
-		return ordemServico;
-	}
-
-	public void setOrdemServico(List<OrdemServico> ordemServico)
-	{
-		this.ordemServico = ordemServico;
 	}
 }
