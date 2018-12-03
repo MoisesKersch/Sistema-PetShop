@@ -7,7 +7,7 @@
     <script type="text/javascript" src="/resources/js/jquery-1.11.2.min.js"></script>    
     <!--materialize js-->
     <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
-
+    
 
    
     <!--scrollbar-->
@@ -28,7 +28,7 @@
     
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-    <script type="text/javascript" src="/resources/js/plugins.js"></script>
+    <script type="text/javascript" src="/resources/js/plugins.min.js"></script>
     
 	<!--prism-->
  	<script type="text/javascript" src="/resources/js/prism.js"></script>
