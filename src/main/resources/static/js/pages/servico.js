@@ -30,21 +30,45 @@ function servicoRemove(id)
 	},
 	function(isConfirm)
 	{
-		 $.ajax({
-			 type: "POST",
-			 data:  {"ordemServicoId": id},
-			 url: "cancelarordemservico",
-			 success: function(obj)
-			 {
-				if (obj)
+		
+		if (isConfirm) 
+		{
+			$.ajax({
+				type: "POST",
+				data:  {"ordemServicoId": id},
+				url: "cancelarordemservico",
+				success: function(obj)
 				{
-				  swal("Removido!", "O serviço foi cancelado!", "success");
-				} 
-				else 
-				{
-				  swal("Cancelado", "O serviço não foi removido", "error");
-				} 
-			 }})
+					if (obj)
+					{
+						swal("Removido!", "O registro foi cancelado!", "success");
+						var uppperButton =  '<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2"> R$ '+obj.valor+' </a>';
+						
+						
+						var bottomButton =  '<li>'+
+											'	<a class="btn-floating waves-effect waves-light green accent-4 modal-trigger" title="Agendar serviço" onclick="setServicoId(\''+obj.id+'\')">'+
+											'		<i class="mdi-editor-attach-money"></i>'+
+											'	</a>'+
+											'</li>'+
+											'<li>'+
+											'	<a class="btn-floating waves-effect waves-light light-blue" title="Ler descrição do produto">'+
+											'		<i class="mdi-action-visibility activator"></i>'+
+											'	</a>'+
+											'</li>';
+						
+						$("#"+obj.id+"").html(uppperButton)
+						$("#"+obj.id+"-bottom-buttom").html(bottomButton)
+					} 
+					else 
+					{
+						swal("Cancelado", "O registro não pode ser removido!", "error");
+					} 
+				}})
+		}
+		else
+		{
+			swal("Cancelado", "O registro não foi removido!", "error");
+		}
 	});
 }
 
@@ -73,6 +97,9 @@ function servicoDropDownFill()
 
 function setServicoId(id)
 {
+	$('#servico-form-modal').openModal();
+	$('#servico-form')[0].reset();
+	$('#timepicker').val('');
 	$("#servico-id").val(id)
 }
 
@@ -107,7 +134,7 @@ function saveservico()
 					 
 					 swal("Successo!", "O serviço foi agendado com sucesso!", "success");
 					 
-					 cancelOrderSweet()
+//					 cancelOrderSweet()
 				} 
 				else 
 				{

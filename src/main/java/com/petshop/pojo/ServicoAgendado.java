@@ -14,10 +14,11 @@ import com.petshop.models.ServicoCategoria;
 public class ServicoAgendado
 {
 	@Id
+	@Column(name = "servico_id")
 	private Long id;
 	
-	@Column(name = "servico_id")
-	private Long servicoId;
+	@Column(name = "ordem_servico_id")
+	private Long ordemServicoId;
 	
 	@Column(name = "valor")
 	private BigDecimal valor;
@@ -25,16 +26,16 @@ public class ServicoAgendado
 	@Column(name = "nome")
 	private String nome;
 	
+	@ManyToOne
+    @JoinColumn(name = "servico_categoria_id")
+    private ServicoCategoria servicoCategoria;
+	
 	@Column(name = "descricao")
 	private String descricao;
 	
 	@Column(name = "imagem_url")
 	private String url;
 	
-	@ManyToOne
-    @JoinColumn(name = "servico_categoria_id")
-    private ServicoCategoria servicoCategoria;
-    
     Boolean agendado = false;
     
 	public Long getId()
@@ -97,14 +98,14 @@ public class ServicoAgendado
 		this.servicoCategoria = servicoCategoria;
 	}
 
-	public Long getServicoId()
+	public Long getOrdemServicoId()
 	{
-		return servicoId;
+		return ordemServicoId;
 	}
 
-	public void setServicoId(Long servicoId)
+	public void setOrdemServicoId(Long ordemServicoId)
 	{
-		this.servicoId = servicoId;
+		this.ordemServicoId = ordemServicoId;
 	}
 
 	public Boolean getAgendado()

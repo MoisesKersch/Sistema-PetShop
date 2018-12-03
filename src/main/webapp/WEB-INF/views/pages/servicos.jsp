@@ -55,7 +55,7 @@
 										<div class="product-card">
 											<div class="card">
 												<div class="card-image waves-effect waves-block waves-light paid">
-													<span id="${servico.servicoId}"> <c:choose>
+													<span id="${servico.id}"> <c:choose>
 															<c:when test="${servico.agendado == true}">
 																<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2" style="background-color: #00c853 !important;"> <i class="mdi-action-done-all"
 																	style="line-height: 66.5px; font-size: 3.6rem;"></i>
@@ -63,20 +63,20 @@
 															</c:when>
 															<c:otherwise>
 																<a href="#" class="btn-floating btn-large btn-price waves-effect waves-light pink accent-2"> <c:set var="valor" /> <fmt:setLocale value="pt-BR" /> <fmt:formatNumber
-																		value="${servico.valor}" type="currency" currencySymbol="R$ " maxFractionDigits="0"/>
+																		value="${servico.valor}" type="currency" currencySymbol="R$ " maxFractionDigits="0" />
 																</a>
 															</c:otherwise>
 														</c:choose>
 													</span> <img src="${servico.url}" style="min-height: 310px !important; max-height: 310px !important;" alt="product-img">
 												</div>
-												<ul class="card-action-buttons" id="${servico.servicoId}-bottom-buttom">
+												<ul class="card-action-buttons" id="${servico.id}-bottom-buttom">
 													<c:choose>
 														<c:when test="${servico.agendado == true}">
-															<li><a class="btn-floating waves-effect waves-light red accent-4 cancel-order" href="#" title="Cancelar serviço" onclick="servicoRemove('${servico.id}')"><i
+															<li><a class="btn-floating waves-effect waves-light red accent-4 cancel-order" href="#" title="Cancelar serviço" onclick="servicoRemove('${servico.ordemServicoId}')"><i
 																	class="mdi-content-clear"></i></a></li>
 														</c:when>
 														<c:otherwise>
-															<li><a class="btn-floating waves-effect waves-light green accent-4 modal-trigger " href="#servico-form-modal" title="Agendar serviço" onclick="setServicoId('${servico.servicoId}')"><i
+															<li><a class="btn-floating waves-effect waves-light green accent-4" title="Agendar serviço" onclick="setServicoId('${servico.id}')"><i
 																	class="mdi-editor-attach-money"></i></a></li>
 														</c:otherwise>
 													</c:choose>
@@ -105,18 +105,7 @@
 								</c:forEach>
 							</div>
 						</div>
-						<div class="modal" id="servico-remove-modal">
-							<div class="modal-content teal white-text">
-								<p>Tem certeza que deseja remover esse cadastro-servico?</p>
-							</div>
-							<input type="hidden" id="servico-remove-id" name="id">
-							<div class="modal-footer  teal lighten-4">
-								<a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Cancelar</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close"
-									onclick="servicoRemove()">Remover</a>
-							</div>
-						</div>
 						<input id="editing" class="hide" name="editing" type="text" value="false">
-
 						<div id="servico-form-modal" class="modal">
 							<div class="modal-content">
 								<h4>Cadastro</h4>

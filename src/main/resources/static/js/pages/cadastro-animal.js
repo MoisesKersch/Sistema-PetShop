@@ -170,21 +170,26 @@ function animalRemove(id)
 	},
 	function(isConfirm)
 	{
-		 $.ajax({
-			 type: "POST",
-			 data:  {"id": id},
-			 url: "animalremove",
-			 success: function(obj)
-			 {
-				if (obj)
+		if (isConfirm)
+		{
+			$.ajax({
+				type: "POST",
+				data:  {"id": id},
+				url: "animalremove",
+				success: function(obj)
 				{
-				  swal("Removido!", "O serviço foi cancelado!", "success");
-				} 
-				else 
-				{
-				  swal("Cancelado", "O serviço não foi removido", "error");
-				} 
-			 }})
+					if (obj)
+					{
+						swal("Removido!", "O registro foi cancelado!", "success");
+					} 
+					else 
+					{
+						swal("Cancelado", "O registro não pode ser removido!", "error");
+					} 
+				}})
+		}
+		else
+			swal("Cancelado", "O registro não foi removido!", "error");
 	});
 }
 

@@ -12,5 +12,5 @@ import com.petshop.pojo.ServicoAgendado;
 public interface OrdemServicoService
 {
 	public OrdemServico salvar(OrdemServico ordemServico, Long animalId, Long servicoId, Usuario usuario);
-	public List<ServicoAgendado> servicoCliente(Usuario usuario);
+	public List<ServicoAgendado> getServicoCliente(Long usuarioId);
 }

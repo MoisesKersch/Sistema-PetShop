@@ -20,7 +20,7 @@ public class OrdemServico
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ordem_servico_id")
 	private Long id;
-	
+
 	@NotNull
 	@Column(name = "data_reservada")
 	private Date dataReservada = new Date();
@@ -47,6 +47,9 @@ public class OrdemServico
 	@ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+	
+	@Column(name = "data_finalizada")
+	private Date dataFinalizada;
 
 	public Long getId()
 	{
@@ -126,5 +129,15 @@ public class OrdemServico
 	public void setUsuario(Usuario usuario)
 	{
 		this.usuario = usuario;
+	}
+
+	public Date getDataFinalizada()
+	{
+		return dataFinalizada;
+	}
+
+	public void setDataFinalizada(Date dataFinalizada)
+	{
+		this.dataFinalizada = dataFinalizada;
 	}
 }
