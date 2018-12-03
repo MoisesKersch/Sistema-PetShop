@@ -6,15 +6,11 @@
     <!-- jQuery Library -->
     <script type="text/javascript" src="/resources/js/jquery-1.11.2.min.js"></script>    
     <!--materialize js-->
-    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/resources/js/materialize.js"></script>
     
 
-   
     <!--scrollbar-->
     <script type="text/javascript" src="/resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
-<!-- <script -->
-<!-- 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 
 <!-- sparkline -->
@@ -65,6 +61,9 @@
    
     <!-- sweetalert popup  -->
    <script type="text/javascript" src="/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
+   
+    <!-- header js -->
+    <script type="text/javascript" src="resources/js/pages/header.js"></script>
    
 
    

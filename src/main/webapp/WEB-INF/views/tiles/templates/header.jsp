@@ -23,23 +23,22 @@
 					<li><a href="javascript:void(0);" class="waves-effect waves-block waves-light show-search"><i class="mdi-action-search"></i></a></li>
 					<li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan"></i></a></li>
 					<li><a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown"><i class="mdi-social-notifications"><small
-								class="notification-badge">1</small></i> </a> <!-- Dropdown Trigger -->
+								class="notification-badge" id="ultimo-agendado-size"></small></i> </a> <!-- Dropdown Trigger -->
 					<li><a href="#" data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse"><i class="mdi-communication-chat"></i></a></li>
 				</ul>
 			</div>
-
 			<!-- notifications-dropdown -->
 			<ul id="notifications-dropdown" class="dropdown-content">
 				<li>
 					<h5>
-						NOTIFICATIONS <span class="new badge">1</span>
+						NOTIFICATIONS <span class="new badge" id="ultimo-agendado-size-new"></span>
 					</h5>
 				</li>
 				<li class="divider"></li>
 				<li><a href="#!"><i class="mdi-action-add-shopping-cart"></i> Um novo serviço foi agendado!</a> <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">2 hours ago</time></li>
 			</ul>
 		</nav>
-	</div>+
+	</div>
 
 	<!-- end header nav-->
 </header>
