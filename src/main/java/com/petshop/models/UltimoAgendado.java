@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "ultimo_agendado")
 public class UltimoAgendado
@@ -51,6 +53,7 @@ public class UltimoAgendado
 		this.ordemServico = ordemServico;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
 	public Date getLancadoEm()
 	{
 		return lancadoEm;

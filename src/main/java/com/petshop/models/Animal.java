@@ -51,7 +51,7 @@ public class Animal
 	private String pedigree;
 	
 	@Column(name = "raca")
-	private String raca;
+	private String raca = "Não informado";
 	
 	@Column(name = "cor")
 	private String cor;

@@ -1595,3 +1595,11 @@ footer.page-footer {
 #notifications-dropdown li.divider {
 	padding: 0
 }
+span.badge[data-badge-caption]::after {
+    content: " " attr(data-badge-caption);
+}
+
+
+
+
+

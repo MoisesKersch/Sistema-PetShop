@@ -1,4 +1,4 @@
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
     <!-- ================================================
     Scripts
     ================================================ -->
@@ -62,8 +62,11 @@
     <!-- sweetalert popup  -->
    <script type="text/javascript" src="/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
    
-    <!-- header js -->
-    <script type="text/javascript" src="resources/js/pages/header.js"></script>
+   <c:if test = "${papel == 'Administrator'}">
+    	<script type="text/javascript" src="resources/js/pages/header-admin.js"></script>
+	</c:if>
+		      	
+  
    
 
    

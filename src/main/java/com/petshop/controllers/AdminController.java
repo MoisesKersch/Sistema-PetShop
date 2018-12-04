@@ -30,5 +30,8 @@ public class AdminController extends SessaoInfo
 	{
 		return ultimoAgendadoRepository.findByEmpresa(getUsuarioCorrente().getEmpresa());
 	}
+	
+	
+	
 }
 

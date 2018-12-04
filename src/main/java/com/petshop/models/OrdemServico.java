@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "ordem_servico")
 public class OrdemServico
@@ -61,6 +63,7 @@ public class OrdemServico
 		this.id = id;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
 	public Date getDataReservada()
 	{
 		return dataReservada;
@@ -131,6 +134,7 @@ public class OrdemServico
 		this.usuario = usuario;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
 	public Date getDataFinalizada()
 	{
 		return dataFinalizada;

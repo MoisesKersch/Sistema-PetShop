@@ -51,6 +51,12 @@ public class OrdemServicoServiceImpl implements OrdemServicoService
 		
 			if (ordemServico.getAnimal() == null)
 				throw new NotFoundException("Animal não encontrado!");
+			
+			for (OrdemServico x : ordemServicoRepository.findByUsuarioAndServico(usuario, ordemServico.getServico())) 
+			{
+				if (x.getStatus().equals("Aberto"))
+					return null;
+			}
 
 			return ordemServicoRepository.save(ordemServico);
 		} catch (Exception e) {

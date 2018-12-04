@@ -61,7 +61,6 @@ public class ServicoController extends SessaoInfo
 		modelAndView.addObject("caption", "Agende ou ou cancele serviços disponíveis na loja.");
 		modelAndView.addObject("js", "servico.js");
 		modelAndView.addObject("servicos", getServico());
-
 		return modelAndView;
 	}
 
@@ -113,7 +112,7 @@ public class ServicoController extends SessaoInfo
 			redirectAttributes.addFlashAttribute("mensagemErro", bindingResult.getAllErrors());
 			return null;
 		}
-
+		ordemServico.setStatus("Aberto");
 		try {
 			return ordemServicoService.salvar(ordemServico, animalId, servicoId,
 					(Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
