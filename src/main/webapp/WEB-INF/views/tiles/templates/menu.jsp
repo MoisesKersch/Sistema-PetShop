@@ -43,11 +43,12 @@
 		      	<c:if test = "${papel == 'Cliente'}">
 					<li class="bold"><a href="cadastroanimal" class="waves-effect waves-cyan"><i class="mdi-action-favorite-outline"></i> Cadastrar Animais</a></li>
 					<li class="bold"><a href="servicos" class="waves-effect waves-cyan"><i class="mdi-action-add-shopping-cart"></i> Serviços</a></li>
-					<li class="bold"><a href="#" class="waves-effect waves-cyan"><i class="mdi-editor-attach-money"></i> Serviços Contratados </a></li> 
+					<li class="bold"><a href="servicoagendadoclient" class="waves-effect waves-cyan"><i class="mdi-editor-attach-money"></i> Serviços Contratados </a></li> 
 					<li class="bold"><a href="#" class="waves-effect waves-cyan"><i class="mdi-av-repeat"></i> Solicitar Entrega de Animais </a></li> 
 					<li class="bold"><a href="#" class="waves-effect waves-cyan"><i class="mdi-action-credit-card"></i> Ver Débitos </a></li>                             
 		      	</c:if>
 		      	
+		      	<li class="bold"><a href="#" class="waves-effect waves-cyan"><i class="mdi-action-help"></i> Suporte </a></li> 
 		      	<li class="bold"><a href="#" class="waves-effect waves-cyan"><i class="mdi-action-settings"></i> Configurações </a></li> 
 				
 <!-- 				<li class="bold"><a href="app-email.html" -->

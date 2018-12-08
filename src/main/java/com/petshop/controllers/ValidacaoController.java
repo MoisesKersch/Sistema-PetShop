@@ -29,7 +29,7 @@ public class ValidacaoController
 			return null;
 		}
 	}
-
+		
 	@RequestMapping(value = "/isusuarioexiste", method = RequestMethod.POST)
 	public Boolean isUsuarioExiste(String login)
 	{

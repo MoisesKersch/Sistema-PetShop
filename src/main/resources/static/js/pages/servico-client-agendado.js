@@ -1,5 +1,6 @@
-var table;
+var table;;
 var descTempt;
+var valorTotal = 0;
 
 $(document).ready(function() {
 	$("#servico-agendado-form").submit(function(event) {
@@ -7,8 +8,7 @@ $(document).ready(function() {
 		saveAnimal();
 	})
 
-	openTable() 
-	animalMask()
+	openTable()
 });
 
 function animalMask() {
@@ -22,10 +22,14 @@ function openTable()
 {
 	$
 			.ajax({
-				url : "getordemservico",
+				url : "getordemservicocliente",
 				success : function(obj) {
 					console.log(obj)
-					table = $('#servico-agendado-table')
+					$.each( obj, function( key, value ) {
+							valorTotal+=value.servico.valor;
+					});
+					$("#valor-total").html("R$ "+valorTotal);
+					table = $('#servico-agendado-client-table')
 							.DataTable(
 									{
 										"sPaginationType" : "full_numbers",
@@ -42,7 +46,7 @@ function openTable()
 							    				data: null,
 							    				"mRender": function(data, type, full)
 							    				{
-							    					return "<a class=\"waves-effect waves-light\" title=\"Clique para ver os detalhes\" onclick=\"openAnimalDetails('"+data.animal.nome+"','"+data.animal.especie+"','"+data.animal.raca+"','"+data.animal.tipo+"')\">  <i class=\"mdi-content-add-circle-outline\"></i>  <\a>";                                      
+							    					return "<a class=\"waves-effect waves-light \" title=\"Clique para ver os detalhes\" onclick=\"openAnimalDetails('"+data.animal.nome+"','"+data.animal.especie+"','"+data.animal.raca+"','"+data.animal.tipo+"')\">  <i class=\"mdi-content-add-circle-outline\"></i>  <\a>";                                      
 							    				}
 										}, 
 										{ 
@@ -51,30 +55,18 @@ function openTable()
 						    				{
 						    					var nome = data.servico.nome;
 						    					var valor = data.servico.valor;
-						    					return "<a class=\"waves-effect waves-light\" title=\"Clique para ver os detalhes\" onclick=\"openServicoDetails('"+nome+"','"+valor+"')\"> <i class=\"mdi-content-add-circle-outline\"></i> <\a>";                                      
+						    					valorTotal += valor;
+						    					return "<a class=\"waves-effect waves-light \" title=\"Clique para ver os detalhes\" onclick=\"openServicoDetails('"+nome+"','"+valor+"')\"> <i class=\"mdi-content-add-circle-outline\"></i> <\a>";                                      
 						    				}
 										},
 										{ 
 						    				data: null,
 						    				"mRender": function(data, type, full)
 						    				{
-						    					var nome = data.usuario.nome;
-						    					var cpf = data.usuario.cpf;
-						    					var email = data.usuario.email;
-						    					return "<a class=\"waves-effect waves-light\" title=\"Clique para ver os detalhes\" onclick=\"openUsuarioDetails('"+nome+"','"+cpf+"','"+email+"')\">  <i class=\"mdi-content-add-circle-outline\"></i>  <\a>";                                      
+						    					return data.servico.valor;
 						    				}
-										},
-										{data : "dataFinalizada"}],
-										dom : 'Bfrtip', // Needs button
-										// container
-										select : 'single',
-										responsive : true,
-										altEditor : true, // Enable altEditor
-										buttons : [ {
-											text : 'Editar',
-											name : 'add' // do not change
-										// name
 										}],
+										// container
 										"columnDefs" : [ {
 											"targets" : [ 0 ],
 											"visible" : false
@@ -82,6 +74,7 @@ function openTable()
 									})
 				}
 			})
+			
 }
 
 function openServicoDetails(nome, valor)

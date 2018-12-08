@@ -63,7 +63,7 @@ public class OrdemServico
 		this.id = id;
 	}
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
 	public Date getDataReservada()
 	{
 		return dataReservada;
@@ -134,7 +134,7 @@ public class OrdemServico
 		this.usuario = usuario;
 	}
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
 	public Date getDataFinalizada()
 	{
 		return dataFinalizada;

@@ -1,3 +1,7 @@
+$(document).ready(function ()
+{
+	 Materialize.updateTextFields()
+})
 
 function send()
 {

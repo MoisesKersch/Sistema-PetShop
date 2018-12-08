@@ -11,21 +11,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.petshop.component.SessaoInfo;
 import com.petshop.models.OrdemServico;
 import com.petshop.repositories.OrdemServicoRepository;
-import com.petshop.repositories.UltimoAgendadoRepository;
 
 @Controller
-public class ServicoAgendadoController extends SessaoInfo
+public class ServicoAgendadoControllerClient extends SessaoInfo
 {
-	@Autowired
-	private UltimoAgendadoRepository ultimoAgendadoRepository;
 
 	@Autowired
 	OrdemServicoRepository ordemServicoRepository;
 
-	@RequestMapping(value = "/ordemservico")
+	@RequestMapping(value = "/servicoagendadoclient")
 	public ModelAndView getServicoPage()
 	{
-		ModelAndView modelAndView = new ModelAndView("servicoagendado");
+		ModelAndView modelAndView = new ModelAndView("servicoagendadoclient");
 
 		if (getUsuarioCorrente() == null)
 			return new ModelAndView("/login");
@@ -37,24 +34,22 @@ public class ServicoAgendadoController extends SessaoInfo
 
 		}
 		
-		ultimoAgendadoRepository.deleteAll();
-		
 		modelAndView.addObject("page", "Serviços Agendados");
 		modelAndView.addObject("mainTitle", "Serviços Agendados");
 		modelAndView.addObject("secondTitle", "Serviços Agendados");
-		modelAndView.addObject("caption", "Agende ou ou cancele serviços disponíveis na loja.");
-		modelAndView.addObject("js", "servico-agendado.js");
-		modelAndView.addObject("jsEditor", "servico-agendado-editor.js");
-		modelAndView.addObject("tableId", "servico-agendado-table");
+		modelAndView.addObject("caption", "Demonstração de todos os seus serviços agendados.");
+		modelAndView.addObject("js", "servico-client-agendado.js");
+		modelAndView.addObject("jsEditor", "servico-agendado-client-editor.js");
+		modelAndView.addObject("tableId", "servico-agendado-client-table");
 		return modelAndView;
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getordemservico")
+	@RequestMapping(value = "/getordemservicocliente")
 	public List<OrdemServico> getServico()
 	{
 		try {
-			return ordemServicoRepository.findByEmpresa(getUsuarioCorrente().getEmpresa());
+			return ordemServicoRepository.findByUsuarioAndEmpresaAndNotCanceled(getUsuarioCorrente(), getUsuarioCorrente().getEmpresa());
 		} catch (Exception e) {
 			return null;
 		}
