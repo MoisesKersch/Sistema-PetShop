@@ -12,24 +12,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
-@Table(name = "ordem_servico")
-public class OrdemServico
+@Table(name = "comprovante")
+public class Comprovante
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ordem_servico_id")
+	@Column(name = "comprovante_id")
 	private Long id;
 
 	@NotNull
-	@Column(name = "data_reservada")
-	private Date dataReservada = new Date();
-	
-	@NotNull
-	@Column(name = "status")
-	private String status; // pago novo status
+	@Column(name = "data_pagamento")
+	private Date dataPagamento = new Date();
 	
 	@Column(name = "observacao")
 	private String observacao;
@@ -49,9 +43,6 @@ public class OrdemServico
 	@ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
-	
-	@Column(name = "data_finalizada")
-	private Date dataFinalizada;
 
 	public Long getId()
 	{
@@ -63,25 +54,14 @@ public class OrdemServico
 		this.id = id;
 	}
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
-	public Date getDataReservada()
+	public Date getDataPagamento()
 	{
-		return dataReservada;
+		return dataPagamento;
 	}
 
-	public void setDataReservada(Date dataReservada)
+	public void setDataPagamento(Date dataPagamento)
 	{
-		this.dataReservada = dataReservada;
-	}
-
-	public String getStatus()
-	{
-		return status;
-	}
-
-	public void setStatus(String status)
-	{
-		this.status = status;
+		this.dataPagamento = dataPagamento;
 	}
 
 	public String getObservacao()
@@ -94,16 +74,6 @@ public class OrdemServico
 		this.observacao = observacao;
 	}
 
-	public Empresa getEmpresa()
-	{
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa)
-	{
-		this.empresa = empresa;
-	}
-
 	public Animal getAnimal()
 	{
 		return animal;
@@ -112,6 +82,16 @@ public class OrdemServico
 	public void setAnimal(Animal animal)
 	{
 		this.animal = animal;
+	}
+
+	public Empresa getEmpresa()
+	{
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa)
+	{
+		this.empresa = empresa;
 	}
 
 	public Servico getServico()
@@ -132,16 +112,5 @@ public class OrdemServico
 	public void setUsuario(Usuario usuario)
 	{
 		this.usuario = usuario;
-	}
-
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
-	public Date getDataFinalizada()
-	{
-		return dataFinalizada;
-	}
-
-	public void setDataFinalizada(Date dataFinalizada)
-	{
-		this.dataFinalizada = dataFinalizada;
 	}
 }

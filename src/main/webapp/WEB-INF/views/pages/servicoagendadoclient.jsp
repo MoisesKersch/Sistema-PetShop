@@ -38,6 +38,7 @@
 						</div>
 					</div>
 				</div>
+
 				<!--breadcrumbs end-->
 				<!--start container-->
 				<div class="container">
@@ -59,6 +60,7 @@
 												<th>Animal</th>
 												<th>Serviço</th>
 												<th>Valor</th>
+												<th>Pagar</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -66,9 +68,9 @@
 										<tfoot>
 											<tr>
 												<th>Total a pagar</th>
-												<th colspan="4"></th>
-												<th class="center">Total a pagar</th>
-												<th id="valor-total" class="center"></th>
+												<th colspan="5"></th>
+												<th class="center"><span class="task-cat purple">Total a pagar</span></th>
+												<th  class="center"> <span class="task-cat green" id="valor-total"> </span></th>
 											</tr>
 										</tfoot>
 									</table>
@@ -77,8 +79,6 @@
 						</div>
 					</div>
 				</div>
-				<!--end container-->
-			</section>
 		</div>
 		<!-- END WRAPPER -->
 	</div>
@@ -89,6 +89,5 @@
 	<jsp:include page="../tiles/templates/js.jsp"></jsp:include>
 	<script type="text/javascript" src="/resources/js/pages/${js}"></script>
 	<script type="text/javascript" src="/resources/js/pages/${jsEditor}"></script>
-
 </body>
 </html>

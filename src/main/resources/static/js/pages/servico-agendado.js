@@ -61,7 +61,7 @@ function openTable()
 						    					var nome = data.usuario.nome;
 						    					var cpf = data.usuario.cpf;
 						    					var email = data.usuario.email;
-						    					return "<a class=\"waves-effect waves-light\" title=\"Clique para ver os detalhes\" onclick=\"openUsuarioDetails('"+nome+"','"+cpf+"','"+email+"')\">  <i class=\"mdi-content-add-circle-outline\"></i>  <\a>";                                      
+						    					return "<a class=\"waves-effect waves-light\" title=\"Clique para ver os detalhes\" onclick=\"openUsuarioDetails('"+nome+"','"+cpf+"','"+email+"')\">  <i class=\"mdi-content-add-circle-outline get-bigger-button\"></i>  <\a>";                                      
 						    				}
 										},
 										{data : "dataFinalizada"}],
@@ -89,8 +89,22 @@ function openServicoDetails(nome, valor)
 	swal
 	({ 
 	    html:true, 
-	    title:'Informações', 
-	    text:'NOME: '+nome+' <br> VALOR: '+valor+' '
+	    title:'', 
+	    text: 	'<div class="col s12 m12 l4">'+
+				'	<ul id="task-card" class="collection with-header">'+
+				'		<li class="collection-header cyan">'+
+				'			<h4 class="task-card-title">Informações</h4>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Nome: '+nome+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Valor: R$ '+valor+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'	</ul>'+
+				'</div>'
 	});
 }
 
@@ -100,8 +114,26 @@ function openUsuarioDetails(nome, cpf, email)
 	swal
 	({ 
 	    html:true, 
-	    title:'Informações', 
-	    text:'NOME: '+nome+' <br> CPF: '+cpf+' <br> EMAIL: '+email+''
+	    title:'', 
+	    text: 	'<div class="col s12 m12 l4">'+
+				'	<ul id="task-card" class="collection with-header">'+
+				'		<li class="collection-header cyan">'+
+				'			<h4 class="task-card-title">Informações</h4>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Nome: '+nome+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			CPF: '+cpf+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Email: '+email+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'	</ul>'+
+				'</div>'
 	});
 }
 
@@ -110,8 +142,30 @@ function openAnimalDetails(nome, especie, raca, tipo)
 	swal
 	({ 
 	    html:true, 
-	    title:'Informações', 
-	    text:'NOME: '+nome+' <br> ESPÉCIE: '+especie+' <br> RAÇA: '+raca+' <br> TIPO: '+tipo+' '
+	    title:'', 
+	    text: 	'<div class="col s12 m12 l4">'+
+				'	<ul id="task-card" class="collection with-header">'+
+				'		<li class="collection-header cyan">'+
+				'			<h4 class="task-card-title">Informações</h4>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Nome: '+nome+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Espécie: '+especie+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Raca: '+raca+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Tipo: '+tipo+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'	</ul>'+
+				'</div>'
 	});
 }
 

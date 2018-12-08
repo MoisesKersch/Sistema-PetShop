@@ -9,6 +9,11 @@ $(document).ready(function() {
 	})
 
 	openTable()
+	
+	$('.dt-button').click(function (){
+		console.log('hi')
+	})
+	
 });
 
 function animalMask() {
@@ -65,7 +70,26 @@ function openTable()
 						    				{
 						    					return data.servico.valor;
 						    				}
-										}],
+										},
+										{ 
+						    				data: null,
+						    				"mRender": function(data, type, full)
+						    				{
+						    					return 	'<input type="checkbox" id='+data.id+' value='+data.servico.valor+' class="sum">'+
+						    							'	<label for='+data.id+'><a href="#" class="secondary-content">'+
+						    							'</label>';
+						    				}
+										}
+										],
+										  dom: 'Bfrtip',        // Needs button container
+								          select: 'single',
+								          responsive: true,
+								          altEditor: true,     // Enable altEditor
+								          buttons: [{
+								            text: 'Pagar Selecionados',
+								            name: 'add'        // do not change name
+								          }
+								        ],
 										// container
 										"columnDefs" : [ {
 											"targets" : [ 0 ],
@@ -82,8 +106,22 @@ function openServicoDetails(nome, valor)
 	swal
 	({ 
 	    html:true, 
-	    title:'Informações', 
-	    text:'NOME: '+nome+' <br> VALOR: '+valor+' '
+	    title:'', 
+	    text: 	'<div class="col s12 m12 l4">'+
+		'	<ul id="task-card" class="collection with-header">'+
+		'		<li class="collection-header cyan">'+
+		'			<h4 class="task-card-title">Informações</h4>'+
+		'		</li>'+
+		'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+		'			Nome: '+nome+''+
+		'		<span class="task-cat teal"></span>'+
+		'		</li>'+
+		'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+		'			Valor: R$ '+valor+''+
+		'		<span class="task-cat teal"></span>'+
+		'		</li>'+
+		'	</ul>'+
+		'</div>'
 	});
 }
 
@@ -93,8 +131,27 @@ function openUsuarioDetails(nome, cpf, email)
 	swal
 	({ 
 	    html:true, 
-	    title:'Informações', 
-	    text:'NOME: '+nome+' <br> CPF: '+cpf+' <br> EMAIL: '+email+''
+	    title:'', 
+	    text: 	'<div class="col s12 m12 l4">'+
+		'	<ul id="task-card" class="collection with-header">'+
+		'		<li class="collection-header cyan">'+
+		'			<h4 class="task-card-title">Informações</h4>'+
+		'		</li>'+
+		'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+		'			Nome: '+nome+''+
+		'		<span class="task-cat teal"></span>'+
+		'		</li>'+
+		'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+		'			Espécie: '+cpf+''+
+		'		<span class="task-cat teal"></span>'+
+		'		</li>'+
+		'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+		'			Raça: '+email+''+
+		'		<span class="task-cat teal"></span>'+
+		'		</li>'+
+		'	</ul>'+
+		'</div>'
+	    
 	});
 }
 
@@ -103,8 +160,31 @@ function openAnimalDetails(nome, especie, raca, tipo)
 	swal
 	({ 
 	    html:true, 
-	    title:'Informações', 
-	    text:'NOME: '+nome+' <br> ESPÉCIE: '+especie+' <br> RAÇA: '+raca+' <br> TIPO: '+tipo+' '
+	    title:'', 
+	    text: 	'<div class="col s12 m12 l4">'+
+				'	<ul id="task-card" class="collection with-header">'+
+				'		<li class="collection-header cyan">'+
+				'			<h4 class="task-card-title">Informações</h4>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Nome: '+nome+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Espécie: '+especie+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Raça: '+raca+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'		<li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">'+
+				'			Tipo: '+tipo+''+
+				'		<span class="task-cat teal"></span>'+
+				'		</li>'+
+				'	</ul>'+
+				'</div>'
+	    
 	});
 }
 

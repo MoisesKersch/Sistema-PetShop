@@ -16,11 +16,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "ordem_servico")
-public class OrdemServico
+public class Ordem
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ordem_servico_id")
+	@Column(name = "ordem_id")
 	private Long id;
 
 	@NotNull

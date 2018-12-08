@@ -2,6 +2,9 @@ package com.petshop.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +36,13 @@ public class ServicoAgendadoControllerClient extends SessaoInfo
 		} catch (Exception e) {
 
 		}
-		
+
 		modelAndView.addObject("page", "Serviços Agendados");
 		modelAndView.addObject("mainTitle", "Serviços Agendados");
 		modelAndView.addObject("secondTitle", "Serviços Agendados");
-		modelAndView.addObject("caption", "Demonstração de todos os seus serviços agendados.");
-		modelAndView.addObject("js", "servico-client-agendado.js");
+		modelAndView.addObject("caption",
+				"Demonstração de todos os seus serviços agendados. Você pode selecionar os serviços que deseja pagar e proseguir com o pagamento.");
+		modelAndView.addObject("js", "servico-agendado-client.js");
 		modelAndView.addObject("jsEditor", "servico-agendado-client-editor.js");
 		modelAndView.addObject("tableId", "servico-agendado-client-table");
 		return modelAndView;
@@ -49,41 +53,16 @@ public class ServicoAgendadoControllerClient extends SessaoInfo
 	public List<OrdemServico> getServico()
 	{
 		try {
-			return ordemServicoRepository.findByUsuarioAndEmpresaAndNotCanceled(getUsuarioCorrente(), getUsuarioCorrente().getEmpresa());
+			return ordemServicoRepository.findByUsuarioAndEmpresaAndNotCanceled(getUsuarioCorrente(),
+					getUsuarioCorrente().getEmpresa());
 		} catch (Exception e) {
 			return null;
 		}
 	}
-//
-//	@ResponseBody
-//	@RequestMapping(value = "/getanimaisservico")
-//	public List<Animal> getCadastroAnimal()
-//	{
-//		try {
-//			return animalRepository.findByUsuario(getUsuarioCorrente());
-//		} catch (Exception e) {
-//			return null;
-//		}
-//	}
-//
-//	@ResponseBody
-//	@RequestMapping(value = "/cancelarordemservico")
-//	public Servico cancelarOrdemServico(Long ordemServicoId)
-//	{
-//		Optional<OrdemServico> ordemServico = ordemServicoRepository.findById(ordemServicoId);
-//		try {
-//			ordemServico.get().setStatus("Cancelado");
-//			ordemServico.get().setDataFinalizada(new Date());
-//			ordemServicoRepository.save(ordemServico.get());
-//		} catch (Exception e) {
-//			return null;
-//		}
-//		return ordemServico.get().getServico();
-//	}
-//
+
 //	@ResponseBody
 //	@RequestMapping(value = "/servicos", method = RequestMethod.POST)
-//	public OrdemServico postServicoPage(@Valid OrdemServico ordemServico, BindingResult bindingResult, Long servicoId,
+//	public OrdemServico postPagar(@Valid OrdemServico ordemServico, BindingResult bindingResult, Long servicoId,
 //			Long animalId, HttpServletRequest request, final RedirectAttributes redirectAttributes,
 //			HttpServletRequest response)
 //	{
