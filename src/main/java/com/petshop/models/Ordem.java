@@ -1,6 +1,7 @@
 package com.petshop.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,13 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "ordem_servico")
+@Table(name = "ordem")
 public class Ordem
 {
 	@Id
@@ -25,33 +27,27 @@ public class Ordem
 
 	@NotNull
 	@Column(name = "data_reservada")
-	private Date dataReservada = new Date();
-	
-	@NotNull
-	@Column(name = "status")
-	private String status; // pago novo status
-	
-	@Column(name = "observacao")
-	private String observacao;
-	
-	@ManyToOne
-    @JoinColumn(name = "animal_id")
-    private Animal animal;
-	
-	@ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private Empresa empresa;
-	
-	@ManyToOne
-    @JoinColumn(name = "servico_id")
-    private Servico servico;
-	
-	@ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-	
+	private Date data = new Date();
+
 	@Column(name = "data_finalizada")
 	private Date dataFinalizada;
+
+	@ManyToOne
+	@JoinColumn(name = "empresa_id")
+	private Empresa empresa;
+
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+
+	@OneToMany(mappedBy = "ordem")
+	private List<Ordem> ordens;
+
+	@NotNull
+	private String descricao;
+
+	@NotNull
+	private String status; 
 
 	public Long getId()
 	{
@@ -64,34 +60,14 @@ public class Ordem
 	}
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
-	public Date getDataReservada()
+	public Date getData()
 	{
-		return dataReservada;
+		return data;
 	}
 
-	public void setDataReservada(Date dataReservada)
+	public void setData(Date data)
 	{
-		this.dataReservada = dataReservada;
-	}
-
-	public String getStatus()
-	{
-		return status;
-	}
-
-	public void setStatus(String status)
-	{
-		this.status = status;
-	}
-
-	public String getObservacao()
-	{
-		return observacao;
-	}
-
-	public void setObservacao(String observacao)
-	{
-		this.observacao = observacao;
+		this.data = data;
 	}
 
 	public Empresa getEmpresa()
@@ -104,26 +80,6 @@ public class Ordem
 		this.empresa = empresa;
 	}
 
-	public Animal getAnimal()
-	{
-		return animal;
-	}
-
-	public void setAnimal(Animal animal)
-	{
-		this.animal = animal;
-	}
-
-	public Servico getServico()
-	{
-		return servico;
-	}
-
-	public void setServico(Servico servico)
-	{
-		this.servico = servico;
-	}
-
 	public Usuario getUsuario()
 	{
 		return usuario;
@@ -134,6 +90,16 @@ public class Ordem
 		this.usuario = usuario;
 	}
 
+	public String getDescricao()
+	{
+		return descricao;
+	}
+
+	public void setDescricao(String descricao)
+	{
+		this.descricao = descricao;
+	}
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
 	public Date getDataFinalizada()
 	{
@@ -142,6 +108,29 @@ public class Ordem
 
 	public void setDataFinalizada(Date dataFinalizada)
 	{
-		this.dataFinalizada = dataFinalizada;
+		if (this.status.equals("Pago"))
+			this.dataFinalizada = new Date();
+		else
+			this.dataFinalizada = dataFinalizada;
+	}
+
+	public String getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(String status)
+	{
+		this.status = status;
+	}
+
+	public List<Ordem> getOrdens()
+	{
+		return ordens;
+	}
+
+	public void setOrdens(List<Ordem> ordens)
+	{
+		this.ordens = ordens;
 	}
 }
