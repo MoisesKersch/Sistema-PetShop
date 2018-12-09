@@ -337,11 +337,13 @@
                     });
                     
                     var valorTotal = 0;
+                    var ordemServicoIds = [];
                     $( ".sum" ).each(function( index ) 
                     {
                     	  if ($(this).prop("checked") == true )
                     	  {
                     			valorTotal +=  parseFloat($(this).val());
+                    			ordemServicoIds.push($(this).attr("id"));
                     	  }
                     });
                     
@@ -376,10 +378,11 @@
             			{
             				$.ajax({
             					type: "POST",
-            					data:  {"ordemServicoId": id},
-            					url: "cancelarordemservico",
+            					data:  {"ordemServicoIds": ordemServicoIds},
+            					url: "pagar",
             					success: function(obj)
             					{
+            						table.clear().rows.add(obj).draw();
             						if (obj)
             						{
             							swal("Sucesso!", "O registro foi pago!", "success");

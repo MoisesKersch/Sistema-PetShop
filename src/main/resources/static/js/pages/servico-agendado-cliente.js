@@ -3,17 +3,7 @@ var descTempt;
 var valorTotal = 0;
 
 $(document).ready(function() {
-	$("#servico-agendado-form").submit(function(event) {
-		event.preventDefault();
-		saveAnimal();
-	})
-
 	openTable()
-	
-	$('.dt-button').click(function (){
-		console.log('hi')
-	})
-	
 });
 
 function animalMask() {
@@ -27,14 +17,15 @@ function openTable()
 {
 	$
 			.ajax({
-				url : "getordemservicocliente",
+				type: "POST",
+				url : "servicoagendadocliente",
 				success : function(obj) {
 					console.log(obj)
 					$.each( obj, function( key, value ) {
 							valorTotal+=value.servico.valor;
 					});
 					$("#valor-total").html("R$ "+valorTotal);
-					table = $('#servico-agendado-client-table')
+					table = $('#servico-agendado-cliente-table')
 							.DataTable(
 									{
 										"sPaginationType" : "full_numbers",
@@ -187,121 +178,3 @@ function openAnimalDetails(nome, especie, raca, tipo)
 	    
 	});
 }
-
-//function saveAnimal() {
-//	if ($("#servico-agendado-form").valid()) {
-//		$('#pedigree').val(Boolean($('#pedigree').prop("checked")));
-//		$('#peso').val($('#peso').val().replace(',', ''));
-//
-//		if ($('#pedigree').val())
-//			$('#pedigree').val("Sim")
-//		else
-//			$('#pedigree').val("Não")
-//		$
-//				.ajax({
-//					type : "POST",
-//					data : $("#servico-agendado-form").serializeObject(),
-//					url : "/cadastroanimal",
-//					success : function(obj) {
-//						console.log(obj)
-//						if (obj != null && obj != undefined) {
-//							$('#servico-agendado-form-modal').closeModal();
-//							if ($("#editing").val() == "false") {
-//								table.row.add({
-//									"id" : obj.id,
-//									"nome" : obj.nome,
-//									"especie" : obj.especie,
-//									"peso" : obj.peso,
-//									"tipo" : obj.tipo,
-//									"sexo" : obj.sexo,
-//									"dataNascimento" : obj.dataNascimento,
-//									"pedigree" : obj.pedigree,
-//									"raca" : obj.raca,
-//									"cor" : obj.cor,
-//									"observacao" : obj.observacao
-//								}).draw();
-//								swal("Sucesso!", "O registro foi salvo!",
-//										"success");
-//								$("#editing").val("false");
-//							} else {
-//								table.row({
-//									selected : true
-//								}).data({
-//									"id" : obj.id,
-//									"nome" : obj.nome,
-//									"especie" : obj.especie,
-//									"peso" : obj.peso,
-//									"tipo" : obj.tipo,
-//									"sexo" : obj.sexo,
-//									"dataNascimento" : obj.dataNascimento,
-//									"pedigree" : obj.pedigree,
-//									"raca" : obj.raca,
-//									"cor" : obj.cor,
-//									"observacao" : obj.observacao
-//								});
-//								$("#editing").val("false");
-//								swal("Sucesso!", "O registro foi atualizado!",
-//										"success");
-//							}
-//						} else {
-//							swal("Cancelado",
-//									"O serviço não pode ser salvo no sistema",
-//									"error");
-//						}
-//					}
-//				})
-//	}
-//}
-
-//function animalRemove(id)
-//{
-//	swal({
-//		title: "Você tem certeza que deseja cancelar?",
-//		text: "Não será possível recuperar esse serviço após o cancelamento!",
-//		type: "warning",
-//		showCancelButton: true,
-//		confirmButtonColor: '#DD6B55',
-//		confirmButtonText: 'Sim!',
-//		cancelButtonText: "Não!",
-//		closeOnConfirm: false,
-//		closeOnCancel: false
-//	},
-//	function(isConfirm)
-//	{
-//		if (isConfirm)
-//		{
-//			$.ajax({
-//				type: "POST",
-//				data:  {"id": id},
-//				url: "animalremove",
-//				success: function(obj)
-//				{
-//					if (obj)
-//					{
-//						swal("Removido!", "O registro foi cancelado!", "success");
-//					} 
-//					else 
-//					{
-//						swal("Cancelado", "O registro não pode ser removido!", "error");
-//					} 
-//				}})
-//		}
-//		else
-//			swal("Cancelado", "O registro não foi removido!", "error");
-//	});
-//}
-//
-//$("#servico-agendado-form").validate({
-//	rules : {
-//		sexo : "required"
-//	},
-//	errorElement : 'div',
-//	errorPlacement : function(error, element) {
-//		var placement = $(element).data('error');
-//		if (placement) {
-//			$(placement).append(error)
-//		} else {
-//			error.insertAfter(element);
-//		}
-//	}
-//});

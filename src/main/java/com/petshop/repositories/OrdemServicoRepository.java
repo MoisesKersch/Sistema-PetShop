@@ -14,10 +14,12 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Long
 {
 	public List<OrdemServico> findByUsuarioAndEmpresa(Usuario usuario, Empresa empresa);
 	
+	public List<OrdemServico> findByEmpresaAndStatus(Empresa empresa, String status);
+	
 	public List<OrdemServico> findByEmpresa(Empresa empresa);
 	
 	public List<OrdemServico> findByUsuarioAndServico(Usuario usuario, Servico servico);
 	
-	@Query("SELECT os FROM OrdemServico os JOIN Servico s on s.id  = os.servico where os.empresa = :empresa and os.usuario = :usuario and os.status != 'Cancelado' ")
+	@Query("SELECT os FROM OrdemServico os JOIN Servico s on s.id  = os.servico where os.empresa = :empresa and os.usuario = :usuario and os.status != 'Cancelado' and os.status != 'Pago'  ")
 	public List<OrdemServico> findByUsuarioAndEmpresaAndNotCanceled(Usuario usuario, Empresa empresa);
 }

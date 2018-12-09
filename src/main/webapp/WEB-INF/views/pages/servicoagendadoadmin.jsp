@@ -185,7 +185,5 @@
 	<!-- SCRIPTS -->
 	<jsp:include page="../tiles/templates/js.jsp"></jsp:include>
 	<script type="text/javascript" src="/resources/js/pages/${js}"></script>
-	<script type="text/javascript" src="/resources/js/pages/${jsEditor}"></script>
-
 </body>
 </html>
