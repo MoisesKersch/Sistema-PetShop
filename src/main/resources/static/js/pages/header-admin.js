@@ -39,7 +39,7 @@ $(document).ready(function()
 					var time = dateDiff(new Date(value.lancadoEm), new Date());
 					
 					agendados+=  '   <li>  '  + 
-								 '   	<a href="ordemservico">  '  + 
+								 '   	<a href="servicoagendadoadmin">  '  + 
 								 '   		<i class="mdi-action-add-shopping-cart"></i>   '  + 
 								 '   			Um novo serviço foi agendado!  '  + 
 								 '   	</a>   '  + 

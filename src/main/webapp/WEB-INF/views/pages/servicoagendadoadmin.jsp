@@ -49,7 +49,7 @@
 							<h4 class="header">Tabela ${mainTitle}</h4>
 							<div class="row">
 								<div class="col s12 ">
-									<table id="${tableId}" class=" hoverable centered responsive-table striped ">
+									<table id="${tableId}" class=" hoverable centered  striped ">
 										<thead>
 											<tr>
 												<th>ID</th>

@@ -66,6 +66,9 @@
     	<script type="text/javascript" src="resources/js/pages/header-admin.js"></script>
 	</c:if>
 		      	
+	<!-- responsive table and scroller for datatable plugin jquery --> 
+<!-- 	<script type="text/javascript" src="/resources/js/plugins/data-tables/js/dataTables.responsive.js"></script> -->
+	<script type="text/javascript" src="/resources/js/plugins/data-tables/js/dataTables.scroller.js"></script>
   
    
 

@@ -91,7 +91,7 @@
 															</p>
 														</div>
 														<div class="col s4 no-padding">
-															<a href=""></a><img src="resources/images/petshop-company.jpg" alt="amazon" class="responsive-img">
+															<a href=""></a><img src="resources/images/generic-logo.jpg" alt="amazon" class="responsive-img">
 														</div>
 													</div>
 												</div>
@@ -142,10 +142,10 @@
 										<div class="row">
 											<div class="input-field col s12">
 												<button class="modal-action modal-close btn  waves-effect waves-light left" type="button">
-													Fechar <i class="mdi-content-undo left"></i>
+													 <i class="mdi-content-undo left"></i>
 												</button>
 												<button class="btn cyan waves-effect waves-light right" type="submit">
-													Salvar <i class="mdi-content-send right"></i>
+													 <i class="mdi-content-send right"></i>
 												</button>
 											</div>
 										</div>

@@ -34,6 +34,9 @@ function openTable()
 										"language" : {
 											"url" : "/resources/js/plugins/data-tables/json/Portuguese-Brasil.json"
 										},
+										deferRender: true,
+									    scrollY:     300,
+									    scroller:    true,
 										columns : [ 
 										{data : "id"}, 
 										{data : "dataReservada"}, 

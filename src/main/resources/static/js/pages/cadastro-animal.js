@@ -33,6 +33,9 @@ function openTableAnimal() {
 										"language" : {
 											"url" : "/resources/js/plugins/data-tables/json/Portuguese-Brasil.json"
 										},
+										deferRender: true,
+									    scrollY:     300,
+									    scroller:    true,
 										columns : [ {
 											data : "id"
 										}, {
@@ -180,6 +183,10 @@ function animalRemove(id)
 				{
 					if (obj)
 					{
+						 table.row({
+			                 selected : true
+			               }).remove();
+						 table.draw();
 						swal("Removido!", "O registro foi cancelado!", "success");
 					} 
 					else 

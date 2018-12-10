@@ -28,10 +28,11 @@ public class AdminController extends SessaoInfo
 	@RequestMapping(value = "/ultimoagendado", method = RequestMethod.POST)
 	public List<UltimoAgendado> getUltimoAgendado()
 	{
-		return ultimoAgendadoRepository.findByEmpresa(getUsuarioCorrente().getEmpresa());
+		try {
+			return ultimoAgendadoRepository.findByEmpresa(getUsuarioCorrente().getEmpresa());
+		} catch (Exception e) {
+			return null;
+		}
 	}
-	
-	
-	
 }
 

@@ -1,6 +1,8 @@
 package com.petshop.models;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,29 +22,29 @@ public class Servico
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "servico_id")
 	private Long id;
-	
+
 	@NotNull
 	@Column(name = "valor")
 	private BigDecimal valor;
-	
+
 	@NotNull
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@NotNull
 	@Column(name = "descricao")
 	private String descricao;
 
 	@Column(name = "imagem_url")
 	private String url;
-	
-	@ManyToOne
-    @JoinColumn(name = "servico_categoria_id")
-    private ServicoCategoria servicoCategoria;
 
 	@ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private Empresa empresa;
+	@JoinColumn(name = "servico_categoria_id")
+	private ServicoCategoria servicoCategoria;
+
+	@ManyToOne
+	@JoinColumn(name = "empresa_id")
+	private Empresa empresa;
 
 	public Long getId()
 	{
@@ -54,9 +56,17 @@ public class Servico
 		this.id = id;
 	}
 
-	public BigDecimal getValor()
+	public BigDecimal getValorFloat()
 	{
-		return valor;
+		return this.valor;
+	}
+	
+	public String getValor()
+	{
+		NumberFormat brlCostFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		brlCostFormat.setMinimumFractionDigits(2);
+		brlCostFormat.setMaximumFractionDigits(2);
+		return brlCostFormat.format(valor.doubleValue());
 	}
 
 	public void setValor(BigDecimal valor)
@@ -113,14 +123,4 @@ public class Servico
 	{
 		this.url = url;
 	}
-
-//	public List<OrdemServico> getOrdemServico()
-//	{
-//		return ordemServico;
-//	}
-//
-//	public void setOrdemServico(List<OrdemServico> ordemServico)
-//	{
-//		this.ordemServico = ordemServico;
-//	}
 }

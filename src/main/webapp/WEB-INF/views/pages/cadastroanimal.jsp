@@ -49,7 +49,7 @@
 							<h4 class="header">Tabela de Animais</h4>
 							<div class="row">
 								<div class="col s12 ">
-									<table id="animal-table" class=" hoverable centered responsive-table striped ">
+									<table id="animal-table" class=" hoverable centered striped ">
 										<thead>
 											<tr>
 												<th>ID</th>
@@ -164,10 +164,10 @@
 										<div class="row">
 											<div class="input-field col s12">
 												<button class="modal-action modal-close btn  waves-effect waves-light left" type="button">
-													Fechar <i class="mdi-content-undo left"></i>
+													 <i class="mdi-content-undo left"></i>
 												</button>
 												<button class="btn cyan waves-effect waves-light right" type="submit">
-													Salvar <i class="mdi-content-send right"></i>
+													 <i class="mdi-content-send right"></i>
 												</button>
 											</div>
 										</div>
