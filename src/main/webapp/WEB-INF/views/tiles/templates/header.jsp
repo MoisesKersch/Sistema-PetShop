@@ -16,7 +16,7 @@
 		<nav class="cyan">
 			<div class="nav-wrapper">
 				<h1 class="logo-wrapper">
-					<a href="index.html" class="brand-logo darken-1"><img src="resources/images/petshop-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span>
+					<a href="home" class="brand-logo darken-1"><img src="resources/images/petshop-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span>
 				</h1>
 				<ul class="right hide-on-med-and-down">
 					<li class="search-out"><input type="text" class="search-out-text"></li>
