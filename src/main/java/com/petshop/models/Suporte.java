@@ -11,19 +11,17 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "dica")
-public class Dica
+@Table(name = "suporte")
+public class Suporte
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "dica_id")
+	@Column(name = "suporte_id")
 	private Long id;
 	
 	private String titulo;
 	
-	private String descricao;
-	
-	private String url;
+	private String mensagem;
 	
 	@ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -49,14 +47,14 @@ public class Dica
 		this.titulo = titulo;
 	}
 
-	public String getDescricao()
+	public String getMensagem()
 	{
-		return descricao;
+		return mensagem;
 	}
 
-	public void setDescricao(String descricao)
+	public void setMensagem(String mensagem)
 	{
-		this.descricao = descricao;
+		this.mensagem = mensagem;
 	}
 
 	public Empresa getEmpresa()
@@ -67,15 +65,5 @@ public class Dica
 	public void setEmpresa(Empresa empresa)
 	{
 		this.empresa = empresa;
-	}
-
-	public String getUrl()
-	{
-		return url;
-	}
-
-	public void setUrl(String url)
-	{
-		this.url = url;
 	}
 }

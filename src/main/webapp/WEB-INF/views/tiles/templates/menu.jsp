@@ -34,7 +34,7 @@
 			<li class="bold"><a href="#" class="waves-effect waves-cyan"><i class="mdi-action-credit-card"></i> Ver Débitos </a></li>
 		</c:if>
 
-		<li class="bold"><a href="#" class="waves-effect waves-cyan"><i class="mdi-action-help"></i> Suporte </a></li>
+		<li class="bold"><a href="suporte" class="waves-effect waves-cyan"><i class="mdi-action-help"></i> Suporte </a></li>
 		<li class="bold"><a href="#" class="waves-effect waves-cyan"><i class="mdi-action-settings"></i> Configurações </a></li>
 
 	</ul>

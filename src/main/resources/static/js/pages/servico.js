@@ -1,4 +1,3 @@
-
 var table;
 var tableEdit;
 var descTempt;
@@ -162,10 +161,3 @@ $("#servico-form").validate({
     error.appendTo( element.parent() );
   }
 });
-
-
-
-
-
-
-

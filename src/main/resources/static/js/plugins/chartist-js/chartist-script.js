@@ -1,6 +1,6 @@
 //SIMPLE LINE CHART
 new Chartist.Line('#ct1-chart', {
-  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+  labels: ['Sergunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'],
   series: [
     [12, 9, 7, 8, 5],
     [2, 1, 3.5, 7, 3],
@@ -179,7 +179,7 @@ chart.on('created', function() {
 
 //MULTI-LINE LABELS
 new Chartist.Bar('#ct5-chart', {
-  labels: ['First quarter of the year', 'Second quarter of the year', 'Third quarter of the year', 'Fourth quarter of the year'],
+  labels: ['Primeiro período do ano', 'Segundo período do ano', 'Terceiro período do ano', 'Quarto período do ano'],
   series: [
     [60000, 40000, 80000, 70000],
     [40000, 30000, 70000, 65000],

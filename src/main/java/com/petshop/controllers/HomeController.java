@@ -31,7 +31,7 @@ public class HomeController extends SessaoInfo
 		String role = getUsuarioCorrente().getRoles().iterator().next().getRole();
 
 		try {
-
+			modelAndView.addObject("dicas", homeService.getDicas(getUsuarioCorrente().getEmpresa()));
 			if (role.equals("Cliente")) {
 				HomeCli homeCli = homeService.getHomeCli(getUsuarioCorrente().getEmpresa(), getUsuarioCorrente());
 				modelAndView.addObject("servicoAgendado", homeCli.getServicoAgendado());
@@ -45,7 +45,6 @@ public class HomeController extends SessaoInfo
 			}
 			modelAndView.addObject("papel", getUsuarioCorrente().getRoles().iterator().next().getRole());
 			modelAndView.addObject("nome", getUsuarioCorrente().getNome());
-			modelAndView.addObject("dicas", homeService.getDicas(getUsuarioCorrente().getEmpresa()));
 		} catch (Exception e) {
 
 		}

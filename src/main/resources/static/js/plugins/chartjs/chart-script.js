@@ -3,7 +3,7 @@
 */
 //var randomScalingFactor = function(){ return Math.round(Math.random()*10)};
 var data = {
-	labels : ["JAN","FEB","MAR","APR","MAY","JUNE","JULY"],
+	labels : ["JAN","FEV","MARÇO","ABRIL","MAIO","JUNHO","JULHO"],
 	datasets : [
 		{
 			label: "First dataset",
@@ -78,7 +78,7 @@ Trending Bar Chart
 */
 
 var dataBarChart = {
-    labels : ["JAN","FEB","MAR","APR","MAY"],
+    labels : ["JAN","FEV","MAR","ABR","MAIO"],
     datasets: [
         {
             label: "Bar dataset",
