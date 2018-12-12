@@ -110,9 +110,16 @@
 								</div>
 							</div>
 
+<!-- 							<div class="row modal-form-row"> -->
+<!-- 								<div class="input-field col s12"> -->
+<!-- 									<input id="descricao-categoria" type="text" name="descricao"> <label for="descricao">Descrição</label> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+
 							<div class="row modal-form-row">
 								<div class="input-field col s12">
-									<input id="descricao-categoria" type="text" name="descricao"> <label for="descricao">Descrição</label>
+									<textarea id="descricao-categoria" class="materialize-textarea" style="height: 83.2px;" name="descricao"></textarea>
+									<label for="descricao" class="active">Descrição</label>
 								</div>
 							</div>
 
@@ -166,18 +173,24 @@
 
 							<div class="row">
 								<div class="input-field col s12">
-									<label></label>
-									<select id="servico-categoria-select" name="categoriaId" class="required">
+									<label></label> <select id="servico-categoria-select" name="categoriaId" class="required">
 									</select>
 								</div>
 							</div>
 
-							<div class="row">
+<!-- 							<div class="row"> -->
+<!-- 								<div class="input-field col s12"> -->
+<!-- 									<input id="descricao" type="text" name="descricao"> <label for="descricao">Descrição</label> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+
+							<div class="row modal-form-row">
 								<div class="input-field col s12">
-									<input id="descricao" type="text" name="descricao"> <label for="descricao">Descrição</label>
+									<textarea id="descricao" class="materialize-textarea" style="height: 83.2px;" name="descricao"></textarea>
+									<label for="descricao" class="active">Descrição</label>
 								</div>
 							</div>
-							
+
 							<div class="row">
 								<div class="input-field col s12">
 									<input id="url" type="text" name="url"> <label for="url">Imagem Url</label>

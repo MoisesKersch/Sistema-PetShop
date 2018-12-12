@@ -1551,3 +1551,128 @@ footer.page-footer {
 .slider .indicators {
 	z-index: 9999
 }
+
+.notification-badge {
+	position: relative;
+	right: 5px;
+	top: -20px;
+	color: #ffffff;
+	background-color: #FF4081;
+	margin: 0 -.8em;
+	border-radius: 50%;
+	padding: 4px 5px
+}
+
+#notifications-dropdown h5 {
+	font-size: 1rem;
+	text-transform: capitalize;
+	font-weight: 500
+}
+
+#notifications-dropdown li {
+	padding: 10px;
+	font-size: 1rem
+}
+
+#notifications-dropdown li>a {
+	padding: 0;
+	font-size: 1rem;
+	font-weight: 300
+}
+
+#notifications-dropdown li>a>i {
+	display: inline-block;
+	font-size: 1.2rem;
+	position: relative;
+	top: 4px
+}
+
+#notifications-dropdown li>time {
+	font-size: 0.8rem;
+	font-weight: 400
+}
+
+#notifications-dropdown li.divider {
+	padding: 0
+}
+span.badge[data-badge-caption]::after {
+    content: " " attr(data-badge-caption);
+}
+
+
+.plans-container .collection {
+	border: none
+}
+
+.plans-container .collection .collection-item {
+	border-bottom: none;
+	text-align: center;
+	font-size: 1.07rem;
+	line-height: 1.6em
+}
+
+.plans-container .collection .collection-item:before {
+	font-size: 1.28rem;
+	line-height: 1.6em;
+	color: #009315;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	content: "\e623";
+	margin-right: 10px
+}
+
+.plans-container .card .card-image {
+	position: relative;
+	width: 100%
+}
+
+.plans-container .card .card-image .card-title {
+	position: relative;
+	font-size: 1.28rem;
+	line-height: 1.6em;
+	text-align: center;
+	width: 100%;
+	padding: 10px 15px;
+	text-transform: uppercase;
+	background: rgba(0, 0, 0, 0.1)
+}
+
+.plans-container .card .card-image .price {
+	position: relative;
+	font-size: 5rem;
+	line-height: 1.6em;
+	color: #fff;
+	font-weight: 300;
+	text-align: center
+}
+
+.plans-container .card .card-image .price sup {
+	font-weight: 100;
+	font-size: 1.42rem;
+	line-height: 1.6em;
+	top: -35px
+}
+
+.plans-container .card .card-image .price sub {
+	font-weight: 100;
+	font-size: 1.42rem;
+	line-height: 1.6em;
+	top: 0
+}
+
+.plans-container .card .card-image .price-desc {
+	text-align: center;
+	color: #fff;
+	padding-bottom: 10px
+}
+
+.plans-container .card .card-content {
+	padding: 0
+}
+
+
+

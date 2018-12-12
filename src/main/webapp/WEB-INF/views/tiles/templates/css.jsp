@@ -26,6 +26,10 @@
  	<!-- POP UP SWEETALERT -->  
  	<link href="/resources/js/plugins/sweetalert/sweetalert.css" type="text/css" rel="stylesheet" media="screen,projection">
  	
+ 	<!-- responsive table and scroller for datatable plugin jquery --> 
+<!--  	<link rel="stylesheet" type="text/css" href="/resources/js/plugins/data-tables/css/responsive.dataTables.css"/> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="/resources/js/plugins/data-tables/css/scroller.dataTables.css"/> -->
+ 	
 
     
     

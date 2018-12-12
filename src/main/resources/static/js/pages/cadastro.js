@@ -41,16 +41,18 @@ function cadastroFormSave()
 				 if ($("#editing").val() == "false")
 			 	 { 
 					 table.row.add( {
-					  "nome" : cadastro.nome,
-                      "cpf": cadastro.cpf ,
-                      "email": cadastro.email,
-                      "rua": cadastro.enderecos[0].rua,
-                      "numero": cadastro.enderecos[0].numero,
-                      "bairro": cadastro.enderecos[0].bairro,
-                      "cidade": cadastro.enderecos[0].cidade,
-                      "complemento": cadastro.enderecos[0].complemento,
-                      "uf": cadastro.enderecos[0].uf,
-                      "id": cadastro.id
+						 "id": cadastro.id,
+						 "nome" : cadastro.nome,
+						 "cpf": cadastro.cpf ,
+						 "email": cadastro.email,
+						 "rua": cadastro.enderecos[0].rua,
+						 "numero": cadastro.enderecos[0].numero,
+						 "bairro": cadastro.enderecos[0].bairro,
+						 "complemento": cadastro.enderecos[0].complemento,
+						 "cidade": cadastro.enderecos[0].cidade,
+						 "uf": cadastro.enderecos[0].uf,
+						 "login": cadastro.login,
+						 "senha": cadastro.senha
 					   } ).draw();
 					 
 					 $("#editing").val("false");
@@ -58,16 +60,18 @@ function cadastroFormSave()
 				else
 				{
 					 table.row({ selected:true }).data( {
-						  "nome" : cadastro.nome,
-	                      "cpf": cadastro.cpf ,
-	                      "email": cadastro.email,
-	                      "rua": cadastro.enderecos[0].rua,
-	                      "numero": cadastro.enderecos[0].numero,
-	                      "bairro": cadastro.enderecos[0].bairro,
-	                      "cidade": cadastro.enderecos[0].cidade,
-	                      "complemento": cadastro.enderecos[0].complemento,
-	                      "uf": cadastro.enderecos[0].uf,
-	                      "id": cadastro.id
+						 "id": cadastro.id,
+						 "nome" : cadastro.nome,
+						 "cpf": cadastro.cpf ,
+						 "email": cadastro.email,
+						 "rua": cadastro.enderecos[0].rua,
+						 "numero": cadastro.enderecos[0].numero,
+						 "bairro": cadastro.enderecos[0].bairro,
+						 "complemento": cadastro.enderecos[0].complemento,
+						 "cidade": cadastro.enderecos[0].cidade,
+						 "uf": cadastro.enderecos[0].uf,
+						 "login": cadastro.login,
+						 "senha": cadastro.senha
 	                  });
 					 
 					 $("#editing").val("false");
@@ -90,8 +94,12 @@ function openTable()
 			"language": {
 			    "url": "/resources/js/plugins/data-tables/json/Portuguese-Brasil.json"
 			},
-			
-		    columns: [ 	{ data: "nome" },
+			deferRender: true,
+		    scrollY:     300,
+		    scroller:    true,
+		    columns: [ 	
+		    			{ data: "id" },
+		    			{ data: "nome" },
 		    			{ data: "cpf" },
 		    			{ data: "email" },
 		    			{ data: "rua",
@@ -145,7 +153,8 @@ function openTable()
 		    					return full.enderecos[0].uf;
 		    				}
 		    			},
-		    			{ data: "id" }
+		    			{ data: "login"},
+		    			{ data: "senha"}
 		    		  ],
 		    	  dom: 'Bfrtip',        // Needs button container
 		          select: 'single',
@@ -166,7 +175,7 @@ function openTable()
 		            name: 'delete'      // do not change name
 		         }],
 		         "columnDefs": [
-		        	    {"targets": [ 9 ], "visible": false},
+		        	    {"targets": [ 0 ], "visible": false},
 		        	  ]
 				})
 			}

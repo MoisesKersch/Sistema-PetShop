@@ -262,23 +262,23 @@
                   });
                   
                   $('#cadastro-form-modal').openModal();
+                  var x = 0;
                   
-                  $('#nome').val(adata.data()[0][columnDefs[0].name])
-                  $('#cpf').val(adata.data()[0][columnDefs[1].name])
-                  $('#email').val(adata.data()[0][columnDefs[2].name])
-                  
-                  $('#bairro').val( adata.data()[0]['enderecos'][0][columnDefs[3].name] )
-                  $('#bairro').val( adata.data()[0]['enderecos'][0][columnDefs[4].name] )
-                  
-                  $('#bairro').val( adata.data()[0]['enderecos'][0][columnDefs[5].name] )
-                  $('#cidade').val( adata.data()[0]['enderecos'][0][columnDefs[6].name])
-                  $('#uf').val( adata.data()[0]['enderecos'][0][columnDefs[7].name]);
-                  $('#complemento').val( adata.data()[0]['enderecos'][0][columnDefs[8].name])
-                  $('#id').val(adata.data()[0][columnDefs[9].name])	
+                  $('#id').val(adata.data()[0][columnDefs[x++].name])	
+                  $('#nome').val(adata.data()[0][columnDefs[x++].name])
+                  $('#cpf').val(adata.data()[0][columnDefs[x++].name])
+                  $('#email').val(adata.data()[0][columnDefs[x++].name])
+                  $('#rua').val( adata.data()[0]['enderecos'][0][columnDefs[x++].name] )
+                  $('#numero').val( adata.data()[0]['enderecos'][0][columnDefs[x++].name] )
+                  $('#bairro').val( adata.data()[0]['enderecos'][0][columnDefs[x++].name] )
+                  $('#complemento').val( adata.data()[0]['enderecos'][0][columnDefs[x++].name])
+                  $('#cidade').val( adata.data()[0]['enderecos'][0][columnDefs[x++].name])
+                  $('#uf').val( adata.data()[0]['enderecos'][0][columnDefs[x++].name]);
+                  $('#login').val(adata.data()[0][columnDefs[x++].name])
+                  $('#senha').val(adata.data()[0][columnDefs[x++].name])
                   $('#editing').val("true")	
                   Materialize.updateTextFields();
                 }, 
-                
           
                 /**
                  * Open Delete Modal for selected row
@@ -311,7 +311,7 @@
                      });
                      
                      $('#removeModal').openModal();
-                     $('#remove').val(adata.data()[0][columnDefs[9].name])
+                     $('#remove').val(adata.data()[0][columnDefs[0].name])
                 },
 
                 _deleteRow : function() {

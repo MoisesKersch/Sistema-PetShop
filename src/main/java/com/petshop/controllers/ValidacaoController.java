@@ -11,28 +11,25 @@ import com.petshop.models.Usuario;
 import com.petshop.repositories.UsuarioRepository;
 import com.petshop.utils.documentosPessoais.CNP;
 
-
-// nesta classe escrever codigos que precisam ser validado no lado do servidor
+// nesta classe escrever codigos que precisam ser validado
 @RestController
 @RequestMapping(value = "/public")
 public class ValidacaoController
 {
 	@Autowired
 	UsuarioRepository usuarioRepository;
-	
+
 	@RequestMapping(value = "/iscpfcnpjvalido", method = RequestMethod.POST)
 	public Boolean isCpfCnpjValido(String entrada)
 	{
-		try
-		{
+		try {
 			return CNP.validaCPF(entrada);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+		
 	@RequestMapping(value = "/isusuarioexiste", method = RequestMethod.POST)
 	public Boolean isUsuarioExiste(String login)
 	{

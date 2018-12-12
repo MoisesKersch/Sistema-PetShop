@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "ordem_servico")
 public class OrdemServico
@@ -20,14 +22,14 @@ public class OrdemServico
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ordem_servico_id")
 	private Long id;
-	
+
 	@NotNull
 	@Column(name = "data_reservada")
 	private Date dataReservada = new Date();
 	
 	@NotNull
 	@Column(name = "status")
-	private String status;
+	private String status; // pago novo status
 	
 	@Column(name = "observacao")
 	private String observacao;
@@ -47,6 +49,9 @@ public class OrdemServico
 	@ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+	
+	@Column(name = "data_finalizada")
+	private Date dataFinalizada;
 
 	public Long getId()
 	{
@@ -58,6 +63,7 @@ public class OrdemServico
 		this.id = id;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
 	public Date getDataReservada()
 	{
 		return dataReservada;
@@ -126,5 +132,16 @@ public class OrdemServico
 	public void setUsuario(Usuario usuario)
 	{
 		this.usuario = usuario;
+	}
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo", locale = "pt-BR")
+	public Date getDataFinalizada()
+	{
+		return dataFinalizada;
+	}
+
+	public void setDataFinalizada(Date dataFinalizada)
+	{
+		this.dataFinalizada = dataFinalizada;
 	}
 }

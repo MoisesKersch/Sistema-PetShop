@@ -26,11 +26,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>
 		           " where eu.empresa_id = :empresaId ", nativeQuery = true)          
 	public List<Usuario> findByEmpresaId(@Param("empresaId") Long empresaId );
 	
-	@Query(value = 	" select u.usuario_id, ativo, cpf, email, login, nome, senha from usuario u " + 
-					" join usuario_empresa ue " + 
-					" on u.usuario_id = ue.usuario_id " + 
+	@Query(value = 	" select u.usuario_id, ativo, cpf, email, login, nome, senha, empresa_id" + 
+					" from usuario u " + 
 					" join user_role ur " + 
 					" on u.usuario_id = ur.usuario_id " + 
-					" where ue.empresa_id = 1 and ur.role_id <> 1 ", nativeQuery = true)          
+					" where u.empresa_id = :empresaId and ur.role_id <> 1 ", nativeQuery = true)          
 	public List<Usuario> findByEmpresaIdRoleAdminNot(@Param("empresaId") Long empresaId );
+	
 }

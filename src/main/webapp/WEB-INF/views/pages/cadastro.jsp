@@ -12,9 +12,7 @@
 
 <%-- <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/resources/css/agendacontato.css" />"> --%>
 
-<link
-	href="http://cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css"
-	type="text/css" rel="stylesheet" media="screen,projection">
+<link href="http://cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
 
 </head>
@@ -48,18 +46,18 @@
 				<!--start container-->
 				<div class="container">
 					<div class="section">
-						<p class="caption">Cadastre, remova e altere clientes
-							cadastrados no seu sistema.</p>
+						<p class="caption">Cadastre, remova e altere clientes cadastrados no seu sistema.</p>
 						<div class="divider"></div>
 						<!--DataTables example-->
 						<div id="table-datatables">
 							<h4 class="header">Tabela de Clientes</h4>
 							<div class="row">
 								<div class="col s12 ">
-									<table id="cadastro" class=" hoverable centered responsive-table striped ">
+									<table id="cadastro" class=" table table-bordered table-hover dt-responsive  ">
 										<thead>
 											<tr>
-												<th style="width: 200px;">Nome</th>
+												<th>ID</th>
+												<th > Nome</th>
 												<th>CPF</th>
 												<th>Email</th>
 												<th>Rua</th>
@@ -68,7 +66,8 @@
 												<th>Complemento</th>
 												<th>Cidade</th>
 												<th>Estado</th>
-												<th>ID</th>
+												<th>Login</th>
+												<th >Senha</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -77,22 +76,20 @@
 								</div>
 							</div>
 						</div>
-					
+
 						<div class="modal" id="removeModal">
 							<div class="modal-content teal white-text">
 								<p>Tem certeza que deseja remover esse cadastro?</p>
 							</div>
 							<input type="hidden" id="remove" name="id">
 							<div class="modal-footer  teal lighten-4">
-								<a href="#"
-									class="waves-effect waves-red btn-flat modal-action modal-close">Cancelar</a>
-								<a href="#"
-									class="waves-effect waves-green btn-flat modal-action modal-close" onclick="cadastroFormRemover()">Remover</a>
+								<a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Cancelar</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close"
+									onclick="cadastroFormRemover()">Remover</a>
 							</div>
 						</div>
 
-						<input id="editing" class="hide" name="editing" type="text" value="false"> 
-						 
+						<input id="editing" class="hide" name="editing" type="text" value="false">
+
 						<div id="cadastro-form-modal" class="modal">
 							<div class="modal-content">
 								<h4>Cadastro</h4>
@@ -101,86 +98,73 @@
 
 										<div class="row modal-form-row">
 											<div class="input-field col s12">
-												<input id="nome" type="text" class="required" name="nome">
-												<label for="nome">Nome</label>
+												<input id="nome" type="text" class="required" name="nome"> <label for="nome">Nome</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="cpf" type="text" class="required" name="cpf">
-												<label for="cpf">CPF</label>
+												<input id="cpf" type="text" class="required" name="cpf"> <label for="cpf">CPF</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="email" type="text" class="required" name="email">
-												<label for="email">Email</label>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="rua" type="text" class="required"
-													name="rua"> <label for="rua">Rua</label>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="numero" type="number" class="required"
-													name="numero"> <label for="numero">Número</label>
+												<input id="email" type="text" class="required" name="email"> <label for="email">Email</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="bairro" type="text" class="required"
-													name="bairro"> <label for="bairro">Bairro</label>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="complemento" type="text" name="complemento">
-												<label for="complemento">Complemento</label>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="input-field col s12">
-												<input id="cidade" type="text" class="required"
-													name="cidade"> <label for="cidade">Cidade</label>
+												<input id="rua" type="text" class="required" name="rua"> <label for="rua">Rua</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="uf" type="text" class="required" name="uf">
-												<label for="uf">UF</label>
+												<input id="numero" type="number" class="required" name="numero"> <label for="numero">Número</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="login" name="login" type="text"> <label
-													for="login">Login</label>
+												<input id="bairro" type="text" class="required" name="bairro"> <label for="bairro">Bairro</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="senha" type="text" name="senha"> <label
-													for="senha">Senha</label>
+												<input id="complemento" type="text" name="complemento"> <label for="complemento">Complemento</label>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="input-field col s12">
-												<input id="passwordConfirm" name="passwordConfirm"
-													type="text"> <label for="passwordConfirm">Senha
-													novamente</label>
+												<input id="cidade" type="text" class="required" name="cidade"> <label for="cidade">Cidade</label>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="uf" type="text" class="required" name="uf"> <label for="uf">UF</label>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="login" name="login" type="text"> <label for="login">Login</label>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="senha" type="text" name="senha"> <label for="senha">Senha</label>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="passwordConfirm" name="passwordConfirm" type="text"> <label for="passwordConfirm">Senha novamente</label>
 											</div>
 										</div>
 
@@ -188,13 +172,11 @@
 
 										<div class="row">
 											<div class="input-field col s12">
-												<button
-													class="modal-action modal-close btn  waves-effect waves-light left"
-													type="button">
-													Fechar <i class="mdi-content-undo left"></i>
+												<button class="modal-action modal-close btn  waves-effect waves-light left" type="button">
+													 <i class="mdi-content-undo left"></i>
 												</button>
 												<button class="btn cyan waves-effect waves-light right" type="submit">
-													Salvar <i class="mdi-content-send right"></i>
+													 <i class="mdi-content-send right"></i>
 												</button>
 											</div>
 										</div>
@@ -210,13 +192,20 @@
 		<!-- END WRAPPER -->
 	</div>
 	<!-- END MAIN -->
- 	<!-- FOOTER -->
+	<!-- FOOTER -->
+
+	
+
 	<jsp:include page="../tiles/templates/footer.jsp"></jsp:include>
 	<!-- SCRIPTS -->
 	<jsp:include page="../tiles/templates/js.jsp"></jsp:include>
 	<script type="text/javascript" src="/resources/js/pages/cadastro.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/pages/cadastro-editor.js"></script>
+	<script type="text/javascript" src="/resources/js/pages/cadastro-editor.js"></script>
 
 </body>
+
+
+
+
+
 </html>

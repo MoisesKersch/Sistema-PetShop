@@ -6,4 +6,5 @@ import com.petshop.models.Empresa;
 
 public interface EmpresaRepository extends JpaRepository<Empresa, Long>
 {
+	
 }

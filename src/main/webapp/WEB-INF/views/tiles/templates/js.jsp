@@ -1,4 +1,4 @@
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
     <!-- ================================================
     Scripts
     ================================================ -->
@@ -6,15 +6,11 @@
     <!-- jQuery Library -->
     <script type="text/javascript" src="/resources/js/jquery-1.11.2.min.js"></script>    
     <!--materialize js-->
-    <script type="text/javascript" src="/resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/resources/js/materialize.js"></script>
+    
 
-
-   
     <!--scrollbar-->
     <script type="text/javascript" src="/resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
-<!-- <script -->
-<!-- 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 
 <!-- sparkline -->
@@ -28,7 +24,7 @@
     
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-    <script type="text/javascript" src="/resources/js/plugins.js"></script>
+    <script type="text/javascript" src="/resources/js/plugins.min.js"></script>
     
 	<!--prism-->
  	<script type="text/javascript" src="/resources/js/prism.js"></script>
@@ -65,6 +61,15 @@
    
     <!-- sweetalert popup  -->
    <script type="text/javascript" src="/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
+   
+   <c:if test = "${papel == 'Administrator'}">
+    	<script type="text/javascript" src="resources/js/pages/header-admin.js"></script>
+	</c:if>
+		      	
+	<!-- responsive table and scroller for datatable plugin jquery --> 
+<!-- 	<script type="text/javascript" src="/resources/js/plugins/data-tables/js/dataTables.responsive.js"></script> -->
+	<script type="text/javascript" src="/resources/js/plugins/data-tables/js/dataTables.scroller.js"></script>
+  
    
 
    
