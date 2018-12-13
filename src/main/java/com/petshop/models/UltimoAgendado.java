@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class UltimoAgendado
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ultimo_agendado_id")
 	private Long id;
 

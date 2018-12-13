@@ -26,6 +26,7 @@ public class CNP
 	public static boolean validaCPF(String cpf) throws Exception
 	{
 		cpf = StringUtil.removeNaoNumericos(cpf);
+		
 		if ((cpf == null) || (cpf.length() != 11))
 			return false;
 		Integer digito1 = calculaDigito(cpf.substring(0, 9), PESO_CPF);

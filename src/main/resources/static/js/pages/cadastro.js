@@ -234,6 +234,9 @@ $("#cadastro-form").validate({
 				data : {
 					"entrada" : function() {
 						return $("#login").val()
+					},
+					"usuarioId" : function() {
+						return $("#id").val()
 					}
 				},
 				dataFilter : function(response)

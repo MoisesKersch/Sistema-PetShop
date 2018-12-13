@@ -31,9 +31,16 @@ public class ValidacaoController
 	}
 		
 	@RequestMapping(value = "/isusuarioexiste", method = RequestMethod.POST)
-	public Boolean isUsuarioExiste(String login)
+	public Boolean isUsuarioExiste(String login, Long usuarioId)
 	{
-		Optional<Usuario> usuarioExiste = usuarioRepository.findByLogin(login);
+		Optional<Usuario> usuarioExiste = usuarioRepository.findById(usuarioId);
+		if (usuarioExiste.isPresent())
+		{
+			if (usuarioExiste.get().getLogin().equals(login))
+				return false;
+		}
+		
+		usuarioExiste = usuarioRepository.findByLogin(login);
 		return usuarioExiste.isPresent();
 	}
 }

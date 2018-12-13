@@ -200,7 +200,7 @@
 						
 						<div class="input-field col s12">
 							<p class="margin center medium-small sign-up">
-								Já possui uma conta? <a href="login">Login </a>
+								Já possui uma conta? <a href="../login">Login </a>
 							</p>
 						</div>
 					</div>

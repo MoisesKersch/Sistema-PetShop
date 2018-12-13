@@ -22,11 +22,11 @@
 
   <!-- CORE CSS-->
 
-  <link href="resources/css/page-center.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="/resources/css/page-center.css" type="text/css" rel="stylesheet" media="screen,projection">
 
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-  <link href="resources/css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="/resources/css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="/resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
   
   
   
